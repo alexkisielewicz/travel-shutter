@@ -1,0 +1,41 @@
+.App {
+  font-family: 'Merriweather', serif;
+  background-color: #FFF;
+  min-height: 100vh;
+}
+
+body {
+  color: #024047;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #FB8500;
+  transition: color ease-in-out 0.3s;
+}
+
+a:hover {
+  color: #FFB703;
+  text-decoration: none;
+}
+
+a:hover i {
+  color: #FFB703;
+  transition: color ease-in-out 0.3s;
+}
+
+i {
+  color: #8ECAE6;
+  font-size: 1.6rem;
+  padding: 7px;
+  vertical-align: middle;
+}
+
+i:hover {
+  cursor: pointer;
+  transition: color ease-in-out 0.3s;
+  color: #8ECAE6;
+}
