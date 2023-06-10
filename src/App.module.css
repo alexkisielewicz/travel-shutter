@@ -12,6 +12,10 @@ body {
   box-sizing: border-box;
 }
 
+.Wrapper {
+  padding-top: 70px;
+}
+
 a {
   color: #FB8500;
   transition: color ease-in-out 0.3s;
@@ -37,5 +41,21 @@ i {
 i:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: #8ECAE6;
+  color: #FFB703;
+}
+
+.SignUpImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.BoxShadow {
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.2);
 }
