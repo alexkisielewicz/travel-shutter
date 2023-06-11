@@ -3,9 +3,10 @@ import styles from "../../styles/SinglePost.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { DropdownMenu } from "../../components/DropdownMenu";
 
 const SinglePost = (props) => {
   const {
@@ -25,42 +26,56 @@ const SinglePost = (props) => {
     likes_count,
     postPage,
     setPosts,
- } = props;
+  } = props;
 
- const currentUser = useCurrentUser();
- const is_owner = currentUser?.username === owner;
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
+  const history = useHistory();
 
- const handleLike = async () => {
-  try {
-    const { data } = await axiosRes.post(`/likes/`, {post: id});
-    setPosts((prevPosts) => ({
-      ...prevPosts, 
-      results: prevPosts.results.map((post) => {
-        return post.id === id
-        ? {...post, likes_count: post.likes_count + 1, like_id: data.id}
-        : post;
-      })
-    }));
-  } catch (error) {
-    console.log(error);
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      history.goBack();
+    } catch (error) {
+      console.log(error)
+    }
   }
- }
 
- const handleUnlike = async () => {
-  try {
-    await axiosRes.delete(`/likes/${like_id}`);
-    setPosts((prevPosts) => ({
-      ...prevPosts, 
-      results: prevPosts.results.map((post) => {
-        return post.id === id
-        ? {...post, likes_count: post.likes_count -1 , like_id: null}
-        : post;
-      })
-    }));
-  } catch (error) {
-    console.log(error);
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post(`/likes/`, { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
+        })
+      }));
+    } catch (error) {
+      console.log(error);
+    }
   }
- }
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post;
+        })
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={appStyles.Wrapper}>
@@ -74,7 +89,7 @@ const SinglePost = (props) => {
             </Link>
             <div className="d-flex align-items-center">
               <span>{updated_at}</span>
-              {is_owner && postPage && "OWNER!"}
+              {is_owner && postPage && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
             </div>
           </Media>
         </Card.Body>
@@ -93,7 +108,7 @@ const SinglePost = (props) => {
             <p>EXIF: {exif}</p>
             {is_owner ? (
               <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own posts!</Tooltip>}>
-              <i className="far fa-heart" />
+                <i className="far fa-heart" />
               </OverlayTrigger>
             ) : like_id ? (
               <span onClick={handleUnlike}>
