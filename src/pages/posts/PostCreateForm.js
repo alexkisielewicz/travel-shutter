@@ -81,6 +81,7 @@ function PostCreateForm() {
         <Form.Control
           type="text"
           name="title"
+          placeholder="Type post title"
           value={title}
           onChange={handleChange}
         />
@@ -92,11 +93,6 @@ function PostCreateForm() {
       ))}
       <Form.Group>
         <Form.Label>Category</Form.Label>
-        {errors.category?.map((message, idx) => (
-          <Alert variant="warning" className={appStyles.Alert} key={idx}>
-            {message}
-          </Alert>
-        ))}
         <Form.Control
           as="select"
           name="category"
@@ -115,6 +111,11 @@ function PostCreateForm() {
           <option value="street">Street</option>
           <option value="architecture">Architecture</option>
         </Form.Control>
+        {errors.category?.map((message, idx) => (
+          <Alert variant="warning" className={appStyles.Alert} key={idx}>
+            {message}
+          </Alert>
+        ))}
       </Form.Group>
 
       <Form.Group>
@@ -122,6 +123,7 @@ function PostCreateForm() {
         <Form.Control
           type="text"
           name="tags"
+          placeholder='e.g. "summer, holidays, greece"'
           value={tags}
           onChange={handleChange}
         />
@@ -137,6 +139,7 @@ function PostCreateForm() {
         <Form.Control
           type="text"
           name="exif"
+          placeholder="Nikon D750, Nikkor 24-70 f./2.8 @ 24mm 1/60 sec."
           value={exif}
           onChange={handleChange}
         />
