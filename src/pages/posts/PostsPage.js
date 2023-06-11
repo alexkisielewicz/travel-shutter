@@ -13,6 +13,8 @@ import SinglePost from "./SinglePost"
 
 import NoResults from "../../assets/no-results.png"
 import Asset from "../../components/Asset";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 
 
@@ -22,7 +24,6 @@ function PostsPage({ message, filter = "" }) {
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
-
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,27 +37,33 @@ function PostsPage({ message, filter = "" }) {
     };
 
     setHasLoaded(false) // set to false before load posts
-    fetchPosts();
+    const timer = setTimeout(() => {
+      fetchPosts();
+
+    }, 1000)
+    return () => {
+      clearTimeout(timer);
+    }
   }, [filter, pathname, query]) // run every time filter/path/search query change
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
-        
+
         {/* SEARCH BAR */}
         <i class={`fa fa-search ${styles.SearchIcon}`}></i>
-        <Form 
+        <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
-          <Form.Control 
-            type="text" 
-            className="mr-sm-2" 
+          <Form.Control
+            type="text"
+            className="mr-sm-2"
             placeholder="Search posts"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            />
+          />
 
         </Form>
 
@@ -64,9 +71,18 @@ function PostsPage({ message, filter = "" }) {
           ? (
             <>
               {posts.results.length ? (
-                posts.results.map(post => (
-                  <SinglePost key={post.id} {...post} setPosts={setPosts} />
-                ))
+                // INFINITE SCROLL
+                <InfiniteScroll
+                  children={
+                    posts.results.map(post => (
+                      <SinglePost key={post.id} {...post} setPosts={setPosts} />
+                    ))
+                  }
+                  dataLength={posts.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!posts.next} // returns bool
+                  next={() => fetchMoreData(posts, setPosts)}
+                />
               ) : (
                 <Container className={appStyles.Content}>
                   <Asset src={NoResults} message={message} />
@@ -76,8 +92,8 @@ function PostsPage({ message, filter = "" }) {
           )
           : (
             <Container className={appStyles.Content}>
-                  <Asset spinner />
-                </Container>
+              <Asset spinner />
+            </Container>
           )
         }
       </Col>
