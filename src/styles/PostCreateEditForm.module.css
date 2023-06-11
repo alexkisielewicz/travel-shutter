@@ -1,4 +1,15 @@
 .Container {
-  min-height: 350px;
+  height: 100%;
   border: 1px solid #8ECAE6;
+}
+
+.TextFields {
+  border: 1px solid #8ECAE6;
+}
+
+.FileInput {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
