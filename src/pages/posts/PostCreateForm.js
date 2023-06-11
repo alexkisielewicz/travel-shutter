@@ -1,29 +1,39 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
+
+import Asset from "../../components/Asset";
 
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Asset from "../../components/Asset";
-import { FormGroup, Image } from "react-bootstrap";
+
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {
+  const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
     title: "",
-    content: "",
-    image: ""
+    category: "",
+    tags: "",
+    exif: "",
+    body: "",
+    image: "",
   });
+  const { title, category, tags, exif, body, image } = postData;
 
-  const { title, content, image } = postData;
-
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setPostData({
@@ -34,55 +44,139 @@ function PostCreateForm() {
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
-      // clear reference to previous file if user select new file
-      URL.revokeObjectURL(image)
+      URL.revokeObjectURL(image);
       setPostData({
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
-      })
+      });
     }
-  }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("tags", tags);
+    formData.append("exif", exif);
+    formData.append("body", body);
+    formData.append("image", imageInput.current.files[0]);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err.response?.data);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
 
   const textFields = (
-    <div className={`${styles.Container} text-center`}>
-      <Form onSubmit={() => { }}>
-        <FormGroup>
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={title}
-            onChange={handleChange}
-          >
-          </Form.Control>
-        </FormGroup>
+    <div className="text-center">
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        {errors.category?.map((message, idx) => (
+          <Alert variant="warning" className={appStyles.Alert} key={idx}>
+            {message}
+          </Alert>
+        ))}
+        <Form.Control
+          as="select"
+          name="category"
+          className={appStyles.Input}
+          value={category}
+          onChange={handleChange}
+          aria-label="category"
+        >
+          <option>Select category</option>
+          <option value="adventure">Adventure</option>
+          <option value="travel">Travel</option>
+          <option value="nature">Nature</option>
+          <option value="landscape">Landscape</option>
+          <option value="aerial">Aerial</option>
+          <option value="wildlife">Wildlife</option>
+          <option value="street">Street</option>
+          <option value="architecture">Architecture</option>
+        </Form.Control>
+      </Form.Group>
 
-        <FormGroup>
-          <Form.Label>Content</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={6}
-            name="content"
-            value={content}
-            onChange={handleChange}
-          >
-          </Form.Control>
-        </FormGroup>
-      </Form>
+      <Form.Group>
+        <Form.Label>Tags</Form.Label>
+        <Form.Control
+          type="text"
+          name="tags"
+          value={tags}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.tags?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>EXIF</Form.Label>
+        <Form.Control
+          type="text"
+          name="exif"
+          value={exif}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.exif?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Content</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={6}
+          name="body"
+          value={body}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.body?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Orange}`}
-        onClick={() => { }}
+        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Orange}`} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
         create
       </Button>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -96,7 +190,7 @@ function PostCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Orange} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
@@ -116,16 +210,25 @@ function PostCreateForm() {
               )}
 
               <Form.File
+                className={styles.FileInput}
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
+                ref={imageInput}
               />
+
             </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
+          <Container className={styles.TextFields}>{textFields}</Container>
         </Col>
       </Row>
     </Form>
