@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 import styles from "../../styles/Profile.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "../../components/Avatar";
+import { Button } from "react-bootstrap";
 
 
 const Profile = (props) => {
   const {
     mobile,
     profile,
-    imageSize
+    imageSize = 55,
   } = props;
 
-  const { id, following_id, image, owner } = profile 
+  const { id, following_id, image, owner } = profile;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner; // bool
@@ -21,11 +22,33 @@ const Profile = (props) => {
   return (
     <div className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}>
       <Link
-        to={`/profile/${id}`} 
-        className="align-self-center">
-          <Avatar src={image} height={imageSize} />
+        to={`/profile/${id}`}
+        className="align-self-center"
+      >
+        <Avatar src={image} height={imageSize} />
       </Link>
-      <div className={`mx-2 ${styles.WordBreak}`}><strong>{owner}</strong></div>
+      <div className={`mx-2 ${styles.WordBreak}`}>
+        <strong>{owner}</strong>
+      </div>
+      <div className={`text-right ${!mobile && "ml-auto"}`}>
+        {!mobile && currentUser && !is_owner && (
+          following_id ? (
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+              onClick={() => { }}
+            >
+              unfollow
+            </Button>
+          ) : (
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Blac}`}
+              onClick={() => {}}
+            >
+              follow
+            </Button>
+          )
+        )}
+      </div>
     </div>
   )
 }
