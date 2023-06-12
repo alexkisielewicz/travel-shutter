@@ -5,18 +5,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import PostContainer from "./PostContainer";
+import Asset from "../../components/Asset";
+
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import SinglePost from "./SinglePost"
 
-import NoResults from "../../assets/no-results.png"
-import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-
-
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -36,66 +35,57 @@ function PostsPage({ message, filter = "" }) {
       }
     };
 
-    setHasLoaded(false) // set to false before load posts
+    setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
+    }, 1000);
 
-    }, 1000)
     return () => {
       clearTimeout(timer);
-    }
-  }, [filter, pathname, query]) // run every time filter/path/search query change
+    };
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
-
-        {/* SEARCH BAR */}
-        <i class={`fa fa-search ${styles.SearchIcon}`}></i>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
           <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
             placeholder="Search posts"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
           />
-
         </Form>
 
-        {hasLoaded
-          ? (
-            <>
-              {posts.results.length ? (
-                // INFINITE SCROLL
-                <InfiniteScroll
-                  children={
-                    posts.results.map(post => (
-                      <SinglePost key={post.id} {...post} setPosts={setPosts} />
-                    ))
-                  }
-                  dataLength={posts.results.length}
-                  loader={<Asset spinner />}
-                  hasMore={!!posts.next} // returns bool
-                  next={() => fetchMoreData(posts, setPosts)}
-                />
-              ) : (
-                <Container className={appStyles.Content}>
-                  <Asset src={NoResults} message={message} />
-                </Container>
-              )}
-            </>
-          )
-          : (
-            <Container className={appStyles.Content}>
-              <Asset spinner />
-            </Container>
-          )
-        }
+        {hasLoaded ? (
+          <>
+            {posts.results.length ? (
+              <InfiniteScroll
+                children={posts.results.map((post) => (
+                  <PostContainer key={post.id} {...post} setPosts={setPosts} />
+                ))}
+                dataLength={posts.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <p>Popular profiles for desktop</p>
