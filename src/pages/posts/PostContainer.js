@@ -75,10 +75,10 @@ const PostContainer = (props) => {
 
   return (
     <Card className={styles.Post}>
-      <Card.Body>
+      <Card.Body className={styles.CardBody}>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
+            <Avatar src={profile_image} height={45} />
             {owner}
           </Link>
           <div className="d-flex align-items-center">
@@ -93,12 +93,12 @@ const PostContainer = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img className={styles.PostImage} src={image} alt={title} />
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
+        <div className={styles.PostDetails}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
