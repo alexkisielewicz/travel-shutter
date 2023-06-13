@@ -11,7 +11,11 @@ import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
+
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 
 function App() {
@@ -23,12 +27,14 @@ function App() {
       <NavBar />
       <Container className={styles.Wrapper}>
         <Switch>
+          {/* POST PAGE */}
           <Route
             exact
             path="/"
             render={() => <PostsPage />}
             message="No results found. Adjust the search keyword."
           />
+          {/* FEED PAGE */}
           <Route
             exact
             path="/feed"
@@ -38,6 +44,7 @@ function App() {
                 filter={`owner__followed__owner__profile=${profile_id}&`} />
             )}
           />
+          {/* LIKED PAGE */}
           <Route
             exact
             path="/liked"
@@ -48,12 +55,22 @@ function App() {
               />
             )}
           />
+          {/* AUTH */}
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
+          
+          {/* POSTS endpoint */}
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
+          
+          {/* PROFILEs endpoint */}
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
+          <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
+          
+          {/* ERROR Page 404 */}
           <Route render={() => <Page404 />} />
         </Switch>
       </Container>
