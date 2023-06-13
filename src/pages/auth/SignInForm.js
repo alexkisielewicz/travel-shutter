@@ -17,6 +17,7 @@ import appStyles from "../../App.module.css";
 // import { setTokenTimestamp } from "../../utils/uttils";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
   // redirect user if already logged in
@@ -39,7 +40,8 @@ function SignInForm() {
     try {
       const {data} = await axios.post("/dj-rest-auth/login/", signInData)
       setCurrentUser(data.user)
-      // setTokenTimestamp(data);
+      // keep refresh token timestamp in local storage
+      setTokenTimestamp(data); 
       history.goBack();
     } catch (errors) {
       setErrors(errors.response?.data);
