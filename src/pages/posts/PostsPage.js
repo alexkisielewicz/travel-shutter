@@ -78,13 +78,13 @@ function PostsPage({ message, filter = "" }) {
                 next={() => fetchMoreData(posts, setPosts)}
               />
             ) : (
-              <Container className={appStyles.Content}>
+              <Container className={appStyles.Container}>
                 <Asset src={NoResults} message={message} />
               </Container>
             )}
           </>
         ) : (
-          <Container className={appStyles.Content}>
+          <Container className={appStyles.Container}>
             <Asset spinner />
           </Container>
         )}
