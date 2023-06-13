@@ -1,0 +1,14 @@
+.FileInput {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.Container {
+  background-color: #FFF;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1px solid #8ECAE6;
+  height: 100%;
+}
