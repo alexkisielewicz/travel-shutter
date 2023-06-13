@@ -12,10 +12,10 @@ import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
-import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostPage() {
   const { id } = useParams();
@@ -62,16 +62,14 @@ function PostPage() {
           {/* ALL COMMENTS WITH INFINITE SCROLL */}
           {comments.results.length ? (
             <InfiniteScroll
-              children={
-                comments.results.map((comment) => (
-                  <Comment
-                    key={comment.id}
-                    {...comment}
-                    setPost={setPost}
-                    setComments={setComments}
-                  />
-                ))
-              }
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPost={setPost}
+                  setComments={setComments}
+                />
+              ))}
               dataLength={comments.results.length}
               loader={<Asset spinner />}
               hasMore={!!comments.next}
@@ -85,7 +83,7 @@ function PostPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
+        Popular profiles for desktop
       </Col>
     </Row>
   );
