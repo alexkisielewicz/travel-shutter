@@ -92,14 +92,14 @@ function ProfilePage() {
             !is_owner &&
             (profile?.following_id ? (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
               </Button>
             ) : (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Black}`}
+                className={`${btnStyles.Button} ${btnStyles.Orange}`}
                 onClick={() => handleFollow(profile)}
               >
                 follow
@@ -114,7 +114,7 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">Your posts:</p>
+      <p className="text-center">My posts:</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
@@ -139,7 +139,7 @@ function ProfilePage() {
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
+        <Container className={appStyles.Container}>
           {hasLoaded ? (
             <>
               {mainProfile}

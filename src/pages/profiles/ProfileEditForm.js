@@ -16,8 +16,8 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/ProfileEditForm.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileEditForm.module.css";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -140,12 +140,12 @@ const ProfileEditForm = () => {
         </Alert>
       ))}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Orange}`}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Orange}`} type="submit">
         save
       </Button>
     </>
@@ -169,7 +169,7 @@ const ProfileEditForm = () => {
               ))}
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                  className={`${btnStyles.Button} ${btnStyles.Orange} btn my-auto`}
                   htmlFor="image-upload"
                 >
                   Change the image
@@ -180,11 +180,11 @@ const ProfileEditForm = () => {
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
+                onChange={(event) => {
+                  if (event.target.files.length) {
                     setProfileData({
                       ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
+                      image: URL.createObjectURL(event.target.files[0]),
                     });
                   }
                 }}
@@ -194,7 +194,7 @@ const ProfileEditForm = () => {
           </Container>
         </Col>
         <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container className={styles.TextFields}>{textFields}</Container>
+          <Container className={appStyles.Container}>{textFields}</Container>
         </Col>
       </Row>
     </Form>
