@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Media } from "react-bootstrap";
+import { Button, Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { DropdownMenu} from "../../components/DropdownMenu";
+import { DropdownMenu } from "../../components/DropdownMenu";
 import CommentEditForm from "./CommentEditForm";
 
 import styles from "../../styles/Comment.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -22,6 +24,7 @@ const Comment = (props) => {
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -41,7 +44,18 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleConfirmDelete = () => {
+    handleDelete();
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
   };
 
   return (
@@ -70,10 +84,29 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <DropdownMenu
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleDelete={() => setShowDeleteConfirmation(true)}
           />
         )}
       </Media>
+      {showDeleteConfirmation && (
+        <>
+          <div className={styles.Confirmation}>
+          <span className="mx-2">Are you sure?</span>
+          <Button
+            className={`${btnStyles.Button} ${styles.ButtonCancel}`}
+            onClick={handleCancelDelete}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={`${btnStyles.Button} ${styles.ButtonDelete} mr-2`}
+            onClick={handleConfirmDelete}
+          >
+            Delete
+          </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };
