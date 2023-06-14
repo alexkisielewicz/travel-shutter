@@ -8,3 +8,38 @@
   font-weight: lighter;
   color: #c1c1c5;
 }
+
+.Confirmation {
+  float: right;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color:#F00;
+}
+
+.ButtonDelete {
+  
+  background-color: #F00;
+  color: #FFF;
+  border: 1px solid #F00;
+}
+  
+.ButtonDelete:hover {
+  
+  background-color: #FFF;
+  color: #F00;
+  border: 1px solid #F00;
+}
+
+.ButtonCancel {
+  
+  background-color: #FFF;
+  color: #FB8500;
+  border: 1px solid #FB8500;
+}
+  
+.ButtonCancel:hover {
+  
+  background-color: #FB8500;
+  color: #FFF;
+  border: 1px solid #FB8500;
+}
