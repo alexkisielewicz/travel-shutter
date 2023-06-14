@@ -1,42 +1,42 @@
 .App {
   font-family: 'Merriweather', serif;
-  background-color: #FFF;
+  font-size: 16px;
+  background-image: linear-gradient(-45deg, #b7d4ff 0%, #ffffff 48%, #9bd0ff 100%);
   min-height: 100vh;
-}
-
-body {
-  color: #024047;
+  color: #023047;
 }
 
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .Wrapper {
   padding-top: 80px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.Content {
-  background-color: #ffffff;
-  padding: 10px;
-  border-radius: 2px;
-  border: 1px solid #dadadf;
+.Container {
+  background-color: #FFF;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1px solid #8ECAE6;
 }
 
 a {
-  color: #FB8500;
-  transition: color ease-in-out 0.3s;
+  color: #024047;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #FFB703;
+  color: #FB8500;
+  transition: color ease-in-out 0.3s;
   text-decoration: none;
 }
 
 a:hover i {
-  color: #FFB703;
-  transition: color ease-in-out 0.3s;
+  color: #FB8500;
 }
 
 i {
@@ -48,7 +48,6 @@ i {
 
 i:hover {
   cursor: pointer;
-  transition: color ease-in-out 0.3s;
   color: #FFB703;
 }
 
@@ -65,5 +64,5 @@ i:hover {
 }
 
 .BoxShadow {
-  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
 }
