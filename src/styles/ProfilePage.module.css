@@ -5,6 +5,11 @@
   margin: 4px;
 }
 
+.ProfileDetails {
+  font-size: smaller;
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 991px) {
   .ProfileImage {
     width: 250px;
