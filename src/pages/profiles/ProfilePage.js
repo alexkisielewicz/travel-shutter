@@ -25,7 +25,6 @@ import { Button, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PostContainer from "../posts/PostContainer";
 import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/DropdownMenu";
 
 function ProfilePage() {
@@ -40,6 +39,8 @@ function ProfilePage() {
 
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+
+  const instagram = "http://www.instagram.com/"
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,59 +65,99 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    <Container className={appStyles.Container}>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
-      <Row noGutters className="px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-          <Image
-            className={styles.ProfileImage}
-            roundedCircle
-            src={profile?.image}
-          />
-        </Col>
-        <Col lg={6}>
-          <h2 className="m-2">{profile?.owner}</h2>
-          <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2">
-              <div>{profile?.posts_count}</div>
-              <div>posts</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
-              <div>followers</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
-              <div>following</div>
-            </Col>
-          </Row>
-        </Col>
-        <Col lg={3} className="text-lg-right">
-          {currentUser &&
-            !is_owner &&
-            (profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.Orange}`}
-                onClick={() => handleUnfollow(profile)}
-              >
-                unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
-                onClick={() => handleFollow(profile)}
-              >
-                follow
-              </Button>
-            ))}
-        </Col>
-        {profile?.content && <Col className="p-3">{profile.content}</Col>}
-      </Row>
-      <hr />
-      <div className="text-center py-1">
-       {currentUser && is_owner ? <h5>My posts:</h5> : <h5>{profile?.owner}'s posts:</h5>}
-      </div>
-      <hr />
+      <Container className={appStyles.Container}>
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+        <Row noGutters className="px-3 text-center">
+          <Col lg={3} className="text-lg-left">
+            <Image
+              className={styles.ProfileImage}
+              roundedCircle
+              src={profile?.image}
+            />
+          </Col>
+          <Col lg={6}>
+            <h2 className="m-2">{profile?.owner}</h2>
+            <Row className="justify-content-center no-gutters">
+              <Col xs={3} className="my-2">
+                <div>{profile?.posts_count}</div>
+                <div>posts</div>
+              </Col>
+              <Col xs={3} className="my-2">
+                <div>{profile?.followers_count}</div>
+                <div>followers</div>
+              </Col>
+              <Col xs={3} className="my-2">
+                <div>{profile?.following_count}</div>
+                <div>following</div>
+              </Col>
+            </Row>
+          </Col>
+          <Col lg={3} className="text-lg-right">
+            {currentUser &&
+              !is_owner &&
+              (profile?.following_id ? (
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Orange}`}
+                  onClick={() => handleUnfollow(profile)}
+                >
+                  unfollow
+                </Button>
+              ) : (
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
+                  onClick={() => handleFollow(profile)}
+                >
+                  follow
+                </Button>
+              ))}
+          </Col>
+          {profile?.bio && <Col className="py-4">
+            <strong>{profile.bio}</strong>
+            </Col>}
+        </Row>
+
+        <Row>
+          <Col lg={6}>
+            <p className={`text-center ${styles.ProfileDetails}`}>
+              {profile?.instagram && (
+                <>
+                  <i className="fa-brands fa-square-instagram" />
+                  <a
+                    href={`${instagram}${profile.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {profile.instagram}
+                  </a>
+                </>
+              )}
+            </p>
+          </Col>
+          <Col lg={6}>
+            <p className={`text-center ${styles.ProfileDetails}`}>
+              {profile?.equipment && (
+                <>
+                  <i className="fas fa-camera" /> {profile.equipment}
+                </>
+              )}
+            </p>
+          </Col>
+        </Row>
+
+        <hr />
+        {profilePosts.results.length ? (
+          <>
+            <div className="text-center py-1">
+              {currentUser && is_owner ? <h5>My posts:</h5> : <h5>{profile?.owner}'s posts:</h5>}
+            </div>
+            <hr />
+          </>
+        ) : (
+          <div className="text-center">
+            {profile?.owner} hasn't posted anything yet.
+          </div>
+        )}
+
       </Container>
     </>
   );
@@ -134,10 +175,7 @@ function ProfilePage() {
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
         />
       ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
+        <></>
       )}
     </>
   );
@@ -146,19 +184,19 @@ function ProfilePage() {
     <Row>
       <Col className="py-0 px-1 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
-        <SidePanel mobile/>
-        <CategoriesPanel mobile/>
+        <SidePanel mobile />
+        <CategoriesPanel mobile />
         <PopularProfiles mobile />
-        
-          {hasLoaded ? (
-            <>
-              {mainProfile}<br />
-              {mainProfilePosts}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        
+
+        {hasLoaded ? (
+          <>
+            {mainProfile}<br />
+            {mainProfilePosts}
+          </>
+        ) : (
+          <Asset spinner />
+        )}
+
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* SIDE PANELS FOR DESKTOP */}
