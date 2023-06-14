@@ -168,15 +168,14 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
-
+      <Button className={`${btnStyles.Button} ${btnStyles.Orange}`} type="submit">
+        create
+      </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
         onClick={() => history.goBack()}
       >
         cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
       </Button>
     </div>
   );
@@ -184,9 +183,9 @@ function PostCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Col className="py-2 p-0 p-md-1" md={7} lg={8}>
           <Container
-            className={`${appStyles.Container} d-flex flex-column justify-content-center`}
+            className={`${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
               {image ? (
@@ -196,7 +195,7 @@ function PostCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.OrangeOutline} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
