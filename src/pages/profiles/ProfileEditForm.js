@@ -119,7 +119,7 @@ const ProfileEditForm = () => {
           value={instagram}
           onChange={handleChange}
           name="instagram"
-          rows={5}
+          rows={1}
         />
       </Form.Group>
 
