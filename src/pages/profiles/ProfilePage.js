@@ -11,6 +11,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import PopularProfiles from "./PopularProfiles";
+import SidePanel from "../../components/SidePanel";
+import CategoriesPanel from "../../components/CategoriesPanel";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -61,6 +64,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+    <Container className={appStyles.Container}>
       {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
@@ -71,7 +75,7 @@ function ProfilePage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
+          <h2 className="m-2">{profile?.owner}</h2>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -92,14 +96,14 @@ function ProfilePage() {
             !is_owner &&
             (profile?.following_id ? (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
+                className={`${btnStyles.Button} ${btnStyles.Orange}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
               </Button>
             ) : (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Orange}`}
+                className={`${btnStyles.Button} ${btnStyles.OrangeOutline}`}
                 onClick={() => handleFollow(profile)}
               >
                 follow
@@ -108,14 +112,17 @@ function ProfilePage() {
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
+      <hr />
+      <div className="text-center py-1">
+       {currentUser && is_owner ? <h5>My posts:</h5> : <h5>{profile?.owner}'s posts:</h5>}
+      </div>
+      <hr />
+      </Container>
     </>
   );
 
   const mainProfilePosts = (
     <>
-      <hr />
-      <p className="text-center">My posts:</p>
-      <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
           children={profilePosts.results.map((post) => (
@@ -137,21 +144,33 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className="py-0 px-1 p-lg-2" lg={8}>
+        {/* SIDE PANELS FOR MOBILE */}
+        <SidePanel mobile/>
+        <CategoriesPanel mobile/>
         <PopularProfiles mobile />
-        <Container className={appStyles.Container}>
+        
           {hasLoaded ? (
             <>
-              {mainProfile}
+              {mainProfile}<br />
               {mainProfilePosts}
             </>
           ) : (
             <Asset spinner />
           )}
-        </Container>
+        
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
+        {/* SIDE PANELS FOR DESKTOP */}
+        <div className="mb-2">
+          <SidePanel />
+        </div>
+        <div className="mb-2">
+          <CategoriesPanel />
+        </div>
+        <div className="mb-2">
+          <PopularProfiles />
+        </div>
       </Col>
     </Row>
   );

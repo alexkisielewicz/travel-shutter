@@ -17,6 +17,8 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import SidePanel from "../../components/SidePanel";
+import CategoriesPanel from "../../components/CategoriesPanel";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -48,9 +50,11 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        {/* POPULAR PROFILES FOR MOBILE */}
-        <PopularProfiles mobile/>
+      <Col className="py-0 px-1 p-lg-2" lg={8}>
+        {/* SIDE PANELS FOR MOBILE */}
+        <SidePanel mobile />
+        <CategoriesPanel mobile />
+        <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -89,9 +93,17 @@ function PostsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        {/* POPULAR PROFILES FOR DESKTOP */}
-        <PopularProfiles />
+      <Col md={4} className="d-none d-lg-block py-0">
+        {/* SIDE PANELS */}
+        <div className="mb-2">
+          <SidePanel />
+        </div>
+        <div className="mb-2">
+          <CategoriesPanel />
+        </div>
+        <div className="mb-2">
+          <PopularProfiles />
+        </div>
       </Col>
     </Row>
   );
