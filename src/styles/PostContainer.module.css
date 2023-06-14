@@ -1,24 +1,34 @@
 .Post {
-  background-color: #ffffff;
-  border: 1px solid #dadadf;
-  border-radius: 2px;
+  background-color: #FFF;
   margin-bottom: 16px;
-  text-align: center;
+  text-align: center;  
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+  margin-right: 4px;
 }
 
-.Post figure,
-h5 {
-  margin: 0 0;
+.PostImage {
+  border-radius: 5px;
+}
+
+.CardBody {
+  padding: 10px 0px 10px 10px;
+
+}
+
+.PostDetails {
+  font-size: 0.8em;
 }
 
 .Heart {
-  color: #f85032;
+  color: #F00;
 }
 
 .Heart:hover {
-  color: #2142b2;
+  color: #F00;
 }
 
 .HeartOutline:hover {
-  color: #f85032;
+  color: #F00;
 }
