@@ -1,7 +1,6 @@
 .SearchBar input {
   border: 1px solid #8ECAE6;
   border-radius: 10px;
-  color: #242a3d;
   padding-left: 40px;
   margin-bottom: 16px;
 }
@@ -16,4 +15,29 @@
 .SearchIcon:hover {
   cursor: hand;
   color: #FB8500;
+}
+
+.CategoriesDropdown > button {
+  width: 100%;
+  background-color: #8ECAE6;
+  border: 1px solid #219EBC;
+  border-radius: 10px;
+}
+
+.CategoriesDropdown > button:hover,
+.CategoriesDropdown > button:focus,
+.CategoriesDropdown > button:active {
+  background-color: #8ECAE6 !important;
+  border: 1px solid #8ECAE6;
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+
+.CategoriesDropdown > button:hover {
+  color: #023047;
+}
+
+.CategoriesDropdown .dropdown-item.active {
+  background-color: #219EBC;
+  color: #023047;
 }
