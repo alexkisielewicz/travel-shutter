@@ -13,7 +13,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const {expanded, setExpanded, ref} = useClickOutsideToggle();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async (event) => {
     try {
@@ -25,32 +25,9 @@ const NavBar = () => {
     }
   }
 
-  const addPostIcon = (
-    <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/posts/create"
-      >
-        <i className="far fa-plus-square"></i>Add post
-      </NavLink>
-  )
-  const loggedInIcons = <>
-    <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/feed"
-      >
-        <i className="fas fa-stream"></i>Feed
-      </NavLink>
 
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/liked"
-      >
-        <i className="fas fa-heart"></i>Liked
-      </NavLink>
-
+  const loggedInIcons = (
+    <>
       <NavLink
         className={styles.NavLink}
         to="/"
@@ -65,36 +42,39 @@ const NavBar = () => {
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
-  </>;
-  const loggedOutIcons = (
-    <>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/signin"
-      >
-        <i className="fas fa-sign-in-alt"></i>Sign in
-      </NavLink>
-      <NavLink
-        to="/signup"
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-      >
-        <i className="fas fa-user-plus"></i>Sign up
-      </NavLink>
     </>
-  );
+    );
+
+    const loggedOutIcons = (
+      <>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/signin"
+        >
+          <i className="fas fa-sign-in-alt"></i>Sign in
+        </NavLink>
+        <NavLink
+          to="/signup"
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+        >
+          <i className="fas fa-user-plus"></i>Sign up
+        </NavLink>
+      </>
+    );
+ 
 
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
       <Container>
-        <NavLink to="/">
+        <NavLink className={styles.Logo} to="/">
           <Navbar.Brand>
             <img className={styles.Logo} src={logo} alt="logo" height="50" />
           </Navbar.Brand>
         </NavLink>
-        {currentUser && addPostIcon}
-        <Navbar.Toggle 
+
+        <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav" />
