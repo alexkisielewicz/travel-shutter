@@ -17,12 +17,17 @@
 
 }
 
-.PostDetails {
-  font-size: 0.8em;
+.Likes {
+  font-size: 1.25em;
+}
+
+.Likes i {
+  font-size: 1em;
 }
 
 .Heart {
   color: #F00;
+  font-size: 1.25em;
 }
 
 .Heart:hover {
@@ -31,4 +36,19 @@
 
 .HeartOutline:hover {
   color: #F00;
+}
+
+.PostDetails {
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+
+.PostDetails i {
+  font-size: 1em;
+}
+
+.PostDetails p {
+  padding: 0px;
+  margin: 0;
+  font-size: 1em;
 }
