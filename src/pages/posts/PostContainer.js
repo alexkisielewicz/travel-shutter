@@ -16,8 +16,11 @@ const PostContainer = (props) => {
     comments_count,
     likes_count,
     like_id,
+    category,
+    tags,
+    exif,
     title,
-    content,
+    body,
     image,
     updated_at,
     postPage,
@@ -97,8 +100,8 @@ const PostContainer = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostDetails}>
+        {body && <Card.Text className="text-justify">{body}</Card.Text>}
+        <div className={styles.Likes}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -127,6 +130,11 @@ const PostContainer = (props) => {
             <i className="far fa-comments" />
           </Link>
           {comments_count}
+        </div>
+        <div className={styles.PostDetails}>
+          <p><i class="fa-solid fa-folder"></i> {category}</p> 
+          <p><i class="fa-solid fa-hashtag"></i>{tags}</p>
+          <p><i class="fa-solid fa-camera"></i>{exif}</p>
         </div>
       </Card.Body>
     </Card>
