@@ -47,6 +47,18 @@
 
   }
 
+  .Delete {
+    background-color: #F00;
+    color: #FFF;
+    border: 1px solid #FFF;
+  }
+  
+  .Delete:hover {
+    background-color: #FFF;
+    color: #F00;
+    border: 1px solid #F00;
+  }
+
   .Category {
     color: #023047;
     font-size: 0.8rem;
