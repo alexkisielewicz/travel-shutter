@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/PostContainer.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip, Modal, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -31,11 +32,17 @@ const PostContainer = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
@@ -85,7 +92,7 @@ const PostContainer = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
+            <span className={styles.PostDetails}><i class="fa-solid fa-calendar"></i> {updated_at}</span>
             {is_owner && postPage && (
               <DropdownMenu
                 handleEdit={handleEdit}
@@ -101,6 +108,13 @@ const PostContainer = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {body && <Card.Text className="text-justify">{body}</Card.Text>}
+        <hr />
+        <div className={styles.PostDetails}>
+          <p><i class="fa-solid fa-folder"></i> {category}</p>
+          <p><i class="fa-solid fa-hashtag"></i>{tags}</p>
+          <p><i class="fa-solid fa-camera"></i>{exif}</p>
+        </div>
+        <hr />
         <div className={styles.Likes}>
           {is_owner ? (
             <OverlayTrigger
@@ -131,11 +145,27 @@ const PostContainer = (props) => {
           </Link>
           {comments_count}
         </div>
-        <div className={styles.PostDetails}>
-          <p><i class="fa-solid fa-folder"></i> {category}</p> 
-          <p><i class="fa-solid fa-hashtag"></i>{tags}</p>
-          <p><i class="fa-solid fa-camera"></i>{exif}</p>
-        </div>
+        {/* DELETE CONFIRMATION MODAL */}
+        <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Delete Confirmation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Are you sure you want to delete this post?</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Delete}`} 
+              onClick={confirmDelete}>
+              Delete
+            </Button>
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Orange}`} 
+              onClick={() => setShowDeleteModal(false)}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Card.Body>
     </Card>
   );
