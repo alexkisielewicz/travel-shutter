@@ -53,10 +53,10 @@ const SidePanel = ({ mobile }) => {
           </div>
         ) : (
           // IF ON DESKTOP
-          <>
+          <div className="d-flex justify-content-around">
             {currentUser && addPostIcon}
             {currentUser ? loggedInIcons : <></>}
-          </>
+          </div>
 
         )}
       </>
