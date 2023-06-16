@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Media } from "react-bootstrap";
+import { Button, Media, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
@@ -24,11 +24,15 @@ const Comment = (props) => {
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
       setPost((prevPost) => ({
@@ -47,15 +51,6 @@ const Comment = (props) => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handleConfirmDelete = () => {
-    handleDelete();
-    setShowDeleteConfirmation(false);
-  };
-
-  const handleCancelDelete = () => {
-    setShowDeleteConfirmation(false);
   };
 
   return (
@@ -84,29 +79,32 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <DropdownMenu
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={() => setShowDeleteConfirmation(true)}
+            handleDelete={handleDelete}
           />
         )}
       </Media>
-      {showDeleteConfirmation && (
-        <>
-          <div className={styles.Confirmation}>
-          <span className="mx-2">Are you sure?</span>
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete this comment?</p>
+        </Modal.Body>
+        <Modal.Footer>
           <Button
-            className={`${btnStyles.Button} ${styles.ButtonCancel}`}
-            onClick={handleCancelDelete}
-          >
-            Cancel
-          </Button>
-          <Button
-            className={`${btnStyles.Button} ${styles.ButtonDelete} mr-2`}
+            className={`${btnStyles.Button} ${btnStyles.Delete}`}
             onClick={handleConfirmDelete}
           >
             Delete
           </Button>
-          </div>
-        </>
-      )}
+          <Button
+            className={`${btnStyles.Button} ${btnStyles.Orange}`}
+            onClick={() => setShowDeleteModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
