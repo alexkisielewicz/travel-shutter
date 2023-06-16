@@ -1,0 +1,35 @@
+.Row {
+  height: 100%;
+}
+
+.Link {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.Link span {
+  color: #FFB703;
+}
+
+.Container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  background-color: #FFF;
+  border-radius: 25px;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+.Col {
+  height: 375px;
+}
+
+.ErrorImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
