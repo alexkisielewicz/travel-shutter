@@ -4,6 +4,7 @@
   background-image: linear-gradient(-45deg, #b7d4ff 0%, #ffffff 48%, #9bd0ff 100%);
   min-height: 100vh;
   color: #023047;
+  padding: 0px;
 }
 
 * {
@@ -12,7 +13,7 @@
 }
 
 .Wrapper {
-  padding-top: 80px;
+  padding-top: 70px;
   margin-top: 20px;
 }
 
@@ -21,6 +22,7 @@
   padding: 15px;
   border-radius: 20px;
   border: 1px solid #8ECAE6;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
 }
 
 a {
@@ -50,18 +52,8 @@ i:hover {
   color: #FFB703;
 }
 
-.SignUpImage {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-
 .Image {
   max-height: 40vh;
   max-width: 100%;
   object-fit: contain;
-}
-
-.BoxShadow {
-  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
 }
