@@ -44,7 +44,7 @@ const SidePanel = ({ mobile }) => {
   return (
     <Container className={`${appStyles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
       <>
-        <h5 className="text-center pb-3">{mobile ? (<></>) : (`Menu`) }</h5>
+        {mobile ? (<></>) : (<h5 className="text-center pb-3">Menu</h5>)}
         {mobile ? (
           // IF ON MOBILE
           <div className="d-flex justify-content-around">
