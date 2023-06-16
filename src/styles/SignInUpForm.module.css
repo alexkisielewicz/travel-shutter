@@ -1,13 +1,11 @@
 .Row {
-    padding-top: 50px;
     height: 100%;
   }
   .Input {
-    background: #ffffff;
-    border: 1px solid #f0f1f9;
+    background: #FFF;
+    border: 1px solid #FFB703;
     box-sizing: border-box;
-    border-radius: 2px;
-    color: #7177a1;
+    border-radius: 5px;
     text-align: center;
     padding: 10px;
   }
@@ -35,14 +33,27 @@
   }
   
   .Container {
-    padding: 30px 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    background-color: #FFF;
+    border-radius: 25px;
+    box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+    
   }
   
   .SignInCol {
     height: 320px;
-    border: 1px solid red;
   }
   
   .SignUpCol {
     height: 375px;
+  }
+
+  .SignUpImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
