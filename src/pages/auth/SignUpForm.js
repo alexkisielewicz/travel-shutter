@@ -42,15 +42,15 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className={styles.Wrapper}>
-      <Row className={styles.Row}>
+    <div className={`${styles.Container} mt-3`}>
+      <Row className={`${styles.Row} no-gutters`}>
         <Col
           md={12}
           className={`my-0 d-none d-md-block p-0 ${styles.SignUpCol}`}
         >
           <Image
-            className={`${appStyles.SignUpImage}`}
-            src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
+            className={`${styles.SignUpImage}`}
+            src={"https://res.cloudinary.com/ddvsgi5xw/image/upload/v1686921714/signup_cover_jb2b3g.jpg"}
           />
         </Col>
       </Row>
@@ -58,7 +58,6 @@ const SignUpForm = () => {
         <Col className="mx-auto my-0 py-0 p-md-2" lg={6}>
           <Container className={`${appStyles.Content} p-4 `}>
             <h1 className={styles.Header}>sign up</h1>
-
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="username">
                 <Form.Label className="d-none">username</Form.Label>
@@ -76,7 +75,6 @@ const SignUpForm = () => {
                   {message}
                 </Alert>
               ))}
-
               <Form.Group controlId="password1">
                 <Form.Label className="d-none">Password</Form.Label>
                 <Form.Control
@@ -93,7 +91,6 @@ const SignUpForm = () => {
                   {message}
                 </Alert>
               ))}
-
               <Form.Group controlId="password2">
                 <Form.Label className="d-none">Confirm password</Form.Label>
                 <Form.Control
@@ -110,7 +107,6 @@ const SignUpForm = () => {
                   {message}
                 </Alert>
               ))}
-
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Orange}`}
                 type="submit"
@@ -124,7 +120,6 @@ const SignUpForm = () => {
               ))}
             </Form>
           </Container>
-
           <Container className={`mt-3 ${appStyles.Content}`}>
             <Link className={styles.Link} to="/signin">
               Already have an account? <span>Sign in</span>
