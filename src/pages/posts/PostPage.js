@@ -15,7 +15,7 @@ import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import Asset from "../../components/Asset";
+import Spinner from "../../components/Spinner";
 import { fetchMoreData } from "../../utils/utils";
 import SidePanel from "../../components/SidePanel";
 import CategoriesPanel from "../../components/CategoriesPanel";
@@ -76,7 +76,7 @@ function PostPage() {
                 />
               ))}
               dataLength={comments.results.length}
-              loader={<Asset spinner />}
+              loader={<Spinner />}
               hasMore={!!comments.next}
               next={() => fetchMoreData(comments, setComments)}
             />

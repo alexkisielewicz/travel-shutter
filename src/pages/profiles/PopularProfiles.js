@@ -1,7 +1,7 @@
 import React from 'react';
 import appStyles from "../../App.module.css";
 import { Container } from "react-bootstrap";
-import Asset from "../../components/Asset";
+import Spinner from "../../components/Spinner";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 
@@ -29,7 +29,9 @@ const PopularProfiles = ({ mobile }) => {
           )}
         </>
       ) : (
-        <Asset spinner />
+        <div className="text-center">
+          <Spinner />
+        </div>
       )}
     </Container>
   )

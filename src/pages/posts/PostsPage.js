@@ -22,6 +22,7 @@ import CategoriesPanel from "../../components/CategoriesPanel";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import Spinner from "../../components/Spinner";
 
 function PostsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
@@ -69,13 +70,13 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-0 px-1 p-lg-2" lg={8}>
+      <Col className="py-0 px-0 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
         <SidePanel mobile />
         <CategoriesPanel mobile />
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Row>
+        <Row className="no-gutters">
           <Col xs={12} md={4}>
             <DropdownButton
               className={`${styles.CategoriesDropdown}`}
@@ -117,7 +118,7 @@ function PostsPage({ message, filter = "" }) {
                   <PostContainer key={post.id} {...post} setPosts={setPosts} />
                 ))}
                 dataLength={posts.results.length}
-                loader={<Asset spinner />}
+                loader={<Spinner />}
                 hasMore={!!posts.next}
                 next={() => fetchMoreData(posts, setPosts)}
               />
@@ -128,8 +129,8 @@ function PostsPage({ message, filter = "" }) {
             )}
           </>
         ) : (
-          <Container className={appStyles.Container}>
-            <Asset spinner />
+          <Container className={`${appStyles.Container} text-center`}>
+            <Spinner />
           </Container>
         )}
       </Col>
