@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import appStyles from "../App.module.css";
+import { Button, Col, Container, Row, Image } from "react-bootstrap";
+import btnStyles from "../styles/Button.module.css";
+import styles from "../styles/Page404.module.css";
 import { Link } from "react-router-dom";
 
 /*
@@ -9,19 +10,31 @@ import { Link } from "react-router-dom";
 */
 const PageNotFound = () => {
   return (
-    <Row>
-      <Col className="py-2 mx-auto text-center" md={12}>
-        <Container className={appStyles.Content}>
-          <h1 className="my-3">Error 404. Page not found!</h1>
-
-          <Link to="/">
-            <Button className={`${appStyles.button} my-3`}>
-              Return to Home Page
-            </Button>
-          </Link>
-        </Container>
-      </Col>
-    </Row>
+    <div className={`${styles.Container} mt-3`}>
+      <Row className={`${styles.Row} no-gutters`}>
+        <Col
+          md={12}
+          className={`my-0 d-none d-md-block p-0 ${styles.Col}`}
+        >
+          <Image
+            className={`${styles.ErrorImage}`}
+            src={"https://res.cloudinary.com/ddvsgi5xw/image/upload/v1686923609/error_amtlrl.jpg"}
+          />
+        </Col>
+      </Row>
+      <Row className={styles.Row}>
+        <Col className="mx-auto my-0 py-0 p-md-2" lg={6}>
+          <Container className="text-center">
+            <h2 className="py-3">Page not found</h2>
+            <Link to="/">
+              <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.OrangeOutline} my-3`}>
+                Return to Home Page
+              </Button>
+            </Link>
+          </Container>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
