@@ -49,7 +49,7 @@ function PostsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}&${category}&`);
+        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}&${category}`);
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
