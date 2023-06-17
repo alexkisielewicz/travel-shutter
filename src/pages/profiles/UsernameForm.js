@@ -16,6 +16,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { toast } from 'react-toastify';
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -26,6 +27,10 @@ const UsernameForm = () => {
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const showToast = (message) => {
+    toast.success(message);
+  };
 
   useEffect(() => {
     if (currentUser?.profile_id?.toString() === id) {
@@ -46,6 +51,7 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
+      showToast("Username changed!")
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);

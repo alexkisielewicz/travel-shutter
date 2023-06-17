@@ -11,6 +11,7 @@ import Image from "react-bootstrap/Image";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { toast } from 'react-toastify';
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -32,6 +33,10 @@ function PostEditForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
+
+  const showToast = (message) => {
+    toast.success(message);
+  };
 
   useEffect(() => {
     const handleMount = async () => {
@@ -86,6 +91,7 @@ function PostEditForm() {
       // method PUT to update data
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`); // redirects to updated post
+      showToast("Changes saved!");
     } catch (err) {
       console.log(err.response?.data);
       if (err.response?.status !== 401) {

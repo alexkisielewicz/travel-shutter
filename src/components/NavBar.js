@@ -8,10 +8,16 @@ import Avatar from "../components/Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const showToast = (message) => {
+    toast.success(message);
+  };
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
@@ -19,12 +25,12 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      showToast("Signed out successfully!")
       removeTokenTimestamp();
     } catch (error) {
       console.log(error);
     }
   }
-
 
   const loggedInIcons = (
     <>
@@ -43,30 +49,42 @@ const NavBar = () => {
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
     </>
-    );
+  );
 
-    const loggedOutIcons = (
-      <>
-        <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to="/signin"
-        >
-          <i className="fas fa-sign-in-alt"></i>Sign in
-        </NavLink>
-        <NavLink
-          to="/signup"
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-        >
-          <i className="fas fa-user-plus"></i>Sign up
-        </NavLink>
-      </>
-    );
- 
+  const loggedOutIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/signin"
+      >
+        <i className="fas fa-sign-in-alt"></i>Sign in
+      </NavLink>
+      <NavLink
+        to="/signup"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        <i className="fas fa-user-plus"></i>Sign up
+      </NavLink>
+    </>
+  );
+
 
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Container>
         <NavLink className={styles.Logo} to="/">
           <Navbar.Brand>

@@ -7,6 +7,7 @@ import CommentEditForm from "./CommentEditForm";
 
 import styles from "../../styles/Comment.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { toast } from 'react-toastify';
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -28,6 +29,10 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  const showToast = (message) => {
+    toast.success(message);
+  };
+  
   const handleDelete = () => {
     setShowDeleteModal(true);
   };
@@ -43,7 +48,7 @@ const Comment = (props) => {
           },
         ],
       }));
-
+      showToast("Comment deleted!")
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),

@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { toast } from 'react-toastify';
 
 import { Alert, Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
@@ -23,6 +24,10 @@ const SignUpForm = () => {
 
   const history = useHistory();
 
+  const showToast = (message) => {
+    toast.success(message);
+  };
+
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -36,6 +41,7 @@ const SignUpForm = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData)
       history.push("/signin")
+      showToast("Account created!")
     } catch (error) {
       setErrors(error.response?.data);
     }

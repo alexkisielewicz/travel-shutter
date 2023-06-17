@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { DropdownMenu } from "../../components/DropdownMenu";
+import { toast } from 'react-toastify';
 
 const PostContainer = (props) => {
   const {
@@ -42,10 +43,15 @@ const PostContainer = (props) => {
     setShowDeleteModal(true);
   };
 
+  const showToast = (message) => {
+    toast.success(message);
+  };
+
   const confirmDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
+      showToast("Post deleted succesfully");
     } catch (err) {
       console.log(err);
     }

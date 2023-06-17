@@ -72,7 +72,7 @@ function PostsPage({ message, filter = "" }) {
     <Row className="h-100">
       <Col className="py-0 px-0 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
-        <SidePanel mobile />
+        {currentUser && <SidePanel mobile />}
         <CategoriesPanel mobile />
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />

@@ -5,11 +5,16 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import btnStyles from "../../styles/Button.module.css"
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import { toast } from 'react-toastify';
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 
   const [formContent, setFormContent] = useState(content);
+
+  const showToast = (message) => {
+    toast.success(message);
+  };
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -21,6 +26,7 @@ function CommentEditForm(props) {
       await axiosRes.put(`/comments/${id}/`, {
         content: formContent.trim(),
       });
+      showToast("Changes saved!");
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
