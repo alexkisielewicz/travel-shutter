@@ -48,7 +48,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <SidePanel mobile />
+        {currentUser && <SidePanel mobile />}
         <CategoriesPanel mobile />
         <PopularProfiles mobile />
         <PostContainer {...post.results[0]} setPosts={setPost} postPage />
@@ -90,7 +90,7 @@ function PostPage() {
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* SIDE PANELS */}
         <div className="mb-2">
-          <SidePanel />
+          {currentUser && <SidePanel />}
         </div>
         <div className="mb-2">
           <CategoriesPanel />
