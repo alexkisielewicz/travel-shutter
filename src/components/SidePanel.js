@@ -1,10 +1,9 @@
 import React from "react";
 import appStyles from "../App.module.css";
 import styles from "../styles/SidePanel.module.css";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-
 
 const SidePanel = ({ mobile }) => {
 

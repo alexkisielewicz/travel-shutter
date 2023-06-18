@@ -4,6 +4,9 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 import PostContainer from "./PostContainer";
 import Asset from "../../components/Asset";
@@ -20,8 +23,7 @@ import PopularProfiles from "../profiles/PopularProfiles";
 import SidePanel from "../../components/SidePanel";
 import CategoriesPanel from "../../components/CategoriesPanel";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
+
 import Spinner from "../../components/Spinner";
 
 function PostsPage({ message, filter = "" }) {
@@ -58,7 +60,7 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

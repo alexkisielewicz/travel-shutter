@@ -50,7 +50,7 @@ const ProfileEditForm = () => {
           const { name, bio, instagram, equipment, image } = data;
           setProfileData({ name, bio, instagram, equipment, image });
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           history.push("/");
         }
       } else {
@@ -89,7 +89,7 @@ const ProfileEditForm = () => {
       history.goBack();
       showToast("Profile changes saved!")
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };

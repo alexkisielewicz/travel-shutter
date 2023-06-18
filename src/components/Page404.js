@@ -1,12 +1,16 @@
 import React from "react";
-import { Button, Col, Container, Row, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+
 import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/Page404.module.css";
 import { Link } from "react-router-dom";
 
 /*
-  Displays a 404 page customised graphic
-  and a link to return to the main page
+  Displays a 404 page and a link to return to the main page
 */
 const PageNotFound = () => {
   return (

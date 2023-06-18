@@ -53,7 +53,7 @@ const UserPasswordForm = () => {
       history.goBack();
       showToast("Password changed!")
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };

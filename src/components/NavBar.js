@@ -1,5 +1,8 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -28,7 +31,7 @@ const NavBar = () => {
       showToast("Signed out successfully!")
       removeTokenTimestamp();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

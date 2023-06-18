@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import appStyles from "../App.module.css";
 import btnStyles from "../styles/Button.module.css";
-import { Button, Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import axios from 'axios';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Spinner from "../components/Spinner";
@@ -15,7 +16,7 @@ const CategoriesPanel = ({ mobile }) => {
         const response = await axios.get('/categories/');
         setCategories(response.data['Category list']);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchCategories();

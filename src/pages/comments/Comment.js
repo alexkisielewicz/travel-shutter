@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Button, Media, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Media from "react-bootstrap/Media";
+import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
@@ -54,7 +56,7 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
 

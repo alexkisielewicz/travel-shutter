@@ -53,7 +53,7 @@ const UsernameForm = () => {
       history.goBack();
       showToast("Username changed!")
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };

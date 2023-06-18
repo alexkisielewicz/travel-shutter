@@ -48,7 +48,7 @@ function PostEditForm() {
           ? setPostData({ title, category, tags, exif, body, image })
           : history.push("/")
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     }
     handleMount();
@@ -93,7 +93,7 @@ function PostEditForm() {
       history.push(`/posts/${id}`); // redirects to updated post
       showToast("Changes saved!");
     } catch (err) {
-      console.log(err.response?.data);
+      // console.log(err.response?.data);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
