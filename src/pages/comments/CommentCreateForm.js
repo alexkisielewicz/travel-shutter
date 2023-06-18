@@ -5,13 +5,19 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
+import { toast } from 'react-toastify';
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+
+  const showToast = (message) => {
+    toast.success(message);
+  };
+
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -28,6 +34,7 @@ function CommentCreateForm(props) {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
+      showToast("Comment saved!");
       setPost((prevPost) => ({
         results: [
           {
