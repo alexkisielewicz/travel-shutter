@@ -33,18 +33,22 @@ function PostsPage({ message, filter = "" }) {
   const [query, setQuery] = useState("");
 
   const [category, setCategory] = useState("");
-
-  const adventure = "adventure";
-  const travel = "travel";
-  const nature = "nature";
-  const landscape = "landscape";
-  const aerial = "aerial";
-  const wildlife = "wildlife";
-  const street = "street";
-  const architecture = "architecture";
+  const [selectedCategory, setSelectedCategory] = useState("");
+  
+  const categories = {
+    adventure: "Adventure",
+    travel: "Travel",
+    nature: "Nature",
+    landscape: "Landscape",
+    aerial: "Aerial",
+    wildlife: "Wildlife",
+    street: "Street",
+    architecture: "Architecture",
+  };
 
   const handleCategorySelect = (event) => {
     setCategory(`category=${event}`);
+    setSelectedCategory(event);
   };
 
   useEffect(() => {
@@ -78,21 +82,23 @@ function PostsPage({ message, filter = "" }) {
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Row className="no-gutters">
           <Col xs={12} md={4}>
-            <DropdownButton
-              className={`${styles.CategoriesDropdown}`}
-              title="Category"
-              onSelect={handleCategorySelect}>
-              <DropdownItem eventKey="">Display all</DropdownItem>
-              <Dropdown.Divider />
-              <DropdownItem eventKey={adventure}>Adventure</DropdownItem>
-              <DropdownItem eventKey={travel}>Travel</DropdownItem>
-              <DropdownItem eventKey={nature}>Nature</DropdownItem>
-              <DropdownItem eventKey={landscape}>Landscape</DropdownItem>
-              <DropdownItem eventKey={aerial}>Aerial</DropdownItem>
-              <DropdownItem eventKey={wildlife}>Wildlife</DropdownItem>
-              <DropdownItem eventKey={street}>Street</DropdownItem>
-              <DropdownItem eventKey={architecture}>Architecture</DropdownItem>
-            </DropdownButton>
+          <DropdownButton
+          className={`${styles.CategoriesDropdown}`}
+          title={selectedCategory ? categories[selectedCategory] : "Display all"}
+          onSelect={handleCategorySelect}
+        >
+          <DropdownItem eventKey="">
+            Display all
+          </DropdownItem>
+          <Dropdown.Divider />
+          {/* iterate over values of categories and add label and eventKey
+           to each dropdown item  */}
+          {Object.entries(categories).map(([value, label]) => (
+            <DropdownItem key={value} eventKey={value}>
+              {label}
+            </DropdownItem>
+          ))}
+        </DropdownButton>
           </Col>
           <Col xs={12} md={8}>
             <Form
@@ -109,7 +115,6 @@ function PostsPage({ message, filter = "" }) {
             </Form>
           </Col>
         </Row>
-
         {hasLoaded ? (
           <>
             {posts.results.length ? (
