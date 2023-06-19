@@ -12,6 +12,15 @@
   border-radius: 5px;
 }
 
+h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #023047;
+  text-transform: uppercase;
+  word-spacing: 1px; letter-spacing:2px;
+  padding: 10px 5px;
+}
+
 .CardBody {
   padding: 10px 0px 10px 10px;
 

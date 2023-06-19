@@ -117,8 +117,10 @@ const PostContainer = (props) => {
         <Card.Img className={styles.PostImage} src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {body && <Card.Text className="text-justify">{body}</Card.Text>}
+        {title && <Card.Title>
+          <h1 className={`text-center ${styles.PostHeader}`}>{title}</h1>
+          </Card.Title>}
+        {body && <><hr /><Card.Text className="text-justify">{body}</Card.Text></>}
         <hr />
         <div className={styles.PostDetails}>
           <p><i class="fa-solid fa-folder"></i> {category}</p>
