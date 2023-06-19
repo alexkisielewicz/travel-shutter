@@ -185,9 +185,7 @@ function ProfilePage() {
       <Col className="py-0 px-1 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
         {currentUser && <SidePanel mobile />}
-        <CategoriesPanel mobile />
         <PopularProfiles mobile />
-
         {hasLoaded ? (
           <>
             {mainProfile}<br />
@@ -196,7 +194,6 @@ function ProfilePage() {
         ) : (
           <Asset spinner />
         )}
-
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* SIDE PANELS FOR DESKTOP */}

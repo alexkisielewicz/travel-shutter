@@ -23,15 +23,10 @@ const CategoriesPanel = ({ mobile }) => {
   }, []);
 
   return (
-    <Container className={`${appStyles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
+    <Container className={`${appStyles.Container} ${mobile ? 'd-none d-lg-block text-center mb-3' : ''}`}>
       {categories.length ? (
         <>
-          {mobile ? (
-            // IF ON MOBILE
-            <div className="d-flex justify-content-around">
-              Categories panel MOBILE
-            </div>
-          ) : (
+          {!mobile ? (
             // IF ON DESKTOP
             <div className="d-flex py-0">
               <p className="text-center py-0 m-0">
@@ -39,14 +34,14 @@ const CategoriesPanel = ({ mobile }) => {
                   <Button
                     key={index}
                     className={`${btnStyles.Button} ${btnStyles.Category}`}
-                    onClick={() => {}}
+                    onClick={() => { }}
                   >
                     <Link to={`/posts/?category=${category}`}>{category}</Link>
                   </Button>
                 ))}
               </p>
             </div>
-          )}
+          ) : null}
         </>
       ) : (
         <div className="text-center">
@@ -55,7 +50,7 @@ const CategoriesPanel = ({ mobile }) => {
       )}
     </Container>
   );
-  
+
 };
 
 export default CategoriesPanel;

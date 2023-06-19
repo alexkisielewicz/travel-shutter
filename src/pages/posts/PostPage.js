@@ -49,7 +49,6 @@ function PostPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {currentUser && <SidePanel mobile />}
-        <CategoriesPanel mobile />
         <PopularProfiles mobile />
         <PostContainer {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Container}>
@@ -81,9 +80,9 @@ function PostPage() {
               next={() => fetchMoreData(comments, setComments)}
             />
           ) : currentUser ? (
-            <span>No comments yet, be the first to comment!</span>
+            <span className="text-muted p-3">No comments yet, be the first to comment!</span>
           ) : (
-            <span>No comments... yet</span>
+            <span className="text-muted p-3">No comments... yet</span>
           )}
         </Container>
       </Col>
