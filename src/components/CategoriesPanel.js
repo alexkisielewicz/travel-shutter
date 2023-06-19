@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import appStyles from "../App.module.css";
-import btnStyles from "../styles/Button.module.css";
-import Button from "react-bootstrap/Button";
+import styles from "../styles/CategoriesPanel.module.css";
 import Container from "react-bootstrap/Container";
 import axios from 'axios';
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Spinner from "../components/Spinner";
 
-const CategoriesPanel = ({ mobile }) => {
+const CategoriesPanel = ( {handleCategoryFilter } ) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('/categories/');
-        setCategories(response.data['Category list']);
+        const response = await axios.get("/categories/");
+        setCategories(response.data["Category list"]);
       } catch (error) {
         // console.log(error);
       }
@@ -23,25 +21,22 @@ const CategoriesPanel = ({ mobile }) => {
   }, []);
 
   return (
-    <Container className={`${appStyles.Container} ${mobile ? 'd-none d-lg-block text-center mb-3' : ''}`}>
+    <Container className={appStyles.Container}>
       {categories.length ? (
         <>
-          {!mobile ? (
-            // IF ON DESKTOP
-            <div className="d-flex py-0">
-              <p className="text-center py-0 m-0">
+            <div className="d-flex p-1 m-1">
+              <div className={`${styles.Tags} text-center`}>
                 {categories.map((category, index) => (
-                  <Button
+                  <span
                     key={index}
-                    className={`${btnStyles.Button} ${btnStyles.Category}`}
-                    onClick={() => { }}
+                    onClick={() => handleCategoryFilter(category)}
                   >
-                    <Link to={`/posts/?category=${category}`}>{category}</Link>
-                  </Button>
+                    {category}
+                  </span>
+                  
                 ))}
-              </p>
+              </div>
             </div>
-          ) : null}
         </>
       ) : (
         <div className="text-center">
