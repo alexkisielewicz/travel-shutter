@@ -19,25 +19,27 @@
 
 .CategoriesDropdown > button {
   width: 100%;
-  background-color: #8ECAE6;
+  background-color: #219EBC !important;
   border: 1px solid #219EBC;
   border-radius: 10px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  font-weight: bold;
 }
 
 .CategoriesDropdown > button:hover,
 .CategoriesDropdown > button:focus,
 .CategoriesDropdown > button:active {
-  background-color: #8ECAE6 !important;
-  border: 1px solid #8ECAE6;
+  background-color: #219EBC !important;
+  border: 1px solid #219EBC !important;
+  color: #FFB703;
   border-radius: 10px;
   box-shadow: none !important;
 }
 
-.CategoriesDropdown > button:hover {
-  color: #023047;
-}
-
-.CategoriesDropdown .dropdown-item.active {
-  background-color: #219EBC;
-  color: #023047;
+.CategoriesDropdown .dropdown-item:hover,
+.CategoriesDropdown .dropdown-item:focus,
+.CategoriesDropdown .dropdown-item:active {
+  background-color: #219EBC !important;
+  color: #023047 !important;
 }
