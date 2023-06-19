@@ -5,7 +5,7 @@ function Spinner() {
   return (
     <div>
       {/* spinner css sourced from https://loading.io/css/ */}
-      <div class={styles.Spinner}><div></div><div></div><div></div></div>
+      <div className={styles.Spinner}><div></div><div></div><div></div></div>
     </div>
   )
 }
