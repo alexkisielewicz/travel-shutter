@@ -49,7 +49,10 @@ const NavBar = () => {
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar 
+          src={currentUser?.profile_image} 
+          text={`${currentUser?.username}`} 
+          height={35} />
       </NavLink>
     </>
   );
@@ -73,9 +76,9 @@ const NavBar = () => {
     </>
   );
 
-
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
+      {/* Toast component to display feedback messages across application */}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -109,7 +112,6 @@ const NavBar = () => {
             >
               <i className="fas fa-home"></i>Home
             </NavLink>
-
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
