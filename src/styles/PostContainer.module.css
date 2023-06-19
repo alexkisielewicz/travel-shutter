@@ -13,8 +13,9 @@
 }
 
 h1 {
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-family: 'Playfair Display SC', serif;
+  font-weight: 700;
+  font-size: 2rem;
   color: #023047;
   text-transform: uppercase;
   word-spacing: 1px; letter-spacing:2px;
