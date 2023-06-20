@@ -26,6 +26,7 @@ import CategoriesPanel from "../../components/CategoriesPanel";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import Spinner from "../../components/Spinner";
+import TopPosts from "../../components/TopPosts";
 
 function PostsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
@@ -37,6 +38,13 @@ function PostsPage({ message, filter = "" }) {
 
   const [category, setCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryFilter = (selectedCategory) => {
+    selectedCategory = selectedCategory.toLowerCase();
+    setCategory(`category=${selectedCategory}`);
+    handleCategorySelect(selectedCategory);
+    console.log(category)
+  };
   
   const categories = {
     adventure: "Adventure",
@@ -147,10 +155,13 @@ function PostsPage({ message, filter = "" }) {
           {currentUser && <SidePanel />}
         </div>
         <div className="mb-2">
-          <CategoriesPanel />
+          <CategoriesPanel handleCategoryFilter={handleCategoryFilter} />
         </div>
         <div className="mb-2">
           <PopularProfiles />
+        </div>
+        <div className="mb-2">
+          <TopPosts />
         </div>
       </Col>
     </Row>
