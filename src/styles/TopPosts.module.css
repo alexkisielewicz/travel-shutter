@@ -1,0 +1,11 @@
+.TopHeart,
+.TopHeart i {
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  color: #FB8500;
+}
+
+span {
+  margin: 5px;
+}
