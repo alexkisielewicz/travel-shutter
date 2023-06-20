@@ -103,7 +103,7 @@ const PostContainer = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <span className={styles.PostDetails}><i class="fa-solid fa-calendar"></i> {updated_at}</span>
+            <span className={styles.PostDetails}><i className="fa-solid fa-calendar"></i> {updated_at}</span>
             {is_owner && postPage && (
               <DropdownMenu
                 handleEdit={handleEdit}
@@ -123,9 +123,9 @@ const PostContainer = (props) => {
         {body && <><hr /><Card.Text className="text-justify">{body}</Card.Text></>}
         <hr />
         <div className={styles.PostDetails}>
-          <p><i class="fa-solid fa-folder"></i> {category}</p>
-          <p><i class="fa-solid fa-hashtag"></i>{tags}</p>
-          <p><i class="fa-solid fa-camera"></i>{exif}</p>
+          <p><i className="fa-solid fa-folder"></i> {category}</p>
+          <p><i className="fa-solid fa-hashtag"></i>{tags}</p>
+          <p><i className="fa-solid fa-camera"></i>{exif}</p>
         </div>
         <hr />
         <div className={styles.Likes}>
