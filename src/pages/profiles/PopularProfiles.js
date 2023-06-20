@@ -13,7 +13,7 @@ const PopularProfiles = ({ mobile }) => {
       {/* POPULAR PROFILES */}
       {popularProfiles.results.length ? (
         <>
-          <h5 className="text-center pb-3">Popular profiles</h5>
+          <h4 className="text-center pb-3">Profiles to follow</h4>
           {mobile ? (
             // IF ON MOBILE
             <div className="d-flex justify-content-around">
