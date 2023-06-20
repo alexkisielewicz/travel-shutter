@@ -26,6 +26,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PostContainer from "../posts/PostContainer";
 import { fetchMoreData } from "../../utils/utils";
 import { ProfileEditDropdown } from "../../components/DropdownMenu";
+import TopPosts from "../../components/TopPosts";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -205,6 +206,9 @@ function ProfilePage() {
         </div>
         <div className="mb-2">
           <PopularProfiles />
+        </div>
+        <div className="mb-2">
+          <TopPosts />
         </div>
       </Col>
     </Row>
