@@ -19,6 +19,7 @@ import Spinner from "../../components/Spinner";
 import { fetchMoreData } from "../../utils/utils";
 import SidePanel from "../../components/SidePanel";
 import CategoriesPanel from "../../components/CategoriesPanel";
+import TopPosts from "../../components/TopPosts";
 
 function PostPage() {
   const { id } = useParams();
@@ -96,6 +97,9 @@ function PostPage() {
         </div>
         <div className="mb-2">
           <PopularProfiles />
+        </div>
+        <div className="mb-2">
+          <TopPosts />
         </div>
       </Col>
     </Row>
