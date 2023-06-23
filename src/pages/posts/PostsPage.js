@@ -38,6 +38,7 @@ function PostsPage({ message, filter = "" }) {
 
   const [category, setCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [refreshLikes, setRefreshLikes] = useState(false);
 
   const handleCategoryFilter = (selectedCategory) => {
     selectedCategory = selectedCategory.toLowerCase();
@@ -62,6 +63,11 @@ function PostsPage({ message, filter = "" }) {
     setSelectedCategory(event);
   };
 
+  const refreshTopPosts = () => {
+    // toggle refresh when liked/unliked
+    setRefreshLikes(!refreshLikes);
+  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -81,7 +87,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, category, currentUser]);
+  }, [filter, query, pathname, category, currentUser, refreshLikes]);
 
   return (
     <Row className="h-100">
@@ -130,7 +136,11 @@ function PostsPage({ message, filter = "" }) {
             {posts.results.length ? (
               <InfiniteScroll
                 children={posts.results.map((post) => (
-                  <PostContainer key={post.id} {...post} setPosts={setPosts} />
+                  <PostContainer 
+                    key={post.id} {...post} 
+                    setPosts={setPosts}
+                    refreshLikes={refreshTopPosts} 
+                    />
                 ))}
                 dataLength={posts.results.length}
                 loader={<Spinner />}
@@ -161,7 +171,7 @@ function PostsPage({ message, filter = "" }) {
           <PopularProfiles />
         </div>
         <div className="mb-2">
-          <TopPosts />
+          <TopPosts refreshLikes={refreshLikes} />
         </div>
       </Col>
     </Row>
