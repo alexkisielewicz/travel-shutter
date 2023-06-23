@@ -5,10 +5,11 @@ import Container from "react-bootstrap/Container";
 import axios from 'axios';
 import Spinner from "../components/Spinner";
 
-const CategoriesPanel = ( {handleCategoryFilter } ) => {
+const CategoriesPanel = ({ handleCategoryFilter }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    // Fetch list of categories
     const fetchCategories = async () => {
       try {
         const response = await axios.get("/categories/");
@@ -26,6 +27,8 @@ const CategoriesPanel = ( {handleCategoryFilter } ) => {
         <>
             <div className="d-flex p-1 m-1">
               <div className={`${styles.Tags} text-center`}>
+                {/* Iterate through fetched categories to display
+                each one in a clickable span */}
                 {categories.map((category, index) => (
                   <span
                     key={index}
