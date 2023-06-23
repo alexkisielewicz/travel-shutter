@@ -24,10 +24,16 @@ import TopPosts from "../../components/TopPosts";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
+  const [refreshLikes, setRefreshLikes] = useState(false);
 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
+
+  const refreshTopPosts = () => {
+    // toggle refresh when liked/unliked
+    setRefreshLikes(!refreshLikes);
+  }
 
   useEffect(() => {
     const handleMount = async () => {
@@ -51,7 +57,11 @@ function PostPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {currentUser && <SidePanel mobile />}
         <PopularProfiles mobile />
-        <PostContainer {...post.results[0]} setPosts={setPost} postPage />
+        <PostContainer {...post.results[0]} 
+          setPosts={setPost} 
+          postPage 
+          refreshLikes={refreshTopPosts} 
+          />
         <Container className={appStyles.Container}>
           {currentUser ? (
             <CommentCreateForm
@@ -99,7 +109,7 @@ function PostPage() {
           <PopularProfiles />
         </div>
         <div className="mb-2">
-          <TopPosts />
+          <TopPosts refreshLikes={refreshLikes} />
         </div>
       </Col>
     </Row>
