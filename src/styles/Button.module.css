@@ -1,79 +1,66 @@
 .Button {
-    font-size: 0.8rem;
-    align-self: center;
-    border-radius: 100px;
-    border-color: transparent;
-    padding: 4px 10px;
-    margin-left: 2px;
-    margin-right: 2px;
-    min-width: 75px;
-  }
-  
-  .Button:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-  
-  .Button:hover:active {
-    background-color: #FB8500 !important;
-  }
-  
-  .Button:active {
-    background-color: #FB8500 !important;
-  }
-  
-  .Button:focus {
-    background-color: #FB8500;
-  }
-  
-  .Wide {
-    padding: 10px 50px;
-    width: 100%;
-  }
-  
-  .Orange,
-  .OrangeOutline:hover
-  {
-    background-color: #FFB703;
-    color: #FFF;
-    border: 1px solid #FB8500;
-  }
-  
-  .OrangeOutline,
-  .Orange:hover {
-    background-color: #FFF;
-    color: #FB8500;
-    border: 1px solid #FB8500;
+  font-size: 0.8rem;
+  align-self: center;
+  border-color: transparent;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
+}
 
-  }
+.Button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
 
-  .Delete {
-    background-color: #F00;
-    color: #FFF;
-    border: 1px solid #FFF;
-  }
-  
-  .Delete:hover {
-    background-color: #FFF;
-    color: #F00;
-    border: 1px solid #F00;
-  }
+.Button:hover:active {
+  background-color: #FB8500 !important;
+}
 
-  .Category {
-    color: #023047;
-    font-size: 0.8rem;
-    background-color: #8ECAE6;
-    font-size: medium;
-    transition: all .3s ease-in-out;
-    border-radius: 0.75em;
-    padding: 3px;
-    margin: 3px;
+.Button:active {
+  background-color: #FB8500 !important;
+}
+
+.Button:focus {
+  background-color: #FB8500;
+}
+
+.Wide {
+  padding: 10px 50px;
+  width: 100%;
+}
+
+.Orange,
+.OrangeOutline:hover {
+  background-color: #FFB703;
+  color: #FFF;
+  border: 1px solid #FB8500;
+}
+
+.OrangeOutline,
+.Orange:hover {
+  background-color: #FFF;
+  color: #FB8500;
+  border: 1px solid #FB8500;
+
+}
+
+.Delete {
+  background-color: #F00;
+  color: #FFF;
+  border: 1px solid #FFF;
+}
+
+.Delete:hover {
+  background-color: #FFF;
+  color: #F00;
+  border: 1px solid #F00;
 }
 
 .Category:hover {
-    background-color: #219EBC;
-    color: #FFB703;
-    font-size: medium;
+  background-color: #219EBC;
+  color: #FFB703;
+  font-size: medium;
 }
 
 .Category a:hover {
