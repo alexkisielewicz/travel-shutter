@@ -32,6 +32,7 @@ const PostContainer = (props) => {
     updated_at,
     postPage,
     setPosts,
+    refreshLikes,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -73,6 +74,7 @@ const PostContainer = (props) => {
             : post;
         }),
       }));
+      refreshLikes();
     } catch (err) {
       // console.log(err);
     }
@@ -89,6 +91,7 @@ const PostContainer = (props) => {
             : post;
         }),
       }));
+      refreshLikes();
     } catch (err) {
       // console.log(err);
     }
