@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -201,6 +203,15 @@ function PostEditForm() {
 
       <Form.Group>
         <Form.Label>EXIF</Form.Label>
+        <OverlayTrigger
+          placement="top"
+          overlay={
+            <Tooltip>
+              EXIF data provides valuable information about how a photo was taken. You can provide your equipment, image parameters or camera settings.
+            </Tooltip>}
+        >
+          <i class={`fa fa-question-circle ${styles.ExifIcon}`}></i>
+        </OverlayTrigger>
         <Form.Control
           type="text"
           name="exif"
