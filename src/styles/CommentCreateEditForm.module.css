@@ -2,3 +2,8 @@
   border: none;
   border-bottom: 2px #8ECAE6 solid;
 }
+
+.Counter {
+  font-size: 14px;
+  color: #808080;
+}
