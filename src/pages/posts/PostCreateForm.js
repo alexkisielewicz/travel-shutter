@@ -6,9 +6,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import Asset from "../../components/Asset";
-
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
@@ -63,7 +64,7 @@ function PostCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    
+
     const titleRegex = /^[a-zA-Z,. ]{0,100}$/;
     const tagsRegex = /^[a-zA-Z, ]{0,100}$/;
     const exifRegex = /^[a-zA-Z0-9\s,.@/-]{0,100}$/;
@@ -114,7 +115,12 @@ function PostCreateForm() {
     formData.append("tags", tags);
     formData.append("exif", exif);
     formData.append("body", body);
-    formData.append("image", imageInput.current.files[0]);
+    /* append image only if user selected image
+    otherwise image field is not included in formData
+    API accepts post without image and utilizes placeholder */
+    if (imageInput.current.files.length > 0) {
+      formData.append("image", imageInput.current.files[0]);
+    }
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
@@ -124,6 +130,7 @@ function PostCreateForm() {
       // console.log(err.response?.data);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        console.log(err.response?.data)
       }
     }
   };
@@ -184,6 +191,15 @@ function PostCreateForm() {
 
       <Form.Group>
         <Form.Label>EXIF</Form.Label>
+        <OverlayTrigger
+          placement="top"
+          overlay={
+            <Tooltip>
+              EXIF data provides valuable information about how a photo was taken. You can provide your equipment, image parameters or camera settings.
+            </Tooltip>}
+        >
+          <i class={`fa fa-question-circle ${styles.ExifIcon}`}></i>
+        </OverlayTrigger>
         <Form.Control
           type="text"
           name="exif"
