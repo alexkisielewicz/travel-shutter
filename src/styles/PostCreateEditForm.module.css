@@ -22,3 +22,7 @@ label {
 input::placeholder {
   font-size: 14px;
 }
+
+.ExifIcon {
+  font-size: 16px;
+}
