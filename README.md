@@ -1,6 +1,6 @@
 <h1 align="center">"Travel Shutter" React App</h1>
 
-<h3 align="center">HTML5 CSS3, Bootstrap, JavaScript, Cloudinary, Heroku</h3>
+<h3 align="center">React JS, HTML5, CSS3, Bootstrap, JavaScript, Heroku</h3>
 
 <br>
 
@@ -29,6 +29,7 @@ Application offers such functionalities as:
 - **Post management** - Users can add, update, and delete their posts with ease (CRUD)
 - **Commenting** - Users can leave comments on posts, update or delete them
 - **Liking** - Users can add likes to posts to show their appreciation
+- **Following** - User can follow other users and display filtered content created by followed authors
 - **Filtering content** - Users can apply filters to display categorized posts
 - **Search optio** - Users can search posts by title, author, category  
 - **Messages/feedback** - Users receive feedback and confirmation to their actions in the app.
@@ -105,40 +106,166 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 | Milestone  | User story |
 |------------|------------|
 | Navigation | [#1](https://github.com/alexkisielewicz/travel-shutter/issues/1) As a user, I can view a navbar from every page, so that I can easily navigate between pages. |
+|            | Acceptance criteria:                                                          |
+|            | - The navbar is consistently displayed at the top of each page.               |
+|            | - The navbar contains navigation links to different pages of the application. |
 | Navigation | [#7](https://github.com/alexkisielewicz/travel-shutter/issues/7) As a logged-out user, I can see sign-in and sign-up options, so that I can sign in or sign up. As a logged-in user, I can see the sign-out link. |
+|            | Acceptance criteria:                                                          |
+|            | - The navigation UI displays the sign-in and sign-up links when the user is not logged in. |
+|            | - Clicking on the sign-in or sign-up option redirects the user to the corresponding auth. page. |
+|            | - The navigation UI displays the sign-out link for logged-in users. |
+|            | - Clicking on the sign-out link ends the user session and redirects to the home page. |
 | Navigation | [#2](https://github.com/alexkisielewicz/travel-shutter/issues/2) As a user, I can navigate through pages quickly without page refresh, so that I can seamlessly view content. |
+|            | Acceptance criteria:                                                           |
+|            | - Clicking on a navigation link updates the content on the page without reloading the entire page. |
+|            | - The browser's back and forward buttons work correctly, allowing the user to navigate through the application's history. |
 | Authentication | [#3](https://github.com/alexkisielewicz/travel-shutter/issues/3) As a user, I can create a new account, so that I can access all the features for signed-up users. |
+|            | Acceptance criteria:                                                          |
+|            | - The sign-up form includes the required fields such as username and password with confirmation. |
+|            | - Upon successful sign-up, the user is redirected to the application's sign-in page. |
 | Authentication | [#4](https://github.com/alexkisielewicz/travel-shutter/issues/4) As a user, I can sign in to the app, so that I can access functionality for logged-in users.  |
+|            | Acceptance criteria:                                                           |
+|            | - The sign-in form includes fields for entering the username/email and password. |
+|            | - Upon successful sign-in, the user is redirected to their personalized dashboard or the last visited page. |
 | Authentication | [#5](https://github.com/alexkisielewicz/travel-shutter/issues/5) As a user, I can see if I am logged in or not, so that I can log in if I need. |
+|            | Acceptance criteria:                                                           |
+|            | - The user's logged-in status is confirmed by displaying a profile picture in the navbar. |
+|            | - The user's logged-in status is persistent across different pages and remains consistent during their session. |
+|            | - Default profile picture is present if the user didn't upload their own picture. |
 | Authentication | [#6](https://github.com/alexkisielewicz/travel-shutter/issues/6) As a user, I can maintain a logged-in status until I decide to log out so that my user experience is not compromised. |
+|            | Acceptance criteria:                                                           |
+|            | - Access tokens are automatically refreshed before they expire, ensuring the user remains logged in without interruption. |
+|            | - The user is not required to manually refresh or reauthenticate frequently, providing a seamless and uninterrupted user experience. |
+|            | - Local storage is used for token storage. |
 | User interface | [#8](https://github.com/alexkisielewicz/travel-shutter/issues/8) As a user, I can view profile avatars, so that I can easily identify users of the application. |
+|            | Acceptance criteria:                                                           |
+|            | - User avatars are displayed next to user profiles, posts, or comments. |
+|            | - Avatars are visually distinct and represent the user's identity or chosen profile picture. |
+|            | - Standard placeholder image is present if the user didn't upload their own picture. |
 | Posts | [#9](https://github.com/alexkisielewicz/travel-shutter/issues/9) As a logged-in user, I can create posts, so that I can share my images in the app. |
+|            | Acceptance criteria:                                                           |
+|            | - A form is provided for users to enter the necessary details for creating a post, such as an image, title, category, tags, equipment, and post body |
+|            | - After successfully creating a post, it is displayed on the posts page. |
 | Posts | [#10](https://github.com/alexkisielewicz/travel-shutter/issues/10) As a user, I can view the details of a single post, so that I can learn more about it. |
+|            | Acceptance criteria:                                                           |
+|            | - Clicking on a post's title or image opens a dedicated page displaying the full details of the post. |
+|            | - The post's details are presented in a visually appealing and organized manner for a positive user experience. |
 | Posts | [#11](https://github.com/alexkisielewicz/travel-shutter/issues/11) As a logged-in user, I can like a post, so that I can show my support for the posts that interest me. |
+|            | Acceptance criteria:                                                          |
+|            | - Each post displays the number of likes it has received.                                                                             |
+|            | - Clicking on a "like" button associated with a post increment the like count and visually indicates that the post has been liked by the user. |
+|            | - Users cannot like their own posts. |
+|            | - Unauthorized users are not allowed to add likes. |
+|            | - Appropriate messages are displayed in the UI e.g. "Please sign in to add like". |
 | Posts | [#12](https://github.com/alexkisielewicz/travel-shutter/issues/12) As a user, I can view all the most recent posts, ordered by the most recently created first, so that I am up to date with the newest content. |
+|            | Acceptance criteria:                                                           |
+|            | - The posts are listed in descending order based on their creation timestamp, with the most recent posts appearing first. |
+|            | - The posts page automatically updates to reflect any new posts that have been added since the user last visited the page. |
 | Posts | [#13](https://github.com/alexkisielewicz/travel-shutter/issues/13) As a user, I can search for posts with keywords, so that I can find the posts by title, username, or category they have been posted in. |
+|            | Acceptance criteria:                                                          |
+|            | - A search bar is provided where users can enter keywords to search for relevant posts. |
+|            | - The search functionality returns posts that match the entered keywords (title, username, and category filters are in use). |
+|            | - Feedback is provided in the UI if there are no results. |
+|            | - Search request to the back-end is delayed after a keystroke so there are no unnecessary requests. |
 | Posts | [#14](https://github.com/alexkisielewicz/travel-shutter/issues/14) As a user, I can select a category from the menu, so that I can find all the posts from the category that I am interested in. |
+|            | Acceptance criteria:                                                           |
+|            | - A button with a category dropdown menu is provided on the posts page. |
+|            | - Selecting specific category filters posts on the posts page. |
+|            | - The user can remove the category filter by selecting the "display all" option. |
+|            | - Currently displayed category name is present in the UI. |
 | Posts | [#15](https://github.com/alexkisielewicz/travel-shutter/issues/15) As a logged-in user, I can view the posts I liked, so that I can find the posts I interacted with by adding a like. |
+|            | Acceptance criteria:                                                           |
+|            | - A dedicated page with active posts filter is available where the user can view all the posts they have liked. |
+|            | - Liked posts are clearly marked from other posts, indicating that they have been liked by the user. |
 | Posts | [#17](https://github.com/alexkisielewicz/travel-shutter/issues/17) As a user, I can keep scrolling through the posts on the website, which are loaded automatically, so I don't have to use pagination. |
+|            | Acceptance criteria:                                                           |
+|            | - As the user scrolls down the page, additional posts are loaded and displayed on the posts list. |
+|            | - The infinite scroll feature works efficiently, loading new content quickly and without causing performance issues. |
 | Posts | [#19](https://github.com/alexkisielewicz/travel-shutter/issues/19) As the post owner, I can edit post details and image, so that I can make corrections or update my post after it was created. |
+|            | Acceptance criteria:                                                           |
+|            | - The post page includes an "Edit" button that allows the post owner to modify the post's details. |
+|            | - After successfully editing the post, the updated information is reflected on the post page. |
 | Following users | [#16](https://github.com/alexkisielewicz/travel-shutter/issues/16) As a logged-in user, I can view content filtered by the users I follow, so that I can keep up to date with what they are posting about. |
+|            | Acceptance criteria:                                                           |
+|            | - The feed page filters the displayed content to only show posts from the users the logged-in user is following. |
+|            | - The filtered content is updated dynamically as the logged-in user follows or unfollows other users. |
 | Comments | [#18](https://github.com/alexkisielewicz/travel-shutter/issues/18) As a user, I can view the comments about a post, so that I can read what other users think about it. |
+|            | Acceptance criteria:                                                           |
+|            | - The post page displays all comments associated with the post in order by creation date. |
+|            | - Each comment includes the author's username, avatar, timestamp, and comment content. |
 | Comments | [#20](https://github.com/alexkisielewicz/travel-shutter/issues/20) As a logged-in user, I can add comments to a post, so that I can share my thoughts about it. |
+|            | Acceptance criteria:                                                           |
+|            | - A comment input field is available on the post page, allowing users to enter their comments. |
+|            | - After submitting a comment, it is immediately displayed in the list of comments, reflecting the user's input. |
 | Comments | [#21](https://github.com/alexkisielewicz/travel-shutter/issues/21) As a user, I can see how long ago a comment was made, so that I know how old a comment is. |
+|            | Acceptance criteria:                                                           |
+|            | - Each comment on the post page includes a timestamp indicating when the comment was posted. |
+|            | - The comment's timestamp is presented in a user-friendly format, such as "X minutes/hours/days ago." |
 | Comments | [#22](https://github.com/alexkisielewicz/travel-shutter/issues/22) As the owner of a comment, I can delete my comment, so that I can control the removal of my comment from the application. |
+|            | Acceptance criteria:                                                           |
+|            | - Each comment includes a "Delete" button or similar option for the comment owner to remove their own comment. |
+|            | - After confirming the deletion, the comment is immediately removed from the post page. |
 | Comments | [#23](https://github.com/alexkisielewicz/travel-shutter/issues/23) As the owner of a comment, I can edit my comment, so that I can update it or correct entered text. |
+|            | Acceptance criteria:                                                           |
+|            | - Each comment includes an "Edit" button for the comment owner to edit their own comment.|
+|            | - After editing and saving changes, the comment is immediately visible on the post page with updated data. |
 | Profiles | [#24](https://github.com/alexkisielewicz/travel-shutter/issues/24) As a user, I can view other user's profiles, so that I can see their posts and learn more about them. |
+|            | Acceptance criteria:                                                           |
+|            | - Each user has a dedicated profile page that displays relevant information about the user, such as their username, avatar, bio, and statistics. |
+|            | - The profile page provides a visually appealing layout that showcases the user's posts and other relevant details. |
 | Profiles | [#25](https://github.com/alexkisielewicz/travel-shutter/issues/25) As a user, I can see a list of the most followed profiles, so that I can discover popular profiles. |
-| Profiles | [#27](https://github.com/alexkisielewicz/travel-shutter/issues/26) As a user, I can view statistics about a specific user, including their bio, number of posts, follows, and users followed, so that I can learn more about them. |
+|            | Acceptance criteria:                                                           |
+|            | - A component is available that displays a list of profiles sorted by the number of followers. |
+|            | - Each profile in the list includes the user's avatar, username, and follower a button to allocate follow/unfollow links. |
+| Profiles | [#26](https://github.com/alexkisielewicz/travel-shutter/issues/26) As a user, I can view statistics about a specific user, including their bio, number of posts, follows, and users followed, so that I can learn more about them. |
+|            | Acceptance criteria:                                                           |
+|            | - The user's profile page displays the user's bio, providing insights into their interests, background, or any other relevant information. |
+|            | - User statistics, such as the total number of posts created, followers, and following, are clearly presented on the profile page. |
 | Profiles | [#27](https://github.com/alexkisielewicz/travel-shutter/issues/27) As a logged-in user, I can follow and unfollow other users, so that I can see and remove posts by specific users in my posts feed. |
+|            | Acceptance criteria:                                                           |
+|            | - Each user profile includes an option to follow or unfollow the respective user, such as a "Follow" or "Unfollow" button. |
+|            | - After following a user, their posts are included in the logged-in user's posts feed, and their updates appear in the follower's notifications, posts are not displayed in the profile when the user is unfollowed thereafter. |
 | Profiles | [#28](https://github.com/alexkisielewicz/travel-shutter/issues/28) As a user, I can view all the posts by a specific user, so that I can catch up on their latest posts or decide to follow them. |
+|            | Acceptance criteria:                                                           |
+|            | - The user's profile page provides a section that displays all the posts created by that user. |
 | Profiles | [#29](https://github.com/alexkisielewicz/travel-shutter/issues/29) As a logged-in user, I can edit my profile, so that I can change my profile picture and other details. |
+|            | Acceptance criteria:                                                           |
+|            | - The profile page includes an "Edit Profile" button or similar option that allows the logged-in user to modify their profile information. |
+|            | - The edit functionality enables users to update their profile picture or any other relevant details and immediately reflects the changes on their profile page. |
 | Profiles | [#30](https://github.com/alexkisielewicz/travel-shutter/issues/30) As a logged-in user, I can change my username and password, so that I can change my display name and keep my profile secure. |
-| Improvements | [#31](https://github.com/alexkisielewicz/travel-shutter/issues/31) As a user, I want to see a deletion confirmation message when attempting to delete an item that I created, so that I can ensure that I intend to delete the item before proceeding.
+|            | Acceptance criteria:                                                           |
+|            | - The profile page provides a link to update the user's username and password. |
+|            | - Users can enter their new username and password, and after successfully updating the information, the changes take effect, allowing them to log in with the new credentials. |
+| Improvements | [#31](https://github.com/alexkisielewicz/travel-shutter/issues/31) As a user, I want to see a deletion confirmation message when attempting to delete an item that I created, so that I can ensure that I intend to delete the item before proceeding. |
+|            | Acceptance criteria:                                                           |
+|            | - The deletion confirmation message is shown in the user interface, providing a clear indication of the deletion action and the item being deleted. |
+|            | - The user is presented with options to confirm or cancel the deletion operation. |
+|            | - If the user confirms the deletion, the item is permanently removed from the database. |
+|            | - If the user cancels the deletion, they are redirected to the last visited page without deleting the item. |
+|            | - The deletion confirmation functionality is applied consistently for both post and comment deletion actions, ensuring a uniform user experience across the app. |
 | Improvements | [#32](https://github.com/alexkisielewicz/travel-shutter/issues/32) As a user, I want to receive feedback as a response to my actions, so that I can have a clear understanding of the outcome of my actions and stay informed. |
+|            | Acceptance criteria:                                                           |
+|            | - Feedback messages are displayed in the form of a toast UI component that disappears automatically after a short time. |
+|            | - Appropriate message is displayed on such occasions as sign-in/out, creation of an account, adding a post, editing a post, adding or deleting the comment, editing profile details, username, or password. |
+|            | - The confirmation toast message is shown to the user only when the action performed results in a successful change in the database. |
 | Improvements | [#33](https://github.com/alexkisielewicz/travel-shutter/issues/33) As a user, I want to be able to click on a post category, so that I can view all posts belonging to that category on the posts page with the category filter applied. |
+|            | Acceptance criteria:                                                           |
+|            | - The post categories are displayed in the UI. |
+|            | - When a user clicks on a category, they are redirected to the posts page. |
+|            | - The posts page is loaded with the applied filter for the selected category. |
+|            | - The selected category is displayed on the posts page to indicate the active filter. |
+|            | - Only posts belonging to the selected category are shown on the posts page. |
 | Improvements | [#34](https://github.com/alexkisielewicz/travel-shutter/issues/34) As a user, I want to see the top 5 posts with the most likes, so that I can quickly access popular and engaging content. |
+|            | Acceptance criteria:                                                           |
+|            | - Top 5 posts with the most likes are displayed in the UI. |
+|            | - Each post is a clickable link, allowing the user to be redirected to the post page. |
+|            | - The number of likes for each post is visible next to the link or post title. |
 | Improvements | [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. |
+|            | Acceptance criteria:                                                           |
+|            | - Tag field is present in add post form. |
+|            | - User can add multiple tags, separated with commas. |
+|            | - Tags belonging to specific posts are displayed in this post detailed view. |
+|            | - User can click on a tag and get redirected to a filtered post list view with posts marked with this tag. |
 ## Wireframes
 
 [Wireframes - PDF File](docs/************.pdf)
@@ -266,6 +393,13 @@ Project uses cloud-based PostgreSQL database provided by [ElephantSQL](https://w
 - [Techsini.com](https://techsini.com/multi-mockup/) - website mockup generator
 - [WAVE](https://wave.webaim.org/) - web accessibility online tool
 - [WebAIM](https://webaim.org/resources/contrastchecker/) - online tool to check colour contrast/accesibility
+
+- W3C Validator
+- CSS Jugsaw
+- EELint
+
+Lighthouse
+
 
 # Testing
 
@@ -428,6 +562,7 @@ If I had more time or decide to develop app further I would add/improve followin
 - [W3Schools](https://www.w3schools.com/python/default.asp)
 - [React](https://legacy.reactjs.org/docs/getting-started.html) - React documentation.
 - [Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction) - Bootstrap documentation.
+
 ## Acknowledgements
 
 - My Mentor Jubril Akolade for helpful feedback and guidance at all stages of the project.
@@ -435,4 +570,4 @@ If I had more time or decide to develop app further I would add/improve followin
 
 ## Disclaimer
 
-- Photo Adventures Website was created for educational purpose only.
+- Travel Shutter Website was created for educational purpose only.
