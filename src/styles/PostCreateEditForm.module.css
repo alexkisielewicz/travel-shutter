@@ -12,3 +12,13 @@
   height: 0;
   overflow: hidden;
 }
+
+label {
+  font-size: 12px;
+  color: #808080;
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  font-size: 14px;
+}
