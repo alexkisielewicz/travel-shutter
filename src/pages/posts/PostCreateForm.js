@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
 import Asset from "../../components/Asset";
@@ -20,6 +19,7 @@ import { toast } from 'react-toastify';
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import InputError from "../../components/InputError";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -63,6 +63,51 @@ function PostCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    
+    const titleRegex = /^[a-zA-Z,. ]{0,100}$/;
+    const tagsRegex = /^[a-zA-Z, ]{0,100}$/;
+    const exifRegex = /^[a-zA-Z0-9\s,.@/-]{0,100}$/;
+    const contentRegex = /^[a-zA-Z0-9\s.,\-!?]{0,300}$/;
+
+    if (!titleRegex.test(title)) {
+      setErrors({
+        ...errors,
+        title: [
+          "Title can contain letters, spaces, commas, dots, up to 100 characters.",
+        ],
+      });
+      return;
+    }
+
+    if (!tagsRegex.test(tags)) {
+      setErrors({
+        ...errors,
+        tags: [
+          "Tags can contain letters, commas, spaces, up to 100 characters.",
+        ],
+      });
+      return;
+    }
+
+    if (!exifRegex.test(exif)) {
+      setErrors({
+        ...errors,
+        exif: [
+          "EXIF can contain letters, digits, spaces, commas, dots, slashes, @, hyphens, up to 100 characters.",
+        ],
+      });
+      return;
+    }
+
+    if (!contentRegex.test(body)) {
+      setErrors({
+        ...errors,
+        body: [
+          "Content can contain letters, digits, spaces, commas, periods, hyphens, exclamation marks, question marks, up to 300 characters.",
+        ],
+      });
+      return;
+    }
 
     formData.append("title", title);
     formData.append("category", category);
@@ -95,10 +140,8 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.title && errors.title.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
       <Form.Group>
         <Form.Label>Category</Form.Label>
@@ -120,10 +163,8 @@ function PostCreateForm() {
           <option value="street">Street</option>
           <option value="architecture">Architecture</option>
         </Form.Control>
-        {errors.category?.map((message, idx) => (
-          <Alert variant="warning" className={appStyles.Alert} key={idx}>
-            {message}
-          </Alert>
+        {errors.category && errors.category.map((message, idx) => (
+          <InputError key={idx} message={message} />
         ))}
       </Form.Group>
 
@@ -137,10 +178,8 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.tags?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.tags && errors.tags.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
 
       <Form.Group>
@@ -153,10 +192,8 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.exif?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.exif && errors.exif.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
 
       <Form.Group>
@@ -169,10 +206,8 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.body?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.body && errors.body.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
       <Button className={`${btnStyles.Button} ${btnStyles.Orange}`} type="submit">
         create
@@ -183,6 +218,9 @@ function PostCreateForm() {
       >
         cancel
       </Button>
+      {errors.non_field_errors?.map((message, idx) => (
+        <InputError key={idx} message={message} />
+      ))}
     </div>
   );
 
@@ -230,9 +268,7 @@ function PostCreateForm() {
 
             </Form.Group>
             {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
+              <InputError key={idx} message={message} />
             ))}
 
             <div className="d-md-none">{textFields}</div>

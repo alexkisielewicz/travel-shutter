@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
-import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { toast } from 'react-toastify';
+import InputError from "../../components/InputError";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -49,12 +48,20 @@ const UserPasswordForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (!/^[A-Za-z0-9_]{8,16}$/.test(new_password1)) {
+        setErrors({
+          new_password1: [
+            "Password should be 8-16 characters long and may contain letters, digits, and underscore. It shouldn't be too common or similar to your username.",
+          ],
+        });
+        return;
+      }
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
-      showToast("Password changed!")
-    } catch (err) {
-      // console.log(err);
-      setErrors(err.response?.data);
+      showToast("Password changed!");
+    } catch (error) {
+      setErrors(error.response?.data);
+      // console.log(error.response?.data);
     }
   };
 
@@ -72,12 +79,10 @@ const UserPasswordForm = () => {
                 onChange={handleChange}
                 name="new_password1"
               />
+              {errors.new_password1 && errors.new_password1.map((message, idx) => (
+                <InputError key={idx} message={message} />
+              ))}
             </Form.Group>
-            {errors?.new_password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
             <Form.Group>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
@@ -87,12 +92,10 @@ const UserPasswordForm = () => {
                 onChange={handleChange}
                 name="new_password2"
               />
+              {errors.new_password2 && errors.new_password2.map((message, idx) => (
+                <InputError key={idx} message={message} />
+              ))}
             </Form.Group>
-            {errors?.new_password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Orange}`}
               onClick={() => history.goBack()}
@@ -105,6 +108,9 @@ const UserPasswordForm = () => {
             >
               save
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <InputError key={idx} message={message} />
+            ))}
           </Form>
         </Container>
       </Col>

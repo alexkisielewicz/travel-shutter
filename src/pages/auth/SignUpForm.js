@@ -6,7 +6,6 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { toast } from 'react-toastify';
 
-import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -16,6 +15,7 @@ import Container from "react-bootstrap/Container";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
+import InputError from "../../components/InputError";
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
@@ -46,11 +46,30 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const usernameRegex = /^[A-Za-z0-9_]{4,12}$/;
+    if (!usernameRegex.test(username)) {
+      setErrors({
+        username: [
+          "Username can contain uppercase and lowercase letters, digits, or underscores. The length should be between 4 and 12 characters.",
+        ],
+      });
+      return;
+    }
+    const passwordRegex = /^[A-Za-z0-9_]{8,16}$/;
+    if (!passwordRegex.test(password1)) {
+      setErrors({
+        password1: [
+          "Password should be 8-16 characters long and may contain letters, digits, and underscores. It shouldn't be too common or similar to your username.",
+        ],
+      });
+      return;
+    }
       await axios.post("/dj-rest-auth/registration/", signUpData)
       history.push("/signin")
       showToast("Account created!")
     } catch (error) {
       setErrors(error.response?.data);
+      // console.log(error.response?.data);
     }
   }
 
@@ -77,16 +96,15 @@ const SignUpForm = () => {
                 <Form.Control
                   className={styles.Input}
                   type="text"
+                  maxLength={12}
                   placeholder="Username"
                   name="username"
                   value={username}
                   onChange={handleChange}
                 />
               </Form.Group>
-              {errors.username?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
+              {errors.username && errors.username.map((message, idx) => (
+                <InputError key={idx} message={message} />
               ))}
               <Form.Group controlId="password1">
                 <Form.Label className="d-none">Password</Form.Label>
@@ -99,10 +117,8 @@ const SignUpForm = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
-              {errors.password1?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+              {errors.password1 && errors.password1.map((message, idx) => (
+                <InputError key={idx} message={message} />
               ))}
               <Form.Group controlId="password2">
                 <Form.Label className="d-none">Confirm password</Form.Label>
@@ -115,10 +131,8 @@ const SignUpForm = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
-              {errors.password2?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+              {errors.password2 && errors.password2.map((message, idx) => (
+                <InputError key={idx} message={message} />
               ))}
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Orange}`}
@@ -127,9 +141,7 @@ const SignUpForm = () => {
                 Sign up
               </Button>
               {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">
-                  {message}
-                </Alert>
+                <InputError key={idx} message={message} />
               ))}
             </Form>
           </Container>

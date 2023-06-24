@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -17,10 +16,11 @@ import {
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { toast } from 'react-toastify';
+import InputError from "../../components/InputError";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState("");
 
   const history = useHistory();
   const { id } = useParams();
@@ -43,6 +43,12 @@ const UsernameForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (!/^[A-Za-z0-9_]{4,12}$/.test(username)) {
+        setError(
+          "Username can contain uppercase and lowercase letters, digits, or underscores. The length should be between 4 and 12 characters."
+        );
+        return;
+      }
       await axiosRes.put("/dj-rest-auth/user/", {
         username,
       });
@@ -54,7 +60,6 @@ const UsernameForm = () => {
       showToast("Username changed!")
     } catch (err) {
       // console.log(err);
-      setErrors(err.response?.data);
     }
   };
 
@@ -69,14 +74,13 @@ const UsernameForm = () => {
                 placeholder="username"
                 type="text"
                 value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                onChange={(event) => {
+                  setUsername(event.target.value);
+                  setError("");
+                }}
               />
             </Form.Group>
-            {errors?.username?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+            {error && <InputError message={error} />}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Orange}`}
               onClick={() => history.goBack()}

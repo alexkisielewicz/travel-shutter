@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -19,6 +18,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 
 import { toast } from 'react-toastify';
+import InputError from "../../components/InputError";
 
 function SignInForm() {
   // redirect user if already logged in
@@ -49,8 +49,8 @@ function SignInForm() {
       setTokenTimestamp(data);
       showToast("Signed in succesfully!");
       history.goBack();
-    } catch (errors) {
-      setErrors(errors.response?.data);
+    } catch (err) {
+      setErrors(err.response?.data);
     }
   }
 
@@ -83,6 +83,7 @@ function SignInForm() {
                 <Form.Label className="d-none">Username</Form.Label>
                 <Form.Control
                   type="text"
+                  maxLength={12}
                   placeholder="Username"
                   name="username"
                   className={styles.Input}
@@ -90,10 +91,8 @@ function SignInForm() {
                   onChange={handleChange}
                 />
               </Form.Group>
-              {errors.username?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+              {errors.username && errors.username.map((message, idx) => (
+                <InputError key={idx} message={message} />
               ))}
               <Form.Group controlId="password">
                 <Form.Label className="d-none">Password</Form.Label>
@@ -106,10 +105,8 @@ function SignInForm() {
                   onChange={handleChange}
                 />
               </Form.Group>
-              {errors.password?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+              {errors.password && errors.password.map((message, idx) => (
+                <InputError key={idx} message={message} />
               ))}
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Orange}`}
@@ -118,9 +115,7 @@ function SignInForm() {
                 Sign in
               </Button>
               {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">
-                  {message}
-                </Alert>
+                <InputError key={idx} message={message} />
               ))}
             </Form>
           </Container>

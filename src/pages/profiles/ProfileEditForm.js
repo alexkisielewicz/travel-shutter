@@ -7,13 +7,13 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import InputError from "../../components/InputError";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
@@ -70,6 +70,46 @@ const ProfileEditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const nameRegex = /^[A-Za-z\s]{1,40}$/;
+    if (!nameRegex.test(name)) {
+      setErrors({
+        name: [
+          "Name can contain letters and spaces, up to 40 characters.",
+        ],
+      });
+      return;
+    }
+    // Validate bio
+    const bioRegex = /^[A-Za-z0-9\s,.!]{0,150}$/;
+    if (!bioRegex.test(bio)) {
+      setErrors({
+        bio: [
+          "Bio can contain letters, digits, spaces, commas, dots, exclamation marks, up to 150 characters.",
+        ],
+      });
+      return;
+    }
+    // Validate instagram
+    const instagramRegex = /^[A-Za-z0-9_.]{0,70}$/;
+    if (!instagramRegex.test(instagram) || instagram.includes("instagram.com")) {
+      setErrors({
+        instagram: [
+          "Instagram can contain letters, digits, underscores, up to 70 characters. Enter your handle instead of profile URL",
+        ],
+      });
+      return;
+    }
+    // Validate equipment
+    const equipmentRegex = /^[A-Za-z0-9\s,.!_]{0,70}$/;
+    if (!equipmentRegex.test(equipment)) {
+      setErrors({
+        equipment: [
+          "Equipment can contain letters, digits, spaces, commas, dots, underscores, up to 70 characters.",
+        ],
+      });
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
@@ -106,10 +146,8 @@ const ProfileEditForm = () => {
           rows={1}
         />
       </Form.Group>
-      {errors?.name?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.name && errors.name.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
 
       <Form.Group>
@@ -122,10 +160,8 @@ const ProfileEditForm = () => {
           rows={3}
         />
       </Form.Group>
-      {errors?.bio?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.bio && errors.bio.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
 
       <Form.Group>
@@ -138,10 +174,8 @@ const ProfileEditForm = () => {
           rows={1}
         />
       </Form.Group>
-      {errors?.instagram?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.instagram && errors.instagram.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
 
       <Form.Group>
@@ -154,11 +188,10 @@ const ProfileEditForm = () => {
           rows={4}
         />
       </Form.Group>
-      {errors?.equipment?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
+      {errors.equipment && errors.equipment.map((message, idx) => (
+        <InputError key={idx} message={message} />
       ))}
+
       <Button
         className={`${btnStyles.Button} ${btnStyles.Orange}`}
         onClick={() => history.goBack()}
@@ -169,9 +202,7 @@ const ProfileEditForm = () => {
         save
       </Button>
       {errors.non_field_errors?.map((message, idx) => (
-        <Alert key={idx} variant="warning" className="mt-3">
-          {message}
-        </Alert>
+        <InputError key={idx} message={message} />
       ))}
     </>
   );
@@ -189,9 +220,7 @@ const ProfileEditForm = () => {
                   </figure>
                 )}
                 {errors?.image?.map((message, idx) => (
-                  <Alert variant="warning" key={idx}>
-                    {message}
-                  </Alert>
+                  <InputError key={idx} message={message} />
                 ))}
                 <div>
                   <Form.Label
