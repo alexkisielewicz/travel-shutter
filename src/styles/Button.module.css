@@ -25,6 +25,10 @@
   background-color: #FB8500;
 }
 
+.Button:disabled {
+  cursor: not-allowed;
+}
+
 .Wide {
   padding: 10px 50px;
   width: 100%;
