@@ -149,13 +149,13 @@ function ProfilePage() {
         {profilePosts.results.length ? (
           <>
             <div className="text-center py-1">
-              {currentUser && is_owner ? <h5>My posts:</h5> : <h5>{profile?.owner}'s posts:</h5>}
+              {currentUser && is_owner ? <h5>My posts:</h5> : <h5>{profile?.owner}&apos;s posts:</h5>}
             </div>
             <hr />
           </>
         ) : (
           <div className="text-center">
-            {profile?.owner} hasn't posted anything yet.
+            {profile?.owner} hasn&apos;t posted anything yet.
           </div>
         )}
 
