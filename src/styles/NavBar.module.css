@@ -1,26 +1,26 @@
 .NavBar {
-    background-color: #FFF;
-    box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
-    padding: 0px 5px 5px;
-  }
-  
-  .NavLink {
-    font-family: 'Playfair Display SC', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 15px 5px 5px;
-  }
+  background-color: #FFF;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+  padding: 0px 5px 5px;
+}
 
-  .NavLink i {
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-  
-  .Active i {
-    color: #219EBC;
-  }
+.NavLink {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 15px 5px 5px;
+}
 
-  .Logo {
-    height: 70px;
-    padding: 0 5px 10px 0px;
-  }
+.NavLink i {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.Active i {
+  color: #219EBC;
+}
+
+.Logo {
+  height: 70px;
+  padding: 0 5px 10px 0px;
+}

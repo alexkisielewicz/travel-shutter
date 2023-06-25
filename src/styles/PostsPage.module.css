@@ -13,23 +13,22 @@
 }
 
 .SearchIcon:hover {
-  cursor: hand;
   color: #FB8500;
 }
 
-.CategoriesDropdown > button {
+.CategoriesDropdown>button {
   width: 100%;
   background-color: #219EBC !important;
   border: 1px solid #219EBC;
   border-radius: 10px;
   text-transform: uppercase;
-  text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
 
-.CategoriesDropdown > button:hover,
-.CategoriesDropdown > button:focus,
-.CategoriesDropdown > button:active {
+.CategoriesDropdown>button:hover,
+.CategoriesDropdown>button:focus,
+.CategoriesDropdown>button:active {
   background-color: #219EBC !important;
   border: 1px solid #219EBC !important;
   color: #FFB703;

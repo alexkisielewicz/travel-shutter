@@ -1,7 +1,7 @@
 .Post {
   background-color: #FFF;
   margin-bottom: 16px;
-  text-align: center;  
+  text-align: center;
   padding: 15px;
   border-radius: 20px;
   box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
@@ -18,7 +18,8 @@ h1 {
   font-size: 2rem;
   color: #023047;
   text-transform: uppercase;
-  word-spacing: 1px; letter-spacing:2px;
+  word-spacing: 1px;
+  letter-spacing: 2px;
   padding: 10px 5px;
 }
 
