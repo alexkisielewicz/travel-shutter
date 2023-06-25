@@ -1,3 +1,17 @@
+A reasonable amount of manual testing was done and results can be found below:
+
+# Table of content
+
+- [User story testing](#user-story-testing)
+- [Functionality testing](#functionality-testing)
+- [Responsiveness testing](#responsiveness-testing)
+- [Browser compatibility testing](#browser-compatibility-testing)
+- [HTML Validation](#html-validation)
+- [CSS Validation](#css-validation)
+- [JavaScript Validation](#javascript-validation)
+- [Lighthouse performance audit](#lighthouse-performance-audit)
+- [WAVE Accesibility testing](#wave-accesibility-testing)
+
 # User story testing
 
 | User story | Result     |
@@ -36,4 +50,74 @@
 | [#32](https://github.com/alexkisielewicz/travel-shutter/issues/32) As a user, I want to receive feedback as a response to my actions, so that I can have a clear understanding of the outcome of my actions and stay informed. | PASS |
 | [#33](https://github.com/alexkisielewicz/travel-shutter/issues/33) As a user, I want to be able to click on a post category, so that I can view all posts belonging to that category on the posts page with the category filter applied. | PASS |
 | [#34](https://github.com/alexkisielewicz/travel-shutter/issues/34) As a user, I want to see the top 5 posts with the most likes, so that I can quickly access popular and engaging content. | PASS |
-| [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. | PASS |
+| [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. | Feature marked as future enhancement |
+
+# Functionality testing
+
+Comprehensive testing has been conducted to ensure that all website functionalities are working as intended, providing users with a reliable and enjoyable browsing experience.
+
+| Functionality | What's being tested | Result |
+|------|-------------|--------|
+| Registration | A new user can create an account successfully. | Pass |
+|  | User cannot send registration form without solving captcha. | Pass |
+|  | The website validates user inputs (2 password inputs match, email address is valid, name is valid). | Pass |
+|  | The website displays an appropriate error message with hint when validation fails. | Pass |
+|  | The website displays a message when confirmation email is sent. | Pass |
+|  | The website sends user appropriate email if user try to register with existing email | Pass |
+| Account Verification | A user receives a verification email after creating an account. | Pass |
+|  | Verification email contains a link that, when clicked shows confirmation page with a button | Pass |
+|  | The website displays an appropriate message if link is invalid or token expired | Pass |
+|  | The website displays an appropriate message when a user's account is verified successfully. | Pass |
+|  | User is signed in automatically when click confirm button | Pass |
+|  | The website displays verify email message when a user's account is not verified. | Pass |
+| Password Reset | A user receives a password reset email after requesting a password reset. | Pass |
+|  | The password reset email contains a link that, when clicked, allows the user to reset their password. | 
+
+# Responsiveness testing
+
+Website has been thoroughly tested for responsiveness on a wide range of devices to ensure a seamless user experience, no matter how our visitors access the site.
+
+
+
+
+# Browser compatibility testing
+
+All templates listed in [Responsiveness testing](#responsiveness-testing) have been displayed on different browsers with various viewport size.
+
+Following browsers were checked:
+
+- Google Chrome,
+- Safari,
+- Firefox,
+- Brave,
+- Microsoft Edge
+
+No errors have been found in displaying layouts, style and functionalities.
+
+# HTML Validation
+
+The [W3C Markup Validation Service](https://validator.w3.org/) has been used to validate html files, also W3C Web Validator VSC extension was used throughtout development to mark and elimanate errors. For pages that require authentication I used "validate by direct input" method with source code.
+
+
+
+
+# CSS Validation
+
+The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator) has been used to validate custom CSS through direct code input, no errors found.
+
+
+
+# JavaScript Validation
+
+JavaScript files were validated using [ESLint](https://eslint.org/) that was installed and configured in IDE.
+
+- all quotes have been changed to double quotes
+- single quotes that were apostrophe in the text were escaped with \&apos;
+- error: Do not pass children as props. Instead, nest children between the opening and closing tags when i add this part "children={}" was omitet as the fragment of code was as in "Moments" walkthroug project.
+- react import was added in some files as error wash shown "React must be in scope when using JSX".
+- "class" attribute has been used incorrectly instead of "className" in couple of files, it have been corrected.
+- there were no more errors as syntax was also checked in IDE and React compiler.
+
+# Lighthouse performance audit
+
+# WAVE Accesibility testing
