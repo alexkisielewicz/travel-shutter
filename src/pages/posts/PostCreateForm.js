@@ -65,10 +65,10 @@ function PostCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    const titleRegex = /^[a-zA-Z,. ]{0,100}$/;
-    const tagsRegex = /^[a-zA-Z, ]{0,100}$/;
-    const exifRegex = /^[a-zA-Z0-9\s,.@/-]{0,100}$/;
-    const contentRegex = /^[a-zA-Z0-9\s.,\-!?]{0,300}$/;
+    const titleRegex = /^[a-zA-Z,. ]{3,100}$/;
+    const tagsRegex = /^[a-zA-Z, ]{3,100}$/;
+    const exifRegex = /^[a-zA-Z0-9\s,.@/-]{3,100}$/;
+    const contentRegex = /^[a-zA-Z0-9\s.,\-!?]{3,300}$/;
 
     if (!titleRegex.test(title)) {
       setErrors({
