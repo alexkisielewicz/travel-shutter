@@ -489,6 +489,38 @@ There is comprehensive form input validation implemented throughout the applicat
 
 # React architecture and components
 
+One of the main learning outcomes of this project was to use React JavaScript library and its architecture that utilizes reusable components. React is most popular JavaScript library and promotes code reusability, making it easier to maintain and modularize code.
+
+Application UI is broken down into smaller, reusable components. This modular approach enhances code organization, readability, and reusability. With this in mind developer can maintain a uniform look and feel throughout the application. Updates made to a component are applied universally across UI and take effect on parts of the UI when changes occur, leading to faster rendering and an better user experience over all.
+
+Using contexts, hooks, and properties passing between components enables them to collaborate and share information, ensuring that when changes occur, they update accordingly. The application uses a modular system of CSS stylesheets, with one main stylesheet for the entire application, while each component has its own separate stylesheet.
+
+In my application I also aimed to implement reusable components to avoid repetition in the code, unify UI and optimize app performance. List below describes used created components:
+
+- Asset: A component used for displaying various assets, such as images or messages.
+
+- Avatar: A component that represents a user's avatar or profile picture, typically displayed alongside their username or in user-related sections such as post, comments, profile, profiles to follow.
+
+- CategoriesPanel: A component that presents a panel with categories buttons for filtering posts.
+
+- DropdownMenu: A reusable component that creates a dropdown menu interface, allowing users to select options or navigate through different sections, utilizes by authenticated user to manipulate own content, used in user profile, in post detail view for edit/delete options and in comments section to edit/delete comments.
+
+- InputError: A component that displays an error message or validation feedback related to input fields in forms, helping users understand and correct any errors.
+
+- NavBar: A navigation bar component, providing app logo and links and options for users to navigate through different sections of the app.
+
+- Page404: A component that represents an error or "Not Found" page, displayed when a user tries to access a page or route that does not exist.
+
+- SidePanel: A panel component positioned at the side of the application, used to display menu with links for authenticated user.
+
+- TopPosts: A component that displays list of trending posts, based on number of likes criteria.
+
+- PostContainer: A container component used to display individual posts, repetitively used to displayed iterated posts on post list, posts in user profile, Feed and Liked pages.
+
+- Comment: A container that is repetively used to display comments under each post.
+
+- Profile: A component representing a user's profile page, displaying information such as the user's avatar, username, statistics, bio, instagram link and equipment. Repetively used for each user.
+
 # Technology
 
 ## Languages used
