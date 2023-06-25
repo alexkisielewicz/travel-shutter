@@ -31,7 +31,7 @@ Application offers such functionalities as:
 - **Liking** - Users can add likes to posts to show their appreciation
 - **Following** - User can follow other users and display filtered content created by followed authors
 - **Filtering content** - Users can apply filters to display categorized posts
-- **Search optio** - Users can search posts by title, author, category  
+- **Search option** - Users can search posts by title, author, category  
 - **Messages/feedback** - Users receive feedback and confirmation to their actions in the app.
 
 # Table of content
@@ -48,10 +48,10 @@ Application offers such functionalities as:
   - [Database model and database structure](#data-model-ad-database-structure)
   - [Features](#features)
     - [Navbar and menu](#navbar-and-main-menu)
-    - [Home page](#home-page)
-    - [Full Post View](#full-post)
-    - [Add/edit post](#addedit-post---form-validation)
-    - [Feedback Messages](#feedback-messages)
+    
+
+
+- [React library](#react-library)
 - [Technology](#technology)
   - [Software used](#software-used)
   - [Python libraries/modules](#python-librariesmodules)
@@ -83,9 +83,13 @@ The website caters to a diverse audience passionate about travel, photography, a
 To achieve the strategy goals I implemented following features:
 
 - a clean and intuitive user interface for ease of navigation and readability,
+- user authentication,
 - a menu that provides easy access to all website sections, including personalized content for logged in users,
 - cloud hosting of images for optimized website speed and user experience,
-- feedback messages to users for all important actions taken on the website.
+- CRUD functionality for posts and comments,
+- feedback messages to users for all important actions taken on the website,
+- deletion confirmation for posts and comments as a form of defensive programming,
+- responsiveness across various platrofms and devices.
 
 ## Agile Methodology for project planning
 
@@ -270,8 +274,6 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 
 [Wireframes - PDF File](docs/************.pdf)
 
-
-
 # User Experience (UX)
 
 ## Colour Scheme
@@ -310,45 +312,109 @@ Project uses cloud-based PostgreSQL database provided by [ElephantSQL](https://w
 
 ### Navbar and main menu
 
-![Navbar1](docs/img/feature_navbar1.png) 
+The navbar in the app is implemented using Bootstrap. It provides a user-friendly and intuitive navigation experience. Navbar is one common element for all the pages, it is visible in the viewport at all times. The navbar consists of a logo on the left side, and navigation links on the right side. It is designed to be responsive and collapsible on mobile devices, ensuring a seamless user experience across different screen sizes.
+
+Not authenticated users can see sign in and sign up links:
+
+![Navbar1](docs/img/feature_navbar1.png)
+
+For logged-in users, the navbar displays the profile avatar and username, allowing users to quickly identify their account. Both avatar and username are clickable links that take users to their profiles from where they can browse own posts or change profile details including credentials.
+
 ![Navbar2](docs/img/feature_navbar2.png)
+
+Mobile navbar and menu:
+
 ![Navbar mobile](docs/img/feature_navbar_mobile.png)
 
 ### Home page
 
+On the home page users will find a layout with two columns for bigger devices that becomes one column on mobile devices.
+
 ![Homepage](docs/img/feature_homepage.png)
 
+The left column contains a list of all the posts, and it uses infinite scroll feature for seamless user experience without the need for pagination. At the top of the posts section, there is a dropdown menu containing categories filters, enabling users to filter the displayed posts based on specific categories. Next to that menu, there is a search bar that allows users to search for posts. Clicking on a post will redirect the user to a dedicated page displaying the detailed view of that specific post. Categories menu and search bar are available on mobile devices above list of all posts.
 
-### Sign up / sign in
-[label](README.md) ![Alt text](docs/img/feature_signin.png) ![Alt text](docs/img/feature_signup.png)
-### Search bar and categories
+The right column contains a panel with menu specifically designed for logged-in users. This panel includes links to various sections. Users can find links to add a new post, access their personalized user feed, and view their liked posts. The user feed displays a list of posts from the users they follow, ensuring they stay up to date with the content that interests them. The liked posts section gives users a way to revisit the posts they have previously liked. This menu panel on mobile devices is placed above list all posts and takes full width of a screen.
 
-![Alt text](docs/img/feature_search_bar.png)
-![Alt text](docs/img/feature_search_categories.png)
-### Full Post
+![Alt text](docs/img/feature_sidebar.png)
 
-![Alt text](docs/img/feature_post.png)
+There are also three separate panels displayed in this section. The first panel showcases button with categories, user can click on a selected caategory and will be redirected to the list of posts filtered by selected category. Second panel displays profiles to follow, suggesting users to connect with and explore their posts. The third panel highlights trending posts in the list ordered by criterium of likes count. It allowing users to discover popular and engaging content.
 
-![Alt text](docs/img/feature_comments_delete.png) ![Alt text](docs/img/feature_comments.png) ![Alt text](docs/img/feature_comments1.png)
+![Alt text](docs/img/feature_categories_panel.png)
+
+I have decided to include the "Profiles to Follow" panel in the mobile view. It is positioned below the menu component and above the categories filters and search bar. However, only four profiles are displayed in the mobile view, compared to the ten profiles shown in the desktop view. The categories panel and trending posts are not available in the mobile view due to design constraints. The functionality of the categories panel is already accessible through the categories dropdown menu. Placing the trending posts in the single-column view would occupy too much space, which could compromise the user experience before reaching the main feature and purpose of the app, which is the list of posts with images that user share.
 
 ### Profiles to follow
+
+The "Profiles to Follow" component displays a list of 10 profiles, ordered based on the number of followers. Each profile includes a follow/unfollow link, allowing users to easily choose to follow or unfollow a particular profile. This component helps users discover and connect with other users of the app.
+
 ![Alt text](docs/img/feature_top_profiles.png)
 
+### Trending Posts
+
+The "Trending Posts" panel showcases the top five most liked posts. These posts are ordered based on the number of likes they have received. Each post is displayed as a link, allowing users to easily access and explore the popular content.
+
+![Alt text](docs/img/feature_trending_posts.png)
+
+### Sign up / sign in
+
+The sign-up page provides users with a straightforward process to create a new account. The page layout includes cover photo and registration form, which allows users to input their username, password, and password confirmation. The form ensures that the user chooses a unique username and provides a secure password. The password confirmation field serves as an additional step to prevent any typing errors while entering the password. Upon clickin on  "Sign Up" button profile is created and user is redirected to sign in page. Additionally, for users who already have an account and need to sign in, there is provided link to sign in page.
+
+![Sign up](docs/img/feature_signup.png)
+
+The sign-in page allows users with existing accounts to access their personalized content and features.
+On the page users will find a cover photo, similar in style to the sign-up page and login form, which prompts users to enter their username and password. Click on the "Sign In" button validates credentials and authenticates user to acces the page. For users who don't have an account, there is provided a link to the sign-up.
+
+![Sign in](docs/img/feature_signin.png)
+
+### Search bar and categories filter
+
+Above the posts list there are categories filter and search bar. Categories filter is placed in dropdown menu and contains a list of options with all available post categories. User can select any category and will be redirected to the page with posts filtered view. Currently selected category is displayed in the dropdown button, user can remove filter by selecting "Display all" option.
+
+![Alt text](docs/img/feature_search_categories.png)
+
+Next to the categories dropdown menu there is a search bar where user can type a keyword and backend application filters are applied. User can search posts by entering post title, user name or post category. A small delay is applied before api request is sent. That prevents requests being sent after each keystroke and in result an excessive use of backend application.
+
+![Alt text](docs/img/feature_search_bar.png)
+
+### Post detailed view
+
+The post detailed view is placed in Bootstrap card component and provides users with all the details about specific post. At the center of the card, there is post image associated with the post. Sharing photos is one of the main purposes of this app, however placeholder image is provided by backend application if user decide not to upload own image.
+
+In the top left corner of the card, there is the post author's avatar and username. On the right users can find the post update timestamp. Below the image, there is a heading that displays the post title. A paragraph below the heading presents the post content, allowing users to read the story or image description provided by the author.
+
+Underneath the post content, the post details section provides more information and includes post category, tags and image exif data. This data provides technical details about the image, such as the camera model, lens, aperture, exposure time, etc. Users who are interested in the technical aspects of photography would appreciate such description.
+
+Bottom section presents icons that represent the likes and comments on the post. These icons are accompanied by the respective counts, indicating the number of likes and comments. Authenticated user can click on a heart to add or remove like. Liking own posts is not allowed, also not-authenticated users are not allowed to interact with likes. In both cases there is an information provided in bootstrap tooltip component.
+
+![Post detailed view](docs/img/feature_post.png)
+
+Below the post there is a comments section with list of all post comments. It utilizes infinite scroll for seamless user experience without need for pagination. Comment form allows authenticated users to write and add a comment. Each comment is placed in a paragraph containing authors avatar, username and creation time in a user friendly format.
+
+![Comments](docs/img/feature_comments.png)
+
+Authenticated user who is an author of a comment can also edit or delete own comment. Deletion confirmation is provided in bootstrap modal component as a form of defensive programming to ensure that comment is not deleted by mistake.
+
+![Comment delete](docs/img/feature_comments_delete.png)
+
+Comment form (and comment edit form) includes helpful characters counter that indicates how many characters left to write in the input field until maximum length of the comment is reached. In case than comment exceeds allowed maximum length of 300 characters, there is message "Comment too long!" displayed and submit button is disabled.
+
+![Comments](docs/img/feature_comments1.png)
+
+![Characters counter](docs/img/feature_comments_counter.png)
 
 ### Add/Edit Post
+
+The "Add Post" includes a form that allow users to upload an image and write other details for their post. The image upload is validated to ensure it meets the specified requirements, including a maximum size of 2MB and dimensions of up to 2500px in height and width. Placeholder image is provided by backend if user do not upload own image.
+
+The form includes also following fields; title, category, tags, exif and content. All fields are validated to match specific regular expressions. The tags can be entered as a comma-separated list of words. The backend automatically handles the addition or removal of commas and eliminates duplicate tags. Handy tooltip is available next to the exif input label to provide more information to the user about field purpose.
+
+An authenticated user who is the author of a post has the ability to edit their own post. A similar form is provided, where the existing post image is visible. The user can choose to either change the image or upload a new one. All text fields can be updated, and they are validated using regular expressions. In case of any errors, they are displayed below each input field, providing the user with feedback regarding allowed characters, length restrictions, and file size requirements.
+
 ![Alt text](docs/img/feature_add_post.png)
 
-### Side Menu
-![Alt text](docs/img/feature_sidebar.png)
-### Categories panel
-![Alt text](docs/img/feature_categories_panel.png)
-### Trending Posts
-![Alt text](docs/img/feature_trending_posts.png)
 ### Profile
 
-![Alt text](docs/img/feature_comments_delete.png) 
-![Alt text](docs/img/feature_comments.png) 
-![Alt text](docs/img/feature_comments1.png) 
 ![Alt text](docs/img/feature_profile_edit_form.png) 
 ![Alt text](docs/img/feature_profile_password_change.png) 
 ![Alt text](docs/img/feature_profile_username_change.png) 
@@ -360,6 +426,8 @@ Project uses cloud-based PostgreSQL database provided by [ElephantSQL](https://w
 ### Not found - 404 page
 
 ![404](docs/img/features_404.png)
+
+# React library
 
 # Technology
 
