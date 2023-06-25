@@ -537,6 +537,8 @@ In my application I also aimed to implement reusable components to avoid repetit
 - [Bootstrap 4.6.0](https://react-bootstrap-v4.netlify.app/) - CSS framework developed by Twitter
 - [Canva](https://www.canva.com/) - used to design logo picture
 - [Coolors.co](https://coolors.co/) - was used to create colour palette for terminal display page
+- [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) - validation tool for CSS
+- [ESLint](https://eslint.org/) - JavaScript linter, was installed and configured in IDE.
 - [Favicon.io](https://www.favicon.io) - tool used to create favicon
 - [Font Awesome:](https://fontawesome.com/) - Font Awesome icons were used for social links in terminal display page
 - [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub
@@ -545,21 +547,16 @@ In my application I also aimed to implement reusable components to avoid repetit
 - [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - used for testing website performance
 - [Heroku](https://heroku.com) - online app used to deploy project
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode) - library that helps decoding JWTs token which are Base64Url encoded
+- [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk) - chrome extension to test website performance
 - [Pexels](https://www.pexels.com/) - was used to source bacground picture for terminal display page
 - [React-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component) infinite scroll for posts and comments
 - [React router](https://reactrouter.com/en/main) - enables "client side routing".
 - [React toastify](https://www.npmjs.com/package/react-toastify) - toasts for feedback messages
-- [React JS 17.02](https://legacy.reactjs.org/docs/getting-started.html)
+- [React JS 17.02](https://legacy.reactjs.org/docs/getting-started.html) - main JavaScript library used for the project
 - [Techsini.com](https://techsini.com/multi-mockup/) - website mockup generator
+- [W3C HTML Validator](https://validator.w3.org/) - validation tool for HTML
 - [WAVE](https://wave.webaim.org/) - web accessibility online tool
 - [WebAIM](https://webaim.org/resources/contrastchecker/) - online tool to check colour contrast/accesibility
-
-- W3C Validator
-- CSS Jugsaw
-- EELint
-
-Lighthouse
-
 
 # Testing
 
@@ -708,6 +705,8 @@ If I had more time or decide to develop app further I would add/improve followin
 # Credits
 
 ## Code
+
+spinner css sourced from https://loading.io/css/
 
 
 
