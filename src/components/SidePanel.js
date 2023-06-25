@@ -40,7 +40,7 @@ const SidePanel = ({ mobile }) => {
   );
 
   return (
-    <Container className={`${appStyles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
+    <Container className={`${appStyles.Container} ${mobile && "d-lg-none text-center mb-3"}`}>
       <>
       {mobile ? null : (<h4 className="text-center pb-3">Menu</h4>)}
         {mobile ? (

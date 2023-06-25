@@ -5,7 +5,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import btnStyles from "../../styles/Button.module.css"
 import styles from "../../styles/CommentCreateEditForm.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import InputError from "../../components/InputError";
 
 function CommentEditForm(props) {

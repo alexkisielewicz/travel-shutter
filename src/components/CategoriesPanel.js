@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import appStyles from "../App.module.css";
 import styles from "../styles/CategoriesPanel.module.css";
 import Container from "react-bootstrap/Container";
-import axios from 'axios';
+import axios from "axios";
 import Spinner from "../components/Spinner";
 
 const CategoriesPanel = ({ handleCategoryFilter }) => {

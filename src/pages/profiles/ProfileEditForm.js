@@ -18,7 +18,7 @@ import InputError from "../../components/InputError";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ProfileEditForm.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();

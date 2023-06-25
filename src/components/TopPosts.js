@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import appStyles from "../App.module.css";
 import styles from "../styles/TopPosts.module.css";
 
-import axios from 'axios';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import axios from "axios";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Spinner from './Spinner';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Spinner from "./Spinner";
 
 function TopPosts({ refreshLikes }) {
   const [posts, setPosts] = useState([]);
@@ -56,7 +56,7 @@ function TopPosts({ refreshLikes }) {
                     <div key={post.id}>
                       <Link to={`/posts/${post.id}`}>
                         <span className={styles.TopHeart}>
-                          {post.likes_count} <i className={`far fa-heart`} />
+                          {post.likes_count} <i className="far fa-heart" />
                         </span>
                         <span>{post.title}</span>
                       </Link>

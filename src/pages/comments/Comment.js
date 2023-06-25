@@ -9,7 +9,7 @@ import CommentEditForm from "./CommentEditForm";
 
 import styles from "../../styles/Comment.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";

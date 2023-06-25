@@ -15,7 +15,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import InputError from "../../components/InputError";
 
 const UsernameForm = () => {

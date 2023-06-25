@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import appStyles from "../../App.module.css";
 import { Container } from "react-bootstrap";
 import Spinner from "../../components/Spinner";
@@ -9,7 +9,7 @@ const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
   return (
-    <Container className={`${appStyles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
+    <Container className={`${appStyles.Container} ${mobile && "d-lg-none text-center mb-3"}`}>
       {/* POPULAR PROFILES */}
       {popularProfiles.results.length ? (
         <>

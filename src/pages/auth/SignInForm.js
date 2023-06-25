@@ -17,7 +17,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import InputError from "../../components/InputError";
 
 function SignInForm() {
@@ -121,7 +121,7 @@ function SignInForm() {
           </Container>
           <Container className={`mt-3 ${appStyles.Content}`}>
             <Link className={styles.Link} to="/signup">
-              Don't have an account? <span>Sign up now!</span>
+              Don&apos;t have an account? <span>Sign up now!</span>
             </Link>
           </Container>
         </Col>

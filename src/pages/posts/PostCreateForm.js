@@ -15,7 +15,7 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -198,7 +198,7 @@ function PostCreateForm() {
               EXIF data provides valuable information about how a photo was taken. You can provide your equipment, image parameters or camera settings.
             </Tooltip>}
         >
-          <i class={`fa fa-question-circle ${styles.ExifIcon}`}></i>
+          <i className={`fa fa-question-circle ${styles.ExifIcon}`}></i>
         </OverlayTrigger>
         <Form.Control
           type="text"

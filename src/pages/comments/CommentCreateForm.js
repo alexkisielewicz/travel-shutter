@@ -6,7 +6,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import InputError from "../../components/InputError";

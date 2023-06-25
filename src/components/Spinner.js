@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styles from "../styles/Spinner.module.css";
 
 function Spinner() {

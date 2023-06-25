@@ -12,7 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { DropdownMenu } from "../../components/DropdownMenu";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const PostContainer = (props) => {
   const {
@@ -135,7 +135,7 @@ const PostContainer = (props) => {
           {is_owner ? (
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
+              overlay={<Tooltip>You can&apos;t like your own post!</Tooltip>}
             >
               <i className="far fa-heart" />
             </OverlayTrigger>
