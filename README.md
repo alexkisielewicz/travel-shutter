@@ -48,10 +48,20 @@ Application offers such functionalities as:
   - [Database model and database structure](#data-model-ad-database-structure)
   - [Features](#features)
     - [Navbar and menu](#navbar-and-main-menu)
-    
-
-
-- [React library](#react-library)
+    - [Homepage](#home-page)
+    - [Side menu](#side-menu)
+    - [Categories panel](#categories-panel)
+    - [Profiles to follow](#profiles-to-follow)
+    - [Trending posts](#trending-posts)
+    - [Sign up/sign in](#sign-up--sign-in)
+    - [Search bar and categories filter](#search-bar-and-categories-filter)
+    - [Post page](#post-detailed-view)
+    - [Add/edit post](#addedit-post)
+    - [Profile page](#profile)
+    - [Feedback messages](#feedback-messages)
+    - [Not found/404 page](#not-found---404-page)
+    - [Form validation](#form-validation)
+- [React architecture and components](#react-architecture-and-components)
 - [Technology](#technology)
   - [Software used](#software-used)
   - [Python libraries/modules](#python-librariesmodules)
@@ -333,14 +343,17 @@ On the home page users will find a layout with two columns for bigger devices th
 ![Homepage](docs/img/feature_homepage.png)
 
 The left column contains a list of all the posts, and it uses infinite scroll feature for seamless user experience without the need for pagination. At the top of the posts section, there is a dropdown menu containing categories filters, enabling users to filter the displayed posts based on specific categories. Next to that menu, there is a search bar that allows users to search for posts. Clicking on a post will redirect the user to a dedicated page displaying the detailed view of that specific post. Categories menu and search bar are available on mobile devices above list of all posts.
+### Side menu
 
 The right column contains a panel with menu specifically designed for logged-in users. This panel includes links to various sections. Users can find links to add a new post, access their personalized user feed, and view their liked posts. The user feed displays a list of posts from the users they follow, ensuring they stay up to date with the content that interests them. The liked posts section gives users a way to revisit the posts they have previously liked. This menu panel on mobile devices is placed above list all posts and takes full width of a screen.
 
-![Alt text](docs/img/feature_sidebar.png)
+![Side menu](docs/img/feature_sidebar.png)
 
 There are also three separate panels displayed in this section. The first panel showcases button with categories, user can click on a selected caategory and will be redirected to the list of posts filtered by selected category. Second panel displays profiles to follow, suggesting users to connect with and explore their posts. The third panel highlights trending posts in the list ordered by criterium of likes count. It allowing users to discover popular and engaging content.
 
-![Alt text](docs/img/feature_categories_panel.png)
+### Categories panel
+
+![categories panel](docs/img/feature_categories_panel.png)
 
 I have decided to include the "Profiles to Follow" panel in the mobile view. It is positioned below the menu component and above the categories filters and search bar. However, only four profiles are displayed in the mobile view, compared to the ten profiles shown in the desktop view. The categories panel and trending posts are not available in the mobile view due to design constraints. The functionality of the categories panel is already accessible through the categories dropdown menu. Placing the trending posts in the single-column view would occupy too much space, which could compromise the user experience before reaching the main feature and purpose of the app, which is the list of posts with images that user share.
 
@@ -389,6 +402,16 @@ Bottom section presents icons that represent the likes and comments on the post.
 
 ![Post detailed view](docs/img/feature_post.png)
 
+Authenticated user who is an author of the post can see dropdown menu that allows to edit or delete post. 
+
+![Delete/edit post](docs/img/feature_delete_edit_post.png)
+
+Modal with confirmation is diplayed before post is deleted to ensure that operation is intended.
+
+![Delete modal](docs/img/feature_delete_post_modal.png)
+
+### Comments
+
 Below the post there is a comments section with list of all post comments. It utilizes infinite scroll for seamless user experience without need for pagination. Comment form allows authenticated users to write and add a comment. Each comment is placed in a paragraph containing authors avatar, username and creation time in a user friendly format.
 
 ![Comments](docs/img/feature_comments.png)
@@ -411,23 +434,60 @@ The form includes also following fields; title, category, tags, exif and content
 
 An authenticated user who is the author of a post has the ability to edit their own post. A similar form is provided, where the existing post image is visible. The user can choose to either change the image or upload a new one. All text fields can be updated, and they are validated using regular expressions. In case of any errors, they are displayed below each input field, providing the user with feedback regarding allowed characters, length restrictions, and file size requirements.
 
-![Alt text](docs/img/feature_add_post.png)
+![Add post](docs/img/feature_add_post.png)
 
 ### Profile
 
-![Alt text](docs/img/feature_profile_edit_form.png) 
-![Alt text](docs/img/feature_profile_password_change.png) 
-![Alt text](docs/img/feature_profile_username_change.png) 
+The user profile page features the user's avatar, username, and statistics that includes the number of created posts, count of followers, and following users. In the center there is a section for the user's bio information. Below there are further details such as instagram handle with link to instagram and user's equipment. In the top right corner, there is a follow/unfollow button for interacting with the user's profile. Below the profile container, there is a list of all posts created by the user, it utilizes infinite scroll for seamless experience.
+
 ![Alt text](docs/img/feature_profile.png)
 
+Authenticated users can see dropdown menu in their profiles that allows them to edit profil information and change credentials.
+
+![Alt text](docs/img/feature_profile_menu.png)
+
+Edit profile form allows user to change existing image and all other text fields. The form is validated and each input is chacked againts regular expression. Errors, if occurs, are displayed below each input giving user feedback information about allowed characters, length, file size, etc.
+
+![Alt text](docs/img/feature_profile_edit_form.png)
+
+![Alt text](docs/img/feature_profile_password_change.png)
+
+![Alt text](docs/img/feature_profile_username_change.png)
 
 ### Feedback Messages
+
+Feedback messages are displayed in a toast notification that automatically disappears after short time or can be manually dismissed. These messages are shown on various occasions such as logging in or out, creating an account, adding or editing posts, adding or editing comments, and updating profile changes. They provide relevant information to the user about the status or outcome of their actions in a non-obstructive manner.
+
 ![Alt text](docs/img/feedback_toast.png)
+
 ### Not found - 404 page
+
+The error page is displayed when a user tries to access a page that does not exist. It features a cover image and provides a link that allows the user to return to the home page without relying on the browser's back button.
 
 ![404](docs/img/features_404.png)
 
-# React library
+### Form validation
+
+There is comprehensive form input validation implemented throughout the application to ensure that inputs are entered correctly and meet the intended criteria. This validation process helps prevent errors and ensures the integrity of the data being submitted. It includes checks for required fields, data formats, length restrictions, and other relevant constraints.
+
+| Input Field | Regular Expression | Allowed length/size/input |
+|-------------|--------------------|---------------------------|
+| Username    | /^[A-Za-z0-9_]{4,12}$/ | 4-12 |
+| Password    | /^[A-Za-z0-9_]{8,16}$/ | 8-16 |
+| Post image  |  N/A | 2500 x 2500px, 2MB |
+| Post title  | /^[a-zA-Z,. ]{3,100}$/ | 3-100 |
+| Post category | N/A | Any option |
+| Post tags | /^[a-zA-Z, ]{3,100}$/ | 3-10 |
+| Post exif | /^[a-zA-Z0-9\s,.@/-]{3,100}$/ | 3-100 |  
+| Post content | /^[a-zA-Z0-9\s.,\-!?]{3,300}$/ | 3-300 |
+| Comment | N/A | max. 300 |
+| Profile image| N/A | 2500 x 2500px, 2MB |
+| Profile name | /^[A-Za-z\s]{1,40}$/ | 1-40 |
+| Profile bio| /^[A-Za-z0-9\s,.!]{0,150}$/ | max. 150 |
+| Profile instagram| /^[A-Za-z0-9_.]{0,70}$/ and can't include "instagram.com" | max. 70 |
+| Profile equipment| /^[A-Za-z0-9\s,.!_]{0,70}$/ | max. 70 |
+
+# React architecture and components
 
 # Technology
 
