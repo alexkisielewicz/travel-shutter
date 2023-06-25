@@ -13,7 +13,9 @@ export const fetchMoreData = async (resource, setResource) => {
           : [...acc, cur];
       }, prevResource.results),
     }));
-  } catch (error) {}
+  } catch (error) {
+    // console.log(error)
+  }
 };
 
 export const followHelper = (profile, clickedProfile, following_id) => {
