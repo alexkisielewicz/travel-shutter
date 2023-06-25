@@ -3,10 +3,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/DropdownMenu.module.css";
 import { useHistory } from "react-router";
 
-// Code snippet sourced from bootstrap docs.
+/* Code snippet sourced from bootstrap docs.
+The forwardRef is important!!
+Dropdown needs access to the DOM node in order to position the Menu */
 
-// The forwardRef is important!!
-// Dropdown needs access to the DOM node in order to position the Menu
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fas fa-ellipsis-v"
@@ -18,7 +18,11 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const DropdownMenu = ({handleEdit, handleDelete}) => {
+// Name for the component added to avoid eslint error
+// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md
+ThreeDots.displayName = "ThreeDots"
+
+export const DropdownMenu = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
