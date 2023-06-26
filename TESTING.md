@@ -58,27 +58,95 @@ Comprehensive testing has been conducted to ensure that all website functionalit
 
 | Functionality | What's being tested | Result |
 |------|-------------|--------|
-| Registration | A new user can create an account successfully. | Pass |
-|  | User cannot send registration form without solving captcha. | Pass |
-|  | The website validates user inputs (2 password inputs match, email address is valid, name is valid). | Pass |
-|  | The website displays an appropriate error message with hint when validation fails. | Pass |
-|  | The website displays a message when confirmation email is sent. | Pass |
-|  | The website sends user appropriate email if user try to register with existing email | Pass |
-| Account Verification | A user receives a verification email after creating an account. | Pass |
-|  | Verification email contains a link that, when clicked shows confirmation page with a button | Pass |
-|  | The website displays an appropriate message if link is invalid or token expired | Pass |
-|  | The website displays an appropriate message when a user's account is verified successfully. | Pass |
-|  | User is signed in automatically when click confirm button | Pass |
-|  | The website displays verify email message when a user's account is not verified. | Pass |
-| Password Reset | A user receives a password reset email after requesting a password reset. | Pass |
-|  | The password reset email contains a link that, when clicked, allows the user to reset their password. | 
+| Registration / Sign up page | A new user can create an account successfully. | PASS |
+|  | The website validates user inputs (username, 2 password inputs match). | PASS |
+|  | The website displays an appropriate error message with hint when validation fails. | PASS |
+|  | The website displays a message in a toast when registration is successfull | PASS |
+| Authentication / Sign in/out | A registered user can log in successfully using username and password | PASS |
+|  | The website displays an appropriate error message when a user enters an incorrect username or password. | PASS |
+|  | A logged-in user can sign out successfully. | PASS |
+|  | The website displays an appropriate message in a toast when user sings in/out succesfully. | PASS |
+| Posts CRUD | Logged-in user can create a new post using form provided | PASS |
+|  | The website displays a message in a toast when post is created | PASS |
+|  | The website displays an appropriate error message when a user enters invalid data (e.g., blank title, too long input, not allowed charset). | PASS |
+|  | A user can add new post without own picture, placeholder image is displayed | PASS |
+|  | A user can add new post uploading own picture | PASS |
+|  | Uploaded image file is being validated and app do not accept images exceeding 2MB in filesize and 2500px in width and height | PASS |
+|  | Appropriate error message is displayed if image do not pass validation | PASS |
+|  | A user can edit own post providing new values for each of text inputs and save changes | PASS |
+|  | A user can edit own post by changeing an post image, validation is applied on every form submission | PASS |
+|  | The website displays a message in a toast when changes are saved | PASS |
+|  | A user cannot edit or delete another user's posts (checked manual url change). 404 page is being displayed | PASS |
+|  | A user can delete own post upon clicking on confirmation button | PASS |
+|  | Post is not deleted if user click on "cancel" in confirmation modal, user is redirected back | PASS |
+|  | The website displays a message in a toast when post is deleted | PASS |
+|  | The website displays new post end edited post correctly (including image, title, category, tags, exif, likes, comments). | PASS |
+| Profile edit | A logged-in user can edit own profile and save changes | PASS |
+|  | User can change all text inputs (name, bio, instagram handle, equipment) and save changes. | PASS |
+|  | User can change profile image and save changes. | PASS |
+|  | Image validation works properly and displays error message if filesize or image dimensions are exceeded. | PASS |
+|  | The website displays a message in a toast when changes are saved. | PASS |
+|  | User can update username and save changes | PASS |
+|  | User can update password and save changes | PASS |
+|  | The website displays a message in a toast when changes are saved both for username and password | PASS |
+| Comments CRUD | A logged-in user can add a comment to a post. | PASS |
+|  | Anonymous user can not post comments. | PASS |
+|  | The website displays all comments correctly (including avatar, username, timestamp, comment text). | PASS |
+|  | The website displays the correct count of comments in post component. | PASS |
+|  | Character counter feature is working correctly, sending comment exceeding 300 characters in length is not allowed | PASS |
+|  | Submit button in comment form is enabled only if comment input is shorter than 300 characters. | PASS |
+|  | Logged in user can edit own comment and save changes | PASS |
+|  | Logged in user can delete own comment upon further confirmation in modal | PASS |
+|  | The website displays appropriate message in a toast when comment's changes are saved or comment is deleted succesfully | PASS |
+| Likes | A logged-in user can like a post, excluding own posts | PASS |
+|  | Not authenticated user can not add likes to posts. | PASS |
+|  | The website displays the correct count of likes for each post in post component | PASS |
+|  | A user can only like a post once. | PASS |
+|  | A user can remove previously added like, like/unlike toggle works correctly | PASS |
+| Followers | A logged-in user can follow other users profiles | PASS |
+|  | User cannot follow own profile | PASS |
+|  | Follow/unfollow buttons toggle properly to following state | PASS |
+|  | Follow/unfollow buttons are displayed in profiles to follow and profile components | PASS |
+|  | Follow/unfollow buttons are not displayed in own profile of logged in user | PASS |
+| Categories menu and search bar | User can select post categories using dropdown menu | PASS |
+|  | Currently selected option is displayed in the button | PASS |
+|  | Filtered posts list is displayed accordingly to user choice | PASS |
+|  | User can reset filter chosing "Display all" option | PASS |
+|  | User can enter keyword in search bar and displayed filtered posts by post title, post category, author's username | PASS |
+| Layout |  Website resizes and displays properly both portrait and landscape orientation images | PASS |
+|  | Navbar is displayed properly including logo and links for authenticated and not authenticated user. | PASS |
+|  | Sign up page is displayed properly with cover photo and registration form. | PASS |
+|  | Sign in page is displayed properly with cover photo and login form. | PASS |
+|  | Homepage is displayed properly and includes navbar, list of posts, categories, profiles to follow and trending posts panels for not authenticated user | PASS |
+|  | Homepage is displayed properly and includes navbar, list of posts, side menu, categories, profiles to follow and trending posts panels for authenticated user | PASS |
+|  | Posts infinite scroll works correctly | PASS |
+|  | Comments infinite scroll works correctly | PASS |
+|  | Add post page is displayed correctly including column for image and text fields | PASS |
+|  | Edit post page is displayed correctly including column for image and text fields  | PASS |
+|  | Post component is displayed correctly including users avatar, username, timestamp, image, title, content, post details, likes and comments icons with count | PASS |
+|  | Side menu is displayed properly for authenticated user and not available for anonymous users | PASS |
+|  | Feed page displays properly posts created by followed users | PASS |
+|  | Liked page displays properly liked posts | PASS |
+|  | Categories panel displays correctly buttons with categories and category filter is applied on click | PASS |
+|  | Profiles to follow are displayed correctly and buttons works as intended | PASS |
+|  | Trending posts panel displays correctly maximum 5 links to most liked posts, sortin is in order | PASS |
+|  | Categories dropdown menu and search bar are displayed correctly | PASS |
+|  | Not found/404 page is displayed properly when non-existing url is accesed | PASS |
+|  | Profile page is displayed correctly, including avatar and all information provided by user | PASS |
+|  | Profile edit dropdown menu is displayed only for profile owner | PASS |
+|  | Edit profile form is displayed correctly including image and the form | PASS |
+|  | Edit password form is displayed correctly | PASS |
+|  | Edit username form is displayed correctly | PASS |
+|  | List of user posts is displayed properly in user's profile     | PASS |
+|  | Instagram link in profile works correctly with handle provided | PASS |
+|  | Instagram and Equipment fields are not displayed in the profile if not provided by the user. | PASS |
+| Forms validation | All forms validation have been checked both for images and text inputs. Validation works properly and regular expressions have been adjusted not to clash with allowed inputs in the backend. | PASS |
 
 # Responsiveness testing
 
 Website has been thoroughly tested for responsiveness on a wide range of devices to ensure a seamless user experience, no matter how our visitors access the site.
 
-
-
+PLACEHOLDER
 
 # Browser compatibility testing
 
@@ -98,14 +166,13 @@ No errors have been found in displaying layouts, style and functionalities.
 
 The [W3C Markup Validation Service](https://validator.w3.org/) has been used to validate html files, also W3C Web Validator VSC extension was used throughtout development to mark and elimanate errors. For pages that require authentication I used "validate by direct input" method with source code.
 
-
-
+PLACEHOLDER
 
 # CSS Validation
 
-The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator) has been used to validate custom CSS through direct code input, no errors found.
+The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator) has been used to validate custom CSS through direct code input. Main app stylesheet and module stylesheets for each components have been tested, no errors found. CSS formatter was used in the IDE during development.
 
-
+![CSS Jigsaw](docs/img/validation_css.png)
 
 # JavaScript Validation
 
@@ -113,11 +180,16 @@ JavaScript files were validated using [ESLint](https://eslint.org/) that was ins
 
 - all quotes have been changed to double quotes
 - single quotes that were apostrophe in the text were escaped with \&apos;
-- error: Do not pass children as props. Instead, nest children between the opening and closing tags when i add this part "children={}" was omitet as the fragment of code was as in "Moments" walkthroug project.
+- error: Do not pass children as props. Instead, nest children between the opening and closing tags when i add this part "children={}" was omitet as the fragment of code was as in "Moments" walkthroug project and this is common warning
 - react import was added in some files as error wash shown "React must be in scope when using JSX".
 - "class" attribute has been used incorrectly instead of "className" in couple of files, it have been corrected.
-- there were no more errors as syntax was also checked in IDE and React compiler.
+- there were no more errors as syntax was also checked in IDE and React compiler during development.
+- ESlint has been uninstalled after validation and dependencies were removed from package.json
 
 # Lighthouse performance audit
+
+![Lighthouse](docs/img/testing_lighthouse1.png)
+
+![Lighthouse](docs/img/testing_lighthouse2.png)
 
 # WAVE Accesibility testing
