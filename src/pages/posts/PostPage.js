@@ -18,7 +18,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "../../components/Spinner";
 import { fetchMoreData } from "../../utils/utils";
 import SidePanel from "../../components/SidePanel";
-import CategoriesPanel from "../../components/CategoriesPanel";
 import TopPosts from "../../components/TopPosts";
 
 function PostPage() {
@@ -101,9 +100,6 @@ function PostPage() {
         {/* SIDE PANELS */}
         <div className="mb-2">
           {currentUser && <SidePanel />}
-        </div>
-        <div className="mb-2">
-          <CategoriesPanel />
         </div>
         <div className="mb-2">
           <PopularProfiles />

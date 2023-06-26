@@ -12,7 +12,6 @@ import btnStyles from "../../styles/Button.module.css";
 
 import PopularProfiles from "./PopularProfiles";
 import SidePanel from "../../components/SidePanel";
-import CategoriesPanel from "../../components/CategoriesPanel";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
@@ -200,9 +199,6 @@ function ProfilePage() {
         {/* SIDE PANELS FOR DESKTOP */}
         <div className="mb-2">
           {currentUser && <SidePanel />}
-        </div>
-        <div className="mb-2">
-          <CategoriesPanel />
         </div>
         <div className="mb-2">
           <PopularProfiles />
