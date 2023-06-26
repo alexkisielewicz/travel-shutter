@@ -77,16 +77,16 @@ function PostEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    const titleRegex = /^[a-zA-Z,. ]{3,100}$/;
+    const titleRegex = /^[a-zA-Z',. ]{3,100}$/;
     const tagsRegex = /^[a-zA-Z, ]{3,100}$/;
     const exifRegex = /^[a-zA-Z0-9\s,.@/-]{3,100}$/;
-    const contentRegex = /^[a-zA-Z0-9\s.,\-!?]{3,300}$/;
+    const contentRegex = /^[a-zA-Z0-9\s.,\-!?#'"_]{3,300}$/;
 
     if (!titleRegex.test(title)) {
       setErrors({
         ...errors,
         title: [
-          "Title can contain letters, spaces, commas, dots, up to 100 characters.",
+          "Title can contain letters, spaces and some special characters (,.') up to 100 characters.",
         ],
       });
       return;
@@ -116,7 +116,7 @@ function PostEditForm() {
       setErrors({
         ...errors,
         body: [
-          "Content can contain letters, digits, spaces, commas, periods, hyphens, exclamation marks, question marks, up to 300 characters.",
+          "Content can contain letters, digits and special characters, up to 300 characters.",
         ],
       });
       return;
