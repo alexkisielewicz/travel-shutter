@@ -44,7 +44,6 @@ function PostsPage({ message, filter = "" }) {
     selectedCategory = selectedCategory.toLowerCase();
     setCategory(`category=${selectedCategory}`);
     handleCategorySelect(selectedCategory);
-    console.log(category)
   };
   
   const categories = {
@@ -87,7 +86,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, category, currentUser, refreshLikes]);
+  }, [filter, query, pathname, category, currentUser]);
 
   return (
     <Row className="h-100">
