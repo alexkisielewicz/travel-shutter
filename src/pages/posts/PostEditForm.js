@@ -86,7 +86,7 @@ function PostEditForm() {
       setErrors({
         ...errors,
         title: [
-          "Title can contain letters, spaces and some special characters (,.') up to 100 characters.",
+          "Title can contain letters, spaces and some special characters (,.'), allowed length 3-100 characters.",
         ],
       });
       return;
@@ -96,7 +96,7 @@ function PostEditForm() {
       setErrors({
         ...errors,
         tags: [
-          "Tags can contain letters, commas, spaces, up to 100 characters.",
+          "Tags can contain letters, commas, spaces, allowed length 3-100 characters.",
         ],
       });
       return;
@@ -106,7 +106,7 @@ function PostEditForm() {
       setErrors({
         ...errors,
         exif: [
-          "EXIF can contain letters, digits, spaces, commas, dots, slashes, @, hyphens, up to 100 characters.",
+          "EXIF can contain letters, digits, spaces, commas, dots, slashes, @, hyphens, allowed length 3- 100 characters.",
         ],
       });
       return;
@@ -116,7 +116,7 @@ function PostEditForm() {
       setErrors({
         ...errors,
         body: [
-          "Content can contain letters, digits and special characters, up to 300 characters.",
+          "Content can contain letters, digits and special characters, allowed length 3-300 characters.",
         ],
       });
       return;

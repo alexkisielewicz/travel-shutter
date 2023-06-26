@@ -74,7 +74,7 @@ const ProfileEditForm = () => {
     if (!nameRegex.test(name)) {
       setErrors({
         name: [
-          "Name can contain letters and spaces, up to 40 characters.",
+          "Name can contain letters and spaces, allowed length 1-40 characters.",
         ],
       });
       return;
