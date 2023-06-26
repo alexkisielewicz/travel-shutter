@@ -1,0 +1,16 @@
+.Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
+}
+
+ul {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+ul i {
+  font-size: 1.5rem;
+}
