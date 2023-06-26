@@ -59,6 +59,7 @@ Application offers such functionalities as:
     - [Add/edit post](#addedit-post)
     - [Profile page](#profile)
     - [Feedback messages](#feedback-messages)
+    - [Loading spinners](#loading-spinners)
     - [Not found/404 page](#not-found---404-page)
     - [Form validation](#form-validation)
 - [React architecture and components](#react-architecture-and-components)
@@ -111,9 +112,7 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 
 [Project @GitHub](https://github.com/users/alexkisielewicz/projects/4)
 
-![agile](docs/img/********.png)
-
-![agile-boards](docs/img/******.png)
+![agile](docs/img/agile.png)
 
 ### User stories
 
@@ -292,11 +291,11 @@ Colour palette was selected using coolors.co generator from among trending colou
 
 ![palette](docs/img/design_palette.png)
 
-- #8ECAE6 - soft blue
-- #219EBC - strong cyan
-- #023047 - dark navy
-- #FFB703 - vivid orange
-- #FB8500 - pure orange
+- #8ECAE6 - soft blue, used for background, icons
+- #219EBC - strong cyan, used for buttons, tags, spinner
+- #023047 - dark navy as colour of body font
+- #FFB703 - vivid orange, used for buttons, accent elements
+- #FB8500 - pure orange, used for links, accent elements
 
 ## Typography
 
@@ -460,6 +459,12 @@ Feedback messages are displayed in a toast notification that automatically disap
 
 ![Alt text](docs/img/feedback_toast.png)
 
+### Loading spinners
+
+Loading spinners have been used as visual feedback to the user whenever data is not ready to be displayed in the UI, e.g. app is waiting for backend API response.
+
+![Spinners](docs/img/feature_spinners.png)
+
 ### Not found - 404 page
 
 The error page is displayed when a user tries to access a page that does not exist. It features a cover image and provides a link that allows the user to return to the home page without relying on the browser's back button.
@@ -475,11 +480,11 @@ There is comprehensive form input validation implemented throughout the applicat
 | Username    | /^[A-Za-z0-9_]{4,12}$/ | 4-12 |
 | Password    | /^[A-Za-z0-9_]{8,16}$/ | 8-16 |
 | Post image  |  N/A | 2500 x 2500px, 2MB |
-| Post title  | /^[a-zA-Z,. ]{3,100}$/ | 3-100 |
+| Post title  | /^[a-zA-Z',. ]{3,100}$/ | 3-100 |
 | Post category | N/A | Any option |
 | Post tags | /^[a-zA-Z, ]{3,100}$/ | 3-10 |
 | Post exif | /^[a-zA-Z0-9\s,.@/-]{3,100}$/ | 3-100 |  
-| Post content | /^[a-zA-Z0-9\s.,\-!?]{3,300}$/ | 3-300 |
+| Post content | /^[a-zA-Z0-9\s.,\-!?#'"_]{3,300}$/ | 3-300 |
 | Comment | N/A | max. 300 |
 | Profile image| N/A | 2500 x 2500px, 2MB |
 | Profile name | /^[A-Za-z\s]{1,40}$/ | 1-40 |
@@ -538,16 +543,18 @@ In my application I also aimed to implement reusable components to avoid repetit
 - [Canva](https://www.canva.com/) - used to design logo picture
 - [Coolors.co](https://coolors.co/) - was used to create colour palette for terminal display page
 - [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) - validation tool for CSS
-- [ESLint](https://eslint.org/) - JavaScript linter, was installed and configured in IDE.
+- [ESLint](https://eslint.org/) - JavaScript linter, was installed with npm and configured in IDE.
 - [Favicon.io](https://www.favicon.io) - tool used to create favicon
 - [Font Awesome:](https://fontawesome.com/) - Font Awesome icons were used for social links in terminal display page
 - [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub
 - [GitHub](https://github.com/) - GitHub is used to store the project's code after being pushed from Git
-- [Google DevTools](https://developer.chrome.com/docs/devtools/) - used for developing HTML/CSS/DOM navigating/JavaScript console
+- [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) - used for developing HTML/CSS/DOM navigating/JavaScript console
+- [Google Fonts](https://fonts.google.com/) - source of project's fonts
 - [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - used for testing website performance
 - [Heroku](https://heroku.com) - online app used to deploy project
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode) - library that helps decoding JWTs token which are Base64Url encoded
 - [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk) - chrome extension to test website performance
+- [npm](https://www.npmjs.com/) - JavaScript packet manager for runtime environment, used to install dependencies
 - [Pexels](https://www.pexels.com/) - was used to source bacground picture for terminal display page
 - [React-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component) infinite scroll for posts and comments
 - [React router](https://reactrouter.com/en/main) - enables "client side routing".
@@ -570,6 +577,12 @@ Minor syntax and spelling errors were eliminated during development in , below i
 
 | Issue | Problem | Solution |
 |-------|---------|----------|
+
+
+https
+
+regexes
+
 
 
 # Deployment
@@ -706,7 +719,10 @@ If I had more time or decide to develop app further I would add/improve followin
 
 ## Code
 
+Moments
+
 spinner css sourced from https://loading.io/css/
+Tags style tutorial: https://www.designlabthemes.com/css-tags-how-to-style-post-tags/
 
 
 
