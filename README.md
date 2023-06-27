@@ -69,6 +69,8 @@ Application offers such functionalities as:
 - [Testing](#testing)
   - [Manual testing](#manual-testing)
   - [Bugs/known issues](#bugsknown-issues)
+    - [Resolved](#resolved)
+    - [Unresolved](#unresolved)
 - [Deployment](#deployment)
   - [Database](#database-elephangsql)
   - [Cloudinary](#cloudinary)
@@ -281,13 +283,27 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 |            | - User can click on a tag and get redirected to a filtered post list view with posts marked with this tag. |
 ## Wireframes
 
-[Wireframes - PDF File](docs/************.pdf)
+[Wireframes - PDF File](docs/wireframes.pdf)
+
+![Wireframe1](docs/img/wireframe1.png)
+
+![Wireframe2](docs/img/wireframe2.png)
+
+![Wireframe3](docs/img/wireframe3.png)
+
+![Wireframe4](docs/img/wireframe4.png)
+
+![Wireframe5](docs/img/wireframe5.png)
+
+![Wireframe6](docs/img/wireframe6.png)
+
+![Wireframe7](docs/img/wireframe7.png)
 
 # User Experience (UX)
 
 ## Colour Scheme
 
-Colour palette was selected using coolors.co generator from among trending colour sets.
+The colour palette was selected using the coolors.co generator from a collection of trending colour sets. In my opinion, the chosen colours should work well with the website, which is about holidays, traveling, and photography.
 
 ![palette](docs/img/design_palette.png)
 
@@ -573,17 +589,30 @@ Details of manual testing can be found in [TESTING.md](TESTING.md) file.
 
 ## Bugs/known issues
 
-Minor syntax and spelling errors were eliminated during development in , below is a list of registered issues.
+### Resolved
 
-| Issue | Problem | Solution |
-|-------|---------|----------|
+Minor syntax and spelling errors were eliminated during development in IDE, below is a list of registered issues.
 
+| Bug | [#37](https://github.com/alexkisielewicz/travel-shutter/issues/37) |
+| --- | --- |
+| Description | The issue exists on the 'Add Post' page in the form, specifically regarding image file uploads. When a user attempts to submit the form without selecting an image, an error is returned stating, 'The submitted data was not a file. Please check the encoding type on the form.' |
+| Expected behavior | The user should be able to submit the form even without an image. In this case, the backend should provide a placeholder image. |
+| Investigation | The encoding type is correctly set in the Axios defaults. Upon investigation, it was found that the issue in the code lies in PostCreateForm.js. The problem arises from the line: `formData.append("image", imageInput.current.files[0]);` The current files list is empty, yet it is still being appended to the formData. |
+| Fix | The bug was resolved by conditionally appending the image to the formData only if the user selected an image. In this case, the file list is not empty and can be successfully appended to the formData. |
+| Updated Code | ```if (imageInput.current.files.length > 0) { formData.append("image", imageInput.current.files[0]); }``` |
+| Screenshots | Problem: ![Bug37](docs/img/bug37.png) Original code: ![Bug37_2](docs/img/bug37_2.png) Updated code:![Bug37_3](docs/img/bug37_3.png) |
 
-https
+| Bug:| [#38](https://github.com/alexkisielewicz/travel-shutter/issues/38) |
+| --- | --- |
+| Description | The fetchPostsByLikes function uses an Axios request to fetch a list of posts and order them based on the number of likes, from most liked to least liked. To verify its functionality, likes were added and removed on multiple posts. However, the result was that the list of fetched posts was incomplete, and the updates in likes were not visible in the TopPosts component. |
+| Expected behavior | Function fetches a list of posts and orders them by likes count. |
+| Investigation | Upon investigating the backend, it was discovered that it was overlooked that the API utilizes pagination to display posts. Consequently, only 10 posts were fetched, and some of the expected posts to which I had added likes were not included. |
+| Fix | To fix the bug, I updated the function code by declaring an array to store all posts and a variable to hold the current page's posts. Now, posts are fetched from all existing pages and appended to the array of all posts. The sorting is then performed on the complete array of posts, ordering them from most liked to least liked. |
+| Screenshots | ![Bug38](docs/img/bug38.png) |
 
-regexes
+### Unresolved
 
-
+There is an ongoing issue with the app. Some mobile devices, especially those made by Apple, have trouble displaying the app due to cross-domain cookies and cross-domain tracking settings. I encountered this issue on Safari, Chrome, and Brave browsers on Apple devices. The project is deployed on two domains, one for the backend and one for the frontend. While the page can be displayed, users are unable to sign in due to cookie restrictions. The same problem occurs in the original "Moments" walkthrough, and it is a known issue in the CI Slack community.([link](https://code-institute-room.slack.com/archives/C02MTH5MBDG/p1674671530746669)).
 
 # Deployment
 
@@ -707,13 +736,11 @@ Note: Repository was created using Code Institute template: [https://github.com/
 
 # Possible future development
 
-If I had more time or decide to develop app further I would add/improve following functionalities that I moved to [Future enhancements](https://github.com/alexkisielewicz/photo-adventures/issues?q=label%3A%22future+enhancement%22+) column on project board:
+If I had more time or decide to develop app further I would add/improve following functionalities:
 
-- [#29](https://github.com/alexkisielewicz/photo-adventures/issues/29) Similar posts recommendation to suggest user next read
-- [#34](https://github.com/alexkisielewicz/photo-adventures/issues/34) Post list by category
-- [#35](https://github.com/alexkisielewicz/photo-adventures/issues/35) Post list by author
-- [#40](https://github.com/alexkisielewicz/photo-adventures/issues/40) File size/format/dimension validation of uploaded images
-- [#41](https://github.com/alexkisielewicz/photo-adventures/issues/41) Featured post - functionality that allows admin to mark selected post as featured and highlight it on main page.
+- Tags in posts: At the moment user can only add tags as a string with words separated with commas. In the future I would change backend post model field to be many-to-many field. This would allow apply additional functionalities to the app like searching posts by tag and display tagged posts.
+- Authentication: At the moment app uses simple authentication with username and password. To make it more secure and usefull I would introduce e-mail registration with e-mail confirmation and password recovery option.
+- Image optimization: It would be good idea to automatically process uploaded images to optimize their filesize, that would be more efficient for the image hosting and api requests.
 
 # Credits
 
