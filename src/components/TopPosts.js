@@ -19,16 +19,14 @@ function TopPosts({ refreshLikes }) {
       try {
         const allPosts = [];
         let nextPage = "/posts/";
-
-        // because of api pagination loop throught all pages is required
-        // each page's results are added to allPosts array 
+        /* because of api pagination loop throught all pages is required
+        each page's results are added to allPosts array */
         while (nextPage) {
           const response = await axios.get(nextPage);
           const { results, next } = response.data;
           allPosts.push(...results);
           nextPage = next;
         }
-
         // sort the posts in descending order based on likes_count
         const orderedPosts = allPosts.sort((a, b) => b.likes_count - a.likes_count);
         // filter out posts with zero likes
