@@ -14,6 +14,8 @@ A reasonable amount of manual testing was done and results can be found below:
 
 # User story testing
 
+User stories were manualy tested against acceptance criteria (they are described in GitHub Project and Readme.md).
+
 | User story | Result     |
 |------------|------------|
 | [#1](https://github.com/alexkisielewicz/travel-shutter/issues/1) As a user, I can view a navbar from every page, so that I can easily navigate between pages. | PASS |
@@ -51,6 +53,7 @@ A reasonable amount of manual testing was done and results can be found below:
 | [#33](https://github.com/alexkisielewicz/travel-shutter/issues/33) As a user, I want to be able to click on a post category, so that I can view all posts belonging to that category on the posts page with the category filter applied. | PASS |
 | [#34](https://github.com/alexkisielewicz/travel-shutter/issues/34) As a user, I want to see the top 5 posts with the most likes, so that I can quickly access popular and engaging content. | PASS |
 | [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. | Feature marked as future enhancement |
+| [#39](https://github.com/alexkisielewicz/travel-shutter/issues/39) As a user, I want a fixed position navbar at the bottom of the page so that I can easily access its functionalities. | PASS |
 
 # Functionality testing
 
@@ -140,6 +143,7 @@ Comprehensive testing has been conducted to ensure that all website functionalit
 |  | List of user posts is displayed properly in user's profile     | PASS |
 |  | Instagram link in profile works correctly with handle provided | PASS |
 |  | Instagram and Equipment fields are not displayed in the profile if not provided by the user. | PASS |
+|  | Navbar is visible on all pages across aplication and has fixed position at the bottom of the screen | PASS |
 | Forms validation | All forms validation have been checked both for images and text inputs. Validation works properly and regular expressions have been adjusted not to clash with allowed inputs in the backend. | PASS |
 
 # Responsiveness testing
@@ -164,9 +168,9 @@ No errors have been found in displaying layouts, style and functionalities.
 
 # HTML Validation
 
-The [W3C Markup Validation Service](https://validator.w3.org/) has been used to validate html files, also W3C Web Validator VSC extension was used throughtout development to mark and elimanate errors. For pages that require authentication I used "validate by direct input" method with source code.
+The [W3C Markup Validation Service](https://validator.w3.org/) was used to validate the website. However, due to the nature of the React app being organized in a single container, which is a div with the ID "root", the HTML structure may not be optimal for tests. Instead, the JSX and JavaScript code have been validated accordingly. For more detailed information, please refer to the following sections in this document.
 
-PLACEHOLDER
+![W2C HTML Validator](docs/img/validation_html.png)
 
 # CSS Validation
 
@@ -188,8 +192,22 @@ JavaScript files were validated using [ESLint](https://eslint.org/) that was ins
 
 # Lighthouse performance audit
 
+I ran multiple Lighthouse tests using both JPG images with sizes close to the maximum accepted by the backend app (up to 2MB) and optimized .webp images in the next-gen format, with sizes not exceeding 250KB. In both cases, the performance scores were around 75. Since all the images are loaded from Cloudinary quickly, I consider this result satisfactory, further compression of images showes visible artifacts and drop in tonal range.
+
 ![Lighthouse](docs/img/testing_lighthouse1.png)
 
 ![Lighthouse](docs/img/testing_lighthouse2.png)
 
 # WAVE Accesibility testing
+
+Chrome WAVE extension [https://wave.webaim.org/](https://wave.webaim.org/) was used to test accesibility.
+
+One error was found, indicating that the link contains no text. This error pertains to the comment font-awesome icon, which serves as a link to the comments section of the post. Since this is an intentional design choice, the error can be ignored.
+
+Wave also reports a repetitive error regarding the like hearts in the Trending Posts component. I attempted to address this by changing their color to a strong blue and #F00 red, but the same error persisted. I have decided to ignore this error as it may be triggered by the small font size of the icons.
+
+![wave](docs/img/wave.png)
+
+Main font's contrast against page background:
+
+![contrast](docs/img/contrast1.png)
