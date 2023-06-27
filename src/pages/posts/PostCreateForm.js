@@ -242,7 +242,7 @@ function PostCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className="no-gutters">
         <Col className="py-2 p-0 p-md-1" md={7} lg={8}>
           <Container
             className={`${styles.Container} d-flex flex-column justify-content-center`}

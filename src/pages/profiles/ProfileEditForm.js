@@ -210,7 +210,7 @@ const ProfileEditForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Row>
+        <Row className="no-gutters"> 
           <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
             <Container className={`${styles.Container} h-100`}>
               <Form.Group>
