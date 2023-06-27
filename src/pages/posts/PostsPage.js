@@ -45,7 +45,7 @@ function PostsPage({ message, filter = "" }) {
     setCategory(`category=${selectedCategory}`);
     handleCategorySelect(selectedCategory);
   };
-  
+
   const categories = {
     adventure: "Adventure",
     travel: "Travel",
@@ -89,37 +89,38 @@ function PostsPage({ message, filter = "" }) {
   }, [filter, query, pathname, category, currentUser]);
 
   return (
-    <Row className="h-100">
+    <Row className="h-100 no-gutters">
       <Col className="py-0 px-0 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
         {currentUser && <SidePanel mobile />}
         <PopularProfiles mobile />
-        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        
         <Row className="no-gutters">
           <Col xs={12} md={4}>
-          <DropdownButton
-          className={`${styles.CategoriesDropdown}`}
-          title={selectedCategory ? categories[selectedCategory] : "Display all"}
-          onSelect={handleCategorySelect}
-        >
-          <DropdownItem eventKey="">
-            Display all
-          </DropdownItem>
-          <Dropdown.Divider />
-          {/* iterate over values of categories and add label and eventKey
+            <DropdownButton
+              className={`${styles.CategoriesDropdown}`}
+              title={selectedCategory ? categories[selectedCategory] : "Display all"}
+              onSelect={handleCategorySelect}
+            >
+              <DropdownItem eventKey="">
+                Display all
+              </DropdownItem>
+              <Dropdown.Divider />
+              {/* iterate over values of categories and add label and eventKey
            to each dropdown item  */}
-          {Object.entries(categories).map(([value, label]) => (
-            <DropdownItem key={value} eventKey={value}>
-              {label}
-            </DropdownItem>
-          ))}
-        </DropdownButton>
+              {Object.entries(categories).map(([value, label]) => (
+                <DropdownItem key={value} eventKey={value}>
+                  {label}
+                </DropdownItem>
+              ))}
+            </DropdownButton>
           </Col>
           <Col xs={12} md={8}>
             <Form
               className={styles.SearchBar}
               onSubmit={(event) => event.preventDefault()}
             >
+              <Form.Label htmlFor="query" className="d-none">Search</Form.Label>
               <Form.Control
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
@@ -135,11 +136,11 @@ function PostsPage({ message, filter = "" }) {
             {posts.results.length ? (
               <InfiniteScroll
                 children={posts.results.map((post) => (
-                  <PostContainer 
-                    key={post.id} {...post} 
+                  <PostContainer
+                    key={post.id} {...post}
                     setPosts={setPosts}
-                    refreshLikes={refreshTopPosts} 
-                    />
+                    refreshLikes={refreshTopPosts}
+                  />
                 ))}
                 dataLength={posts.results.length}
                 loader={<Spinner />}
