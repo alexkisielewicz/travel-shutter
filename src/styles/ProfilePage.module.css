@@ -11,6 +11,17 @@
   margin-bottom: 0;
 }
 
+.Username {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.RealName {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 991px) {
   .ProfileImage {
     width: 250px;
