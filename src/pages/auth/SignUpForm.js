@@ -83,6 +83,7 @@ const SignUpForm = () => {
           <Image
             className={`${styles.SignUpImage}`}
             src={"https://res.cloudinary.com/ddvsgi5xw/image/upload/v1686921714/signup_cover_jb2b3g.jpg"}
+            alt="Sign up cover page photo"
           />
         </Col>
       </Row>

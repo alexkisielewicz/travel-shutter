@@ -71,6 +71,7 @@ function SignInForm() {
           <Image
             className={`${styles.SignUpImage}`}
             src={"https://res.cloudinary.com/ddvsgi5xw/image/upload/v1686921714/signin_cover_nbepl2.jpg"}
+            alt="Sign up cover page photo"
           />
         </Col>
       </Row>
