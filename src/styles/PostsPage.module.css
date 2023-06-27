@@ -6,16 +6,6 @@
   text-align: center;
 }
 
-.SearchIcon {
-  position: absolute;
-  font-size: 1.2rem;
-  padding: 0px;
-}
-
-.SearchIcon:hover {
-  color: #FB8500;
-}
-
 .CategoriesDropdown>button {
   width: 100%;
   background-color: #219EBC !important;
