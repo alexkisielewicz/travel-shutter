@@ -48,6 +48,7 @@ Application offers such functionalities as:
   - [Database model and database structure](#data-model-ad-database-structure)
   - [Features](#features)
     - [Navbar and menu](#navbar-and-main-menu)
+    - [Footer](#footer)
     - [Homepage](#home-page)
     - [Side menu](#side-menu)
     - [Categories panel](#categories-panel)
@@ -64,17 +65,14 @@ Application offers such functionalities as:
     - [Form validation](#form-validation)
 - [React architecture and components](#react-architecture-and-components)
 - [Technology](#technology)
-  - [Software used](#software-used)
-  - [Python libraries/modules](#python-librariesmodules)
+  - [Languages used](#languages-used)
+  - [Software/frameworks/libraries](#software--frameworks--libraries)
 - [Testing](#testing)
   - [Manual testing](#manual-testing)
   - [Bugs/known issues](#bugsknown-issues)
     - [Resolved](#resolved)
     - [Unresolved](#unresolved)
 - [Deployment](#deployment)
-  - [Database](#database-elephangsql)
-  - [Cloudinary](#cloudinary)
-  - [Django secret key](#django-secret-key)
   - [Github and Gitpod](#github-and-gitpod)
   - [Heroku](#heroku)
 - [Possible future development](#possible-future-development)
@@ -157,6 +155,10 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 |            | - User avatars are displayed next to user profiles, posts, or comments. |
 |            | - Avatars are visually distinct and represent the user's identity or chosen profile picture. |
 |            | - Standard placeholder image is present if the user didn't upload their own picture. |
+| User interface | [#39](https://github.com/alexkisielewicz/travel-shutter/issues/39) As a user, I want a fixed position navbar at the bottom of the page so that I can easily access its functionalities. |
+|            | Acceptance criteria:                                                           |
+|            | - The navbar should be fixed at the bottom of the page, ensuring it remains visible as the user scrolls. |
+|            | - The navbar should contain social media links and copyright information. |
 | Posts | [#9](https://github.com/alexkisielewicz/travel-shutter/issues/9) As a logged-in user, I can create posts, so that I can share my images in the app. |
 |            | Acceptance criteria:                                                           |
 |            | - A form is provided for users to enter the necessary details for creating a post, such as an image, title, category, tags, equipment, and post body |
@@ -281,6 +283,7 @@ By using agile methodology, I was able to stay organized and focused on deliveri
 |            | - User can add multiple tags, separated with commas. |
 |            | - Tags belonging to specific posts are displayed in this post detailed view. |
 |            | - User can click on a tag and get redirected to a filtered post list view with posts marked with this tag. |
+
 ## Wireframes
 
 [Wireframes - PDF File](docs/wireframes.pdf)
@@ -337,7 +340,7 @@ Project uses cloud-based PostgreSQL database provided by [ElephantSQL](https://w
 
 ### Navbar and main menu
 
-The navbar in the app is implemented using Bootstrap. It provides a user-friendly and intuitive navigation experience. Navbar is one common element for all the pages, it is visible in the viewport at all times. The navbar consists of a logo on the left side, and navigation links on the right side. It is designed to be responsive and collapsible on mobile devices, ensuring a seamless user experience across different screen sizes.
+The navbar in the app is implemented using Bootstrap. It provides a user-friendly and intuitive navigation experience. Navbar and Footer are the only common elements for all the pages, it is visible in the viewport at all times. The navbar consists of a logo on the left side, and navigation links on the right side. It is designed to be responsive and collapsible on mobile devices, ensuring a seamless user experience across different screen sizes.
 
 Not authenticated users can see sign in and sign up links:
 
@@ -351,6 +354,12 @@ Mobile navbar and menu:
 
 ![Navbar mobile](docs/img/feature_navbar_mobile.png)
 
+### Footer
+
+The footer is located at the bottom of the page, it has fixed position and includes social media links and copyright information. It provides users with access to the app's social media profiles, allowing them to connect and engage with the content through various social platforms. Footer also displays copyright information.
+
+![Footer](docs/img/features_footer.png)
+
 ### Home page
 
 On the home page users will find a layout with two columns for bigger devices that becomes one column on mobile devices.
@@ -358,6 +367,7 @@ On the home page users will find a layout with two columns for bigger devices th
 ![Homepage](docs/img/feature_homepage.png)
 
 The left column contains a list of all the posts, and it uses infinite scroll feature for seamless user experience without the need for pagination. At the top of the posts section, there is a dropdown menu containing categories filters, enabling users to filter the displayed posts based on specific categories. Next to that menu, there is a search bar that allows users to search for posts. Clicking on a post will redirect the user to a dedicated page displaying the detailed view of that specific post. Categories menu and search bar are available on mobile devices above list of all posts.
+
 ### Side menu
 
 The right column contains a panel with menu specifically designed for logged-in users. This panel includes links to various sections. Users can find links to add a new post, access their personalized user feed, and view their liked posts. The user feed displays a list of posts from the users they follow, ensuring they stay up to date with the content that interests them. The liked posts section gives users a way to revisit the posts they have previously liked. This menu panel on mobile devices is placed above list all posts and takes full width of a screen.
@@ -376,13 +386,13 @@ I have decided to include the "Profiles to Follow" panel in the mobile view. It 
 
 The "Profiles to Follow" component displays a list of 10 profiles, ordered based on the number of followers. Each profile includes a follow/unfollow link, allowing users to easily choose to follow or unfollow a particular profile. This component helps users discover and connect with other users of the app.
 
-![Alt text](docs/img/feature_top_profiles.png)
+![Profiles to follow](docs/img/feature_top_profiles.png)
 
 ### Trending Posts
 
 The "Trending Posts" panel showcases the top five most liked posts. These posts are ordered based on the number of likes they have received. Each post is displayed as a link, allowing users to easily access and explore the popular content.
 
-![Alt text](docs/img/feature_trending_posts.png)
+![Trending posts](docs/img/feature_trending_posts.png)
 
 ### Sign up / sign in
 
@@ -399,11 +409,11 @@ On the page users will find a cover photo, similar in style to the sign-up page 
 
 Above the posts list there are categories filter and search bar. Categories filter is placed in dropdown menu and contains a list of options with all available post categories. User can select any category and will be redirected to the page with posts filtered view. Currently selected category is displayed in the dropdown button, user can remove filter by selecting "Display all" option.
 
-![Alt text](docs/img/feature_search_categories.png)
+![Search bar](docs/img/feature_search_categories.png)
 
 Next to the categories dropdown menu there is a search bar where user can type a keyword and backend application filters are applied. User can search posts by entering post title, user name or post category. A small delay is applied before api request is sent. That prevents requests being sent after each keystroke and in result an excessive use of backend application.
 
-![Alt text](docs/img/feature_search_bar.png)
+![Search bar](docs/img/feature_search_bar.png)
 
 ### Post detailed view
 
@@ -417,7 +427,7 @@ Bottom section presents icons that represent the likes and comments on the post.
 
 ![Post detailed view](docs/img/feature_post.png)
 
-Authenticated user who is an author of the post can see dropdown menu that allows to edit or delete post. 
+Authenticated user who is an author of the post can see dropdown menu that allows to edit or delete post.
 
 ![Delete/edit post](docs/img/feature_delete_edit_post.png)
 
@@ -441,6 +451,8 @@ Comment form (and comment edit form) includes helpful characters counter that in
 
 ![Characters counter](docs/img/feature_comments_counter.png)
 
+![Comment too long](docs/img/features_comment_long.png)
+
 ### Add/Edit Post
 
 The "Add Post" includes a form that allow users to upload an image and write other details for their post. The image upload is validated to ensure it meets the specified requirements, including a maximum size of 2MB and dimensions of up to 2500px in height and width. Placeholder image is provided by backend if user do not upload own image.
@@ -455,25 +467,25 @@ An authenticated user who is the author of a post has the ability to edit their 
 
 The user profile page features the user's avatar, username, and statistics that includes the number of created posts, count of followers, and following users. In the center there is a section for the user's bio information. Below there are further details such as instagram handle with link to instagram and user's equipment. In the top right corner, there is a follow/unfollow button for interacting with the user's profile. Below the profile container, there is a list of all posts created by the user, it utilizes infinite scroll for seamless experience.
 
-![Alt text](docs/img/feature_profile.png)
+![Profile](docs/img/feature_profile.png)
 
 Authenticated users can see dropdown menu in their profiles that allows them to edit profil information and change credentials.
 
-![Alt text](docs/img/feature_profile_menu.png)
+![Profile menut](docs/img/feature_profile_menu.png)
 
 Edit profile form allows user to change existing image and all other text fields. The form is validated and each input is chacked againts regular expression. Errors, if occurs, are displayed below each input giving user feedback information about allowed characters, length, file size, etc.
 
-![Alt text](docs/img/feature_profile_edit_form.png)
+![Profile edit form](docs/img/feature_profile_edit_form.png)
 
-![Alt text](docs/img/feature_profile_password_change.png)
+![Password change](docs/img/feature_profile_password_change.png)
 
-![Alt text](docs/img/feature_profile_username_change.png)
+![Username change](docs/img/feature_profile_username_change.png)
 
 ### Feedback Messages
 
 Feedback messages are displayed in a toast notification that automatically disappears after short time or can be manually dismissed. These messages are shown on various occasions such as logging in or out, creating an account, adding or editing posts, adding or editing comments, and updating profile changes. They provide relevant information to the user about the status or outcome of their actions in a non-obstructive manner.
 
-![Alt text](docs/img/feedback_toast.png)
+![Feedback toast](docs/img/feedback_toast.png)
 
 ### Loading spinners
 
@@ -524,7 +536,11 @@ In my application I also aimed to implement reusable components to avoid repetit
 
 - CategoriesPanel: A component that presents a panel with categories buttons for filtering posts.
 
+- Comment: A container that is repetively used to display comments under each post.
+
 - DropdownMenu: A reusable component that creates a dropdown menu interface, allowing users to select options or navigate through different sections, utilizes by authenticated user to manipulate own content, used in user profile, in post detail view for edit/delete options and in comments section to edit/delete comments.
+
+- Footer: Footer is visible on every page across the app with the fixed bottom position. It contains copyright information and social links.
 
 - InputError: A component that displays an error message or validation feedback related to input fields in forms, helping users understand and correct any errors.
 
@@ -532,15 +548,13 @@ In my application I also aimed to implement reusable components to avoid repetit
 
 - Page404: A component that represents an error or "Not Found" page, displayed when a user tries to access a page or route that does not exist.
 
+- PostContainer: A container component used to display individual posts, repetitively used to displayed iterated posts on post list, posts in user profile, Feed and Liked pages.
+
+- Profile: A component representing a user's profile page, displaying information such as the user's avatar, username, statistics, bio, instagram link and equipment. Repetively used for each user.
+
 - SidePanel: A panel component positioned at the side of the application, used to display menu with links for authenticated user.
 
 - TopPosts: A component that displays list of trending posts, based on number of likes criteria.
-
-- PostContainer: A container component used to display individual posts, repetitively used to displayed iterated posts on post list, posts in user profile, Feed and Liked pages.
-
-- Comment: A container that is repetively used to display comments under each post.
-
-- Profile: A component representing a user's profile page, displaying information such as the user's avatar, username, statistics, bio, instagram link and equipment. Repetively used for each user.
 
 # Technology
 
@@ -549,6 +563,7 @@ In my application I also aimed to implement reusable components to avoid repetit
 - [HTML5](https://en.wikipedia.org/wiki/HTML5) - markup language used for structuring webpage content
 - [CSS3](https://en.wikipedia.org/wiki/CSS) - stylesheet language
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - high-level, imperative, programming language.
+- [JSX](https://en.wikipedia.org/wiki/JSX_(JavaScript)) -  an extension to the JavaScript language syntax, used in React.
 - [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README and TESTING documents.
 
 ## Software / frameworks / libraries
@@ -600,7 +615,7 @@ Minor syntax and spelling errors were eliminated during development in IDE, belo
 | Investigation | The encoding type is correctly set in the Axios defaults. Upon investigation, it was found that the issue in the code lies in PostCreateForm.js. The problem arises from the line: `formData.append("image", imageInput.current.files[0]);` The current files list is empty, yet it is still being appended to the formData. |
 | Fix | The bug was resolved by conditionally appending the image to the formData only if the user selected an image. In this case, the file list is not empty and can be successfully appended to the formData. |
 | Updated Code | ```if (imageInput.current.files.length > 0) { formData.append("image", imageInput.current.files[0]); }``` |
-| Screenshots | Problem: ![Bug37](docs/img/bug37.png) Original code: ![Bug37_2](docs/img/bug37_2.png) Updated code:![Bug37_3](docs/img/bug37_3.png) |
+| Screenshots | Problem:<br>![Bug37](docs/img/bug37.png) <br>Original code:<br>![Bug37_2](docs/img/bug37_2.png)<br> Updated code:<br> ![Bug37_3](docs/img/bug37_3.png) |
 
 | Bug:| [#38](https://github.com/alexkisielewicz/travel-shutter/issues/38) |
 | --- | --- |
@@ -608,131 +623,65 @@ Minor syntax and spelling errors were eliminated during development in IDE, belo
 | Expected behavior | Function fetches a list of posts and orders them by likes count. |
 | Investigation | Upon investigating the backend, it was discovered that it was overlooked that the API utilizes pagination to display posts. Consequently, only 10 posts were fetched, and some of the expected posts to which I had added likes were not included. |
 | Fix | To fix the bug, I updated the function code by declaring an array to store all posts and a variable to hold the current page's posts. Now, posts are fetched from all existing pages and appended to the array of all posts. The sorting is then performed on the complete array of posts, ordering them from most liked to least liked. |
-| Screenshots | ![Bug38](docs/img/bug38.png) |
+| Screenshots | Original code:<br>![Bug38](docs/img/bug38.png) |
 
 ### Unresolved
 
-There is an ongoing issue with the app. Some mobile devices, especially those made by Apple, have trouble displaying the app due to cross-domain cookies and cross-domain tracking settings. I encountered this issue on Safari, Chrome, and Brave browsers on Apple devices. The project is deployed on two domains, one for the backend and one for the frontend. While the page can be displayed, users are unable to sign in due to cookie restrictions. The same problem occurs in the original "Moments" walkthrough, and it is a known issue in the CI Slack community.([link](https://code-institute-room.slack.com/archives/C02MTH5MBDG/p1674671530746669)).
+There is an ongoing issue with the app. Some mobile devices, especially those made by Apple, have trouble displaying the app due to cross-domain cookies and cross-domain tracking settings. I encountered this issue on Safari, Chrome, and Brave browsers on Apple devices. The project is deployed on two domains, one for the backend and one for the frontend. While the page can be displayed, users are unable to sign in due to cookie restrictions. The same problem occurs in the original "Moments" walkthrough, and it is a known issue in the CI Slack community ([link](https://code-institute-room.slack.com/archives/C02MTH5MBDG/p1674671530746669)).
 
 # Deployment
 
 App was deployed to heroku for the first time when React installation was completed to make sure that everything is working correctly at early stage of development.
 
-
-
 ## GitHub and Gitpod
 
-Note: Repository was created using Code Institute template: [https://github.com/Code-Institute-Org/gitpod-full-template](https://github.com/Code-Institute-Org/gitpod-full-template)
+Note: Repository was created using Code Institute template: [https://github.com/Code-Institute-Org/react-ci-template](https://github.com/Code-Institute-Org/react-ci-template)
 
-1. Login to Github and navigate to repository: [https://github.com/alexkisielewicz/photo-adventures](https://github.com/alexkisielewicz/photo-adventures)
+1. Login to Github and navigate to repository: [https://github.com/alexkisielewicz/travel-shutter](https://github.com/alexkisielewicz/travel-shutter)
 
-2. Click on "Fork button" in upper-right corner and create a new form in your own account.
+2. Click on "Fork button" in upper-right corner and create a new fork in your own account.
 
 3. Open your repository in local IDE or using Gitpod. Preferred way is to used [Chrome Gitpod Extension](https://chrome.google.com/webstore/detail/gitpod-always-ready-to-co/dodmmooeoklaejobgleioelladacbeki). When you install extension, green "Gitpod" button appears in your repository. Click on it to cread new workspace.
 
-4. Go to workspace terminal and install all requirements using command: "pip install -r requirements.txt". All te packages will be installed. requirements.txt content:
+4. If you're not using gitpod you can use command below to clone this repository to your local machine.
 
-    ```python
-    asgiref==3.6.0
-    cloudinary==1.32.0
-    crispy-bootstrap5==0.7
-    dj-database-url==0.5.0
-    dj3-cloudinary-storage==0.0.6
-    Django==3.2.18
-    django-allauth==0.52.0
-    django-crispy-forms==2.0
-    django-social-share==2.3.0
-    django-summernote==0.8.20.0
-    django-taggit==3.1.0
-    gunicorn==20.1.0
-    oauthlib==3.2.2
-    psycopg2==2.9.5
-    PyJWT==2.6.0
-    python3-openid==3.2.0
-    pytz==2022.7.1
-    requests-oauthlib==1.3.1
-    sqlparse==0.4.3
+    ```shell
+    git clone https://github.com/alexkisielewicz/travel-shutter.git 
     ```
 
-5. Local env.py file should be configured as on example below:
+5. Navigate into the clonned repository's directory and use command below to instal the necessary dependencies:
 
-    ```python
-    import os
-
-    # Env vars
-    os.environ["DATABASE_URL"] = "postgres://yourLinkCopiedFromElephantSQLDashboard"
-    os.environ["SECRET_KEY"] = "YourSecretKey"
-    os.environ["CLOUDINARY_URL"] = "cloudinary://yourLinkCopiedFromCloudinaryDashboard"
-
-    # Gmail vars
-    os.environ["EMAIL_HOST_USER"] = "youremail@gmail.com"
-    os.environ["EMAIL_HOST_PASSWORD"] = "passwordObtainedFromGoogleAccount"
-    os.environ["DEFAULT_FROM_EMAIL"] = "Photo Adventures"
+    ```shell
+    npm install
     ```
 
-6. In order to save django changes in database migration needs to be made.
+6. Start development server by running command:
 
-7. Use terminal commands:
-
-    ```text
-    python3 manage.py makemigrations
-    python3 manage.py migrate
+    ```shell
+    npm start
     ```
 
-8. Create superuser to access admin area using terminal command (email is optional, password won't be visible when typing, confirm password twice):
-
-    ```text
-    python3 manage.py createsuperuser
-    ```
-
-9. App can be run in gitpod enviroment using terminal command:
-
-    ```text
-    python3 manage.py runserver
-    ```
-
-10. Go to Heroku and follow further instructions below.
+You should be able to run this react app with this steps, please make sure that Node.js and npm is installed on your machine.
 
 ## Heroku
 
 1. Navigate to [https://heroku.com/](https://heroku.com/) login to your account and open dashboard. Click button "New" and select "Create new app" button.
 
-2. Enter app name, I used "photo-adventures", chose your region and click on "Create app" button.
+2. Enter app name, I used "travel-shutter", chose your region and click on "Create app" button.
 
-3. Click on newly created app and go to "Deploy" tab and then to "Deployment method" section. Authorize and connect your GitHub account, then find and select your repository.
+3. Click on newly created app and go to "Deploy" tab and then to "Deployment method" section. Authorize and connect your GitHub account, then find and select your repository that was previously forked.
 
-4. Go to the "Settings" tab, click on "Reveal Config Vars" and add the following keys and values (all values should be strings without any quotation marks):
+4. No environmental variables are required to run this project, however the app uses backend application that is described [here](#data-model-ad-database-structure). Deployment process is described in backend app repository. Additional enviromental variables would be required in backend's heroku config to work with react front end due to CORS security mechanism.
 
-    NOTE: DISABLE_COLLECTSTATIC variable should be set to "1" for initial deployment. Before final deployment it should be removed.
+    Additional Env vars in backend app:
 
     | Key                    | Value                                                            |
     |------------------------|------------------------------------------------------------------|
-    | CLOUDINARY_URL         | cloudinary url beginning with cloudinary://                      |
-    | DATABASE_URL           | postgress url beginning with postgress://                        |
-    | DEFAULT_FROM_EMAIL     | Photo Adventures                                                 |
-    | DISABLE_COLLECTSTATIC  | 1                                                                |
-    | EMAIL_HOST_PASSWORD    | YourPassword obtained from Google account                        |
-    | EMAIL_HOST_USER        | youremailaccount@gmail.com                                       |
-    | PORT                   | 8000                                                             |
-    | SECRET_KEY             | YourSecretKey, the same as in env.py                             |
+    | ALLOWED_HOST           | yourDeployedBackendApp.herokuapp.com                             |
+    | CLIENT ORIGIN          | https://yourDeployedFrontEndApp.herokuapp.com                    |
+    | CLIENT_ORIGIN_DEV      | https://gitpodsPreviewURL.gitpod.io                              |
 
-    ![envvars](docs/img/deployment/deployment_envvars.png)
-
-5. Return to your Gitpod workspace and navigate to the file `photoadventures/settings.py`. Change allowed hosts including the name of the app that you created in previous steps. In my case, it was 'photo-adventures.herokuapp.com'. Save the file.
-
-    ![hosts](docs/img/deployment/deployment_hosts.png)
-
-6. Procfile required to run project on Heroku was already created but if you change your app's name please make sure that this change is reflected in Procfile. It can be found in your project's main directory. In my case Procfile looks as below:
-
-    ```python
-    web: gunicorn photoadventures.wsgi
-    ```
-
-7. After adding enviromental variables and editing Procfile project is ready for deployment. In Heroku app's dashboard navigate to "Deploy" tab, scroll down to "Manual deploy" section. Select main branch from dropdown menu and click on "Deploy Branch".
-
-8. **Step required for final deployment:** Navigate again to app's settings, reveal config vars and delete DISABLE_COLLECTSTATIC entry if it was set before.
-
-9. After built is done, you should be able to see the button with the link leading to deployed app. In my case [http://photo-adventures.herokuapp.com](http://photo-adventures.herokuapp.com).
+5. Select Main branch and click "Deploy branch". After built is done, you should be able to see the button with the link leading to deployed app. In my case [http://travel-shutter.herokuapp.com](http://travel-shutter.herokuapp.com).
 
 # Possible future development
 
@@ -746,12 +695,9 @@ If I had more time or decide to develop app further I would add/improve followin
 
 ## Code
 
-Moments
-
-spinner css sourced from https://loading.io/css/
-Tags style tutorial: https://www.designlabthemes.com/css-tags-how-to-style-post-tags/
-
-
+- Code Institute's "Moments" walkthrough was used as inpiration and learning resource to create this project.
+- CSS for spinner loader was sourced from [https://loading.io/css/](https://loading.io/css/)
+- Categories tags were styled with help of the tutorial: [https://www.designlabthemes.com/css-tags-how-to-style-post-tags/](https://www.designlabthemes.com/css-tags-how-to-style-post-tags/)
 
 ## Media
 
