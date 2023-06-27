@@ -76,7 +76,10 @@ function ProfilePage() {
             />
           </Col>
           <Col lg={6}>
-            <h2 className="m-2">{profile?.owner}</h2>
+            <h2 className={`m-2 ${styles.Username}`}>
+              {profile?.owner}
+              {profile?.name ? <span className={styles.RealName}>({profile?.name})</span> : null}
+            </h2>
             <Row className="justify-content-center no-gutters">
               <Col xs={3} className="my-2">
                 <div>{profile?.posts_count}</div>
@@ -181,7 +184,7 @@ function ProfilePage() {
   );
 
   return (
-    <Row>
+    <Row className="no-gutters">
       <Col className="py-0 px-1 p-lg-2" lg={8}>
         {/* SIDE PANELS FOR MOBILE */}
         {currentUser && <SidePanel mobile />}
