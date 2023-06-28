@@ -1,6 +1,6 @@
-A reasonable amount of manual testing was done and results can be found below:
-
 # Table of content
+
+A reasonable amount of manual testing was done and results can be found below:
 
 - [User story testing](#user-story-testing)
 - [Functionality testing](#functionality-testing)
@@ -12,7 +12,7 @@ A reasonable amount of manual testing was done and results can be found below:
 - [Lighthouse performance audit](#lighthouse-performance-audit)
 - [WAVE Accesibility testing](#wave-accesibility-testing)
 
-# User story testing
+## User story testing
 
 User stories were manualy tested against acceptance criteria (they are described in GitHub Project and Readme.md).
 
@@ -55,7 +55,7 @@ User stories were manualy tested against acceptance criteria (they are described
 | [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. | Feature marked as future enhancement |
 | [#39](https://github.com/alexkisielewicz/travel-shutter/issues/39) As a user, I want a fixed position navbar at the bottom of the page so that I can easily access its functionalities. | PASS |
 
-# Functionality testing
+## Functionality testing
 
 Comprehensive testing has been conducted to ensure that all website functionalities are working as intended, providing users with a reliable and enjoyable browsing experience.
 
@@ -146,39 +146,51 @@ Comprehensive testing has been conducted to ensure that all website functionalit
 |  | Navbar is visible on all pages across aplication and has fixed position at the bottom of the screen | PASS |
 | Forms validation | All forms validation have been checked both for images and text inputs. Validation works properly and regular expressions have been adjusted not to clash with allowed inputs in the backend. | PASS |
 
-# Responsiveness testing
+## Responsiveness testing
 
-Website has been thoroughly tested for responsiveness on a wide range of devices to ensure a seamless user experience, no matter how our visitors access the site.
+Website has been thoroughly tested for responsiveness on a wide range of devices to ensure a seamless user experience, no matter how our visitors access the site. Google Chrome DevTools were used together with real devices such as:
 
-PLACEHOLDER
+- iPhoneX
+- iPhone 14 Pro
+- ipad (2018)
+- Samsung Galaxy S23 Ultra
+- MacbookAir (2020)
+- 27" Dektop
+- 34" Ultra Wide Desktop
 
-# Browser compatibility testing
+![Responsiveness](docs/img/responsiveness_1.png)
 
-All templates listed in [Responsiveness testing](#responsiveness-testing) have been displayed on different browsers with various viewport size.
+![Responsiveness](docs/img/responsiveness_2.png)
+
+## Browser compatibility testing
+
+All pages have been rendered on different browsers with various viewport size.
 
 Following browsers were checked:
 
 - Google Chrome,
 - Safari,
-- Firefox,
 - Brave,
-- Microsoft Edge
+- Firefox,
+- Microsoft Edge.
 
 No errors have been found in displaying layouts, style and functionalities.
 
-# HTML Validation
+Please note: There is ongoing problem with browsers on Apple devices due to cross-domain cookies tracking. It is described in [Unresolved bugs](https://github.com/alexkisielewicz/travel-shutter#unresolved) section of Readme.
+
+## HTML Validation
 
 The [W3C Markup Validation Service](https://validator.w3.org/) was used to validate the website. However, due to the nature of the React app being organized in a single container, which is a div with the ID "root", the HTML structure may not be optimal for tests. Instead, the JSX and JavaScript code have been validated accordingly. For more detailed information, please refer to the following sections in this document.
 
-![W2C HTML Validator](docs/img/validation_html.png)
+![W3C HTML Validator](docs/img/validation_html.png)
 
-# CSS Validation
+## CSS Validation
 
 The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator) has been used to validate custom CSS through direct code input. Main app stylesheet and module stylesheets for each components have been tested, no errors found. CSS formatter was used in the IDE during development.
 
 ![CSS Jigsaw](docs/img/validation_css.png)
 
-# JavaScript Validation
+## JavaScript Validation
 
 JavaScript files were validated using [ESLint](https://eslint.org/) that was installed and configured in IDE.
 
@@ -190,7 +202,7 @@ JavaScript files were validated using [ESLint](https://eslint.org/) that was ins
 - there were no more errors as syntax was also checked in IDE and React compiler during development.
 - ESlint has been uninstalled after validation and dependencies were removed from package.json
 
-# Lighthouse performance audit
+## Lighthouse performance audit
 
 I ran multiple Lighthouse tests using both JPG images with sizes close to the maximum accepted by the backend app (up to 2MB) and optimized .webp images in the next-gen format, with sizes not exceeding 250KB. In both cases, the performance scores were around 75. Since all the images are loaded from Cloudinary quickly, I consider this result satisfactory, further compression of images showes visible artifacts and drop in tonal range.
 
@@ -198,7 +210,7 @@ I ran multiple Lighthouse tests using both JPG images with sizes close to the ma
 
 ![Lighthouse](docs/img/testing_lighthouse2.png)
 
-# WAVE Accesibility testing
+## WAVE Accesibility testing
 
 Chrome WAVE extension [https://wave.webaim.org/](https://wave.webaim.org/) was used to test accesibility.
 
