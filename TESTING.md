@@ -53,7 +53,7 @@ User stories were manualy tested against acceptance criteria (they are described
 | [#33](https://github.com/alexkisielewicz/travel-shutter/issues/33) As a user, I want to be able to click on a post category, so that I can view all posts belonging to that category on the posts page with the category filter applied. | PASS |
 | [#34](https://github.com/alexkisielewicz/travel-shutter/issues/34) As a user, I want to see the top 5 posts with the most likes, so that I can quickly access popular and engaging content. | PASS |
 | [#35](https://github.com/alexkisielewicz/travel-shutter/issues/35) As a user, I can add tags to the posts and view the list of the posts associated with specific tags, so I can browse posts that I am interested in. | Feature marked as future enhancement |
-| [#39](https://github.com/alexkisielewicz/travel-shutter/issues/39) As a user, I want a fixed position navbar at the bottom of the page so that I can easily access its functionalities. | PASS |
+| [#39](https://github.com/alexkisielewicz/travel-shutter/issues/39) As a user, I want a fixed position footer at the bottom of the page so that I can easily access its functionalities. | PASS |
 
 ## Functionality testing
 
@@ -143,7 +143,7 @@ Comprehensive testing has been conducted to ensure that all website functionalit
 |  | List of user posts is displayed properly in user's profile     | PASS |
 |  | Instagram link in profile works correctly with handle provided | PASS |
 |  | Instagram and Equipment fields are not displayed in the profile if not provided by the user. | PASS |
-|  | Navbar is visible on all pages across aplication and has fixed position at the bottom of the screen | PASS |
+|  | Footer is visible on all pages across aplication and has fixed position at the bottom of the screen | PASS |
 | Forms validation | All forms validation have been checked both for images and text inputs. Validation works properly and regular expressions have been adjusted not to clash with allowed inputs in the backend. | PASS |
 
 ## Responsiveness testing
@@ -192,19 +192,19 @@ The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator) 
 
 ## JavaScript Validation
 
-JavaScript files were validated using [ESLint](https://eslint.org/) that was installed and configured in IDE.
+JavaScript files were validated using [ESLint](https://eslint.org/) that was installed and configured in IDE using npm.
 
 - all quotes have been changed to double quotes
 - single quotes that were apostrophe in the text were escaped with \&apos;
 - error: Do not pass children as props. Instead, nest children between the opening and closing tags when i add this part "children={}" was omitet as the fragment of code was as in "Moments" walkthroug project and this is common warning
-- react import was added in some files as error wash shown "React must be in scope when using JSX".
-- "class" attribute has been used incorrectly instead of "className" in couple of files, it have been corrected.
+- react import was added in some files as error was shown "React must be in scope when using JSX".
+- "class" attribute has been used incorrectly couple of times instead of "className", it has been corrected.
 - there were no more errors as syntax was also checked in IDE and React compiler during development.
 - ESlint has been uninstalled after validation and dependencies were removed from package.json
 
 ## Lighthouse performance audit
 
-I ran multiple Lighthouse tests using both JPG images with sizes close to the maximum accepted by the backend app (up to 2MB) and optimized .webp images in the next-gen format, with sizes not exceeding 250KB. In both cases, the performance scores were around 75. Since all the images are loaded from Cloudinary quickly, I consider this result satisfactory, further compression of images showes visible artifacts and drop in tonal range.
+I ran multiple Lighthouse tests using both JPG images with sizes close to the maximum accepted by the backend app (up to 2MB) and optimized .webp images in the next-gen format, with sizes not exceeding 250KB. In both cases, the performance scores were around 75. Since all the images are loaded from Cloudinary quickly, I consider this result satisfactory, further compression of images makes artifacts visible and couses drop in tonal range.
 
 ![Lighthouse](docs/img/testing_lighthouse1.png)
 
