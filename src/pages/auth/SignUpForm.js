@@ -35,6 +35,7 @@ const SignUpForm = () => {
     toast.success(message);
   };
 
+  // handles inputs change in the form
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -43,6 +44,10 @@ const SignUpForm = () => {
     })
   }
 
+  /* Handles form submission, makes request to allauth endpoint with form 
+  data including username, password and confirmed password inputs.
+  Username and password is validated against individual regexes. 
+  Error messages are set individually for each input field */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

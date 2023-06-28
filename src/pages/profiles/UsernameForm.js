@@ -40,6 +40,7 @@ const UsernameForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Handles form submission, validates username against regex and set error message
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -49,6 +50,7 @@ const UsernameForm = () => {
         );
         return;
       }
+      // Makes PUT request to allauth endpoint user to update with username
       await axiosRes.put("/dj-rest-auth/user/", {
         username,
       });
@@ -57,6 +59,7 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
+      // Show confirmation messages
       showToast("Username changed!")
     } catch (err) {
       // console.log(err);

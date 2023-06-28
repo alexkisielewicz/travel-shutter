@@ -12,13 +12,14 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
-    // we will use the pageProfile later!
     pageProfile: { results: [] },
     popularProfiles: { results: [] },
   });
 
   const currentUser = useCurrentUser();
 
+  /* Makes a request to followers endpoint sending 
+  id of a profile that user clicked on to follow */
   const handleFollow = async (clickedProfile) => {
     try {
       const { data } = await axiosRes.post("/followers/", {
@@ -27,11 +28,13 @@ export const ProfileDataProvider = ({ children }) => {
 
       setProfileData((prevState) => ({
         ...prevState,
+        // update following button in users profile
         pageProfile: {
           results: prevState.pageProfile.results.map((profile) =>
             followHelper(profile, clickedProfile, data.id)
           ),
         },
+        // update following button in profile list
         popularProfiles: {
           ...prevState.popularProfiles,
           results: prevState.popularProfiles.results.map((profile) =>
@@ -44,17 +47,21 @@ export const ProfileDataProvider = ({ children }) => {
     }
   };
 
+  /* Makes a request to followers endpoint sending 
+  id of a profile that user clicked on to unfollow */
   const handleUnfollow = async (clickedProfile) => {
     try {
       await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
 
       setProfileData((prevState) => ({
         ...prevState,
+        // update following button on profile page
         pageProfile: {
           results: prevState.pageProfile.results.map((profile) =>
             unfollowHelper(profile, clickedProfile)
           ),
         },
+        // update following button in popular profiles list
         popularProfiles: {
           ...prevState.popularProfiles,
           results: prevState.popularProfiles.results.map((profile) =>
@@ -70,6 +77,7 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
+        // Makes request to get filtered list of profiles by followers count
         const { data } = await axiosReq.get(
           "/profiles/?ordering=-followers_count"
         );

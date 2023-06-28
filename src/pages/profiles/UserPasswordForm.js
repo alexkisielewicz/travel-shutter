@@ -27,10 +27,12 @@ const UserPasswordForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Shows toast with message passed in param.
   const showToast = (message) => {
     toast.success(message);
   };
 
+  // Handles input change
   const handleChange = (event) => {
     setUserData({
       ...userData,
@@ -40,11 +42,13 @@ const UserPasswordForm = () => {
 
   useEffect(() => {
     if (currentUser?.profile_id?.toString() !== id) {
-      // redirect user if they are not the owner of this profile
+      // redirect users if they are not the owner of this profile
       history.push("/");
     }
   }, [currentUser, history, id]);
 
+  /* Handles form submition, makes post request to allauth endpoint containing new password.
+  Password input is validated against regex and error message is set. */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -58,6 +62,7 @@ const UserPasswordForm = () => {
       }
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
+      // Show success message
       showToast("Password changed!");
     } catch (error) {
       setErrors(error.response?.data);

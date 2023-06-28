@@ -20,6 +20,7 @@ import { fetchMoreData } from "../../utils/utils";
 import SidePanel from "../../components/SidePanel";
 import TopPosts from "../../components/TopPosts";
 
+// This function represents specific post's page (by post ID)
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
@@ -30,10 +31,12 @@ function PostPage() {
   const [comments, setComments] = useState({ results: [] });
 
   const refreshTopPosts = () => {
-    // toggle refresh when liked/unliked
+    /* toggle refresh when liked/unliked, 
+    value is passed to TopPost component later on */
     setRefreshLikes(!refreshLikes);
   }
 
+  // Fetch post with specific ID with  its comments
   useEffect(() => {
     const handleMount = async () => {
       try {

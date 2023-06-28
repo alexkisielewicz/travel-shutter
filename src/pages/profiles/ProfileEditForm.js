@@ -38,14 +38,17 @@ const ProfileEditForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Shows toast with message passed in param.
   const showToast = (message) => {
     toast.success(message);
   };
-
+  
+  // fetch user's profile on component mount (by user id)
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
+          // fetch data from existing fields
           const { data } = await axiosReq.get(`/profiles/${id}`);
           const { name, bio, instagram, equipment, image } = data;
           setProfileData({ name, bio, instagram, equipment, image });
@@ -61,6 +64,7 @@ const ProfileEditForm = () => {
     handleMount();
   }, [currentUser, history, id]);
 
+  // Handles change in form's inputs
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -68,6 +72,9 @@ const ProfileEditForm = () => {
     });
   };
 
+  /* Function handles form submission, makes PUT request to api to update
+  user's profile with data provided in the form. Each input is validated aganist
+  specific regex, individual error messages are set for each input field. */
   const handleSubmit = async (event) => {
     event.preventDefault();
     const nameRegex = /^[A-Za-z\s]{1,40}$/;
@@ -110,16 +117,18 @@ const ProfileEditForm = () => {
       return;
     }
 
+    // Declare form data and include all input fields values
     const formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
     formData.append("instagram", instagram);
     formData.append("equipment", equipment);
-
+    // include image in form data
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
     }
 
+    // Make a PUT api request to specific profile endpoint
     try {
       const { data } = await axiosReq.put(`/profiles/${id}`, formData);
       setCurrentUser((currentUser) => ({
@@ -127,6 +136,7 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
+      // Show success message
       showToast("Profile changes saved!")
     } catch (err) {
       // console.log(err);

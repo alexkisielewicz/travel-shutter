@@ -40,12 +40,16 @@ function PostsPage({ message, filter = "" }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [refreshLikes, setRefreshLikes] = useState(false);
 
+  /* Handles category filter change. Category fiter can be applied by user
+  in both PostsPage and CategoriesPanel components */
   const handleCategoryFilter = (selectedCategory) => {
+    // convert category to lowercase to match api filters
     selectedCategory = selectedCategory.toLowerCase();
     setCategory(`category=${selectedCategory}`);
     handleCategorySelect(selectedCategory);
   };
 
+  // declare available categories
   const categories = {
     adventure: "Adventure",
     travel: "Travel",
@@ -57,6 +61,7 @@ function PostsPage({ message, filter = "" }) {
     architecture: "Architecture",
   };
 
+  // handle category change for dropdown menu
   const handleCategorySelect = (event) => {
     setCategory(`category=${event}`);
     setSelectedCategory(event);
@@ -70,6 +75,7 @@ function PostsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        // Makes get request to fetch all posts with applied filters
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}&${category}`);
         setPosts(data);
         setHasLoaded(true);
@@ -78,6 +84,7 @@ function PostsPage({ message, filter = "" }) {
       }
     };
 
+    // Add delay before making api request to fetch posts, used in search bar after each keystroke
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
@@ -107,7 +114,7 @@ function PostsPage({ message, filter = "" }) {
               </DropdownItem>
               <Dropdown.Divider />
               {/* iterate over values of categories and add label and eventKey
-           to each dropdown item  */}
+              to each dropdown item  */}
               {Object.entries(categories).map(([value, label]) => (
                 <DropdownItem key={value} eventKey={value}>
                   {label}
@@ -164,13 +171,15 @@ function PostsPage({ message, filter = "" }) {
         <div className="mb-2">
           {currentUser && <SidePanel />}
         </div>
-        <div className="mb-2">
+        <div className="mb-2"> 
+          {/* Pass parameter to apply category filter clicked by user */}
           <CategoriesPanel handleCategoryFilter={handleCategoryFilter} />
         </div>
         <div className="mb-2">
           <PopularProfiles />
         </div>
         <div className="mb-2">
+          {/* Pass parameter to refresh likes count in TopPosts component */}
           <TopPosts refreshLikes={refreshLikes} />
         </div>
       </Col>

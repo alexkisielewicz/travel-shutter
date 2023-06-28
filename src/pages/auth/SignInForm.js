@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 import InputError from "../../components/InputError";
 
 function SignInForm() {
-  // redirect user if already logged in
+  // Redirect user if already logged in
   useRedirect("loggedIn");
   const setCurrentUser = useSetCurrentUser();
 
@@ -31,15 +31,16 @@ function SignInForm() {
   });
 
   const { username, password } = signInData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
 
   const showToast = (message) => {
+    // Shows toast with passed message
     toast.success(message);
   };
 
+  /* Handle form submission, make post request to allauth 
+  endpoint with form data including username and password */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -53,7 +54,8 @@ function SignInForm() {
       setErrors(err.response?.data);
     }
   }
-
+  
+  // handle input change for the form inputs 
   const handleChange = (event) => {
     setSignInData({
       ...signInData,

@@ -9,9 +9,9 @@ import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/Page404.module.css";
 import { Link } from "react-router-dom";
 
-/*
-  Displays a 404 page and a link to return to the main page
-*/
+/* Component used for displaying a 404 Error page, contains 
+a link that allows users to return to the main page without 
+using back button in the browser */
 const PageNotFound = () => {
   return (
     <div className={`${styles.Container} mt-3`}>

@@ -30,12 +30,14 @@ function PostEditForm() {
     body: "",
     image: "",
   });
+  
   const { title, category, tags, exif, body, image } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
+  // Shows toast with message passed in param.
   const showToast = (message) => {
     toast.success(message);
   };
@@ -43,9 +45,10 @@ function PostEditForm() {
   useEffect(() => {
     const handleMount = async () => {
       try {
+        // Retrieve existing data to be shown in all input fields
         const { data } = await axiosReq.get(`/posts/${id}/`)
         const { title, category, tags, exif, body, image, is_owner } = data;
-
+        // Only post's owner can edit post, otherwise user is redirected
         is_owner
           ? setPostData({ title, category, tags, exif, body, image })
           : history.push("/")
@@ -56,6 +59,7 @@ function PostEditForm() {
     handleMount();
   }, [history, id])
 
+  // Handles form inputs change
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -63,6 +67,7 @@ function PostEditForm() {
     });
   };
 
+  // Handles change of an immage, includes loaded file to postData
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -73,6 +78,10 @@ function PostEditForm() {
     }
   };
 
+  /* Function handles form submission, makes api post request to /posts/ID
+  endpoint. Request includes all form fields that are validated against
+  individual regexes. Individual error messages are assigned to each input 
+  and displayed if validation is not succesfull */
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -122,14 +131,15 @@ function PostEditForm() {
       return;
     }
 
+    // Add inputs data to the formData that will be sent in PUT request
     formData.append("title", title);
     formData.append("category", category);
     formData.append("tags", tags);
     formData.append("exif", exif);
     formData.append("body", body);
 
-    // check if file input element has file in it before
-    // it's appended to form data, if not, original file stays in API
+    /* check if file input element has file in it before
+    it's appended to form data, if not, original file stays in API */
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
@@ -223,7 +233,6 @@ function PostEditForm() {
       {errors.exif && errors.exif.map((message, idx) => (
         <InputError key={idx} message={message} />
       ))}
-
       <Form.Group>
         <Form.Label>Content</Form.Label>
         <Form.Control
@@ -237,7 +246,6 @@ function PostEditForm() {
       {errors.body && errors.body.map((message, idx) => (
         <InputError key={idx} message={message} />
       ))}
-
       <Button
         className={`${btnStyles.Button} ${btnStyles.Orange}`}
         onClick={() => history.goBack()}
@@ -258,7 +266,6 @@ function PostEditForm() {
             className={`${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-
               <figure>
                 <Image className={appStyles.Image} src={image} rounded />
               </figure>
@@ -270,8 +277,6 @@ function PostEditForm() {
                   Change the image
                 </Form.Label>
               </div>
-
-
               <Form.File
                 className={styles.FileInput}
                 id="image-upload"
@@ -279,12 +284,10 @@ function PostEditForm() {
                 onChange={handleChangeImage}
                 ref={imageInput}
               />
-
             </Form.Group>
             {errors?.image?.map((message, idx) => (
               <InputError key={idx} message={message} />
             ))}
-
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>

@@ -15,14 +15,14 @@ const PopularProfiles = ({ mobile }) => {
         <>
           <h4 className="text-center pb-3">Profiles to follow</h4>
           {mobile ? (
-            // IF ON MOBILE
+            // IF ON MOBILE, display first 4 profiles from the array
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
                 <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
-            // IF ON DESKTOP
+            // IF ON DESKTOP, display 10 profiles (because of API pagination)
             popularProfiles.results.map((profile) => (
               <Profile key={profile.id} profile={profile} />
             ))

@@ -35,15 +35,19 @@ function PostCreateForm() {
     body: "",
     image: "",
   });
+  
+  // Destructure props, includes all form fields
   const { title, category, tags, exif, body, image } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
 
+  // Shows toast with message passed in param.
   const showToast = (message) => {
     toast.success(message);
   };
 
+  // Handles inputs change in the form
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -51,6 +55,7 @@ function PostCreateForm() {
     });
   };
 
+  // Handles change of an image, adds loaded image to form data
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -61,6 +66,10 @@ function PostCreateForm() {
     }
   };
 
+  /* Function handles form submission, makes api post request to /posts
+  endpoint. Request includes all form fields that are validated against
+  individual regexes. Individual error messages are assigned to each input 
+  and displayed if validation is not succesfull */
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -110,6 +119,7 @@ function PostCreateForm() {
       return;
     }
 
+    // Add all valid inputs to formData that will be sent in post request
     formData.append("title", title);
     formData.append("category", category);
     formData.append("tags", tags);
@@ -125,12 +135,12 @@ function PostCreateForm() {
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
+      // Shows success message
       showToast("Post created successfully!")
     } catch (err) {
-      // console.log(err.response?.data);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        console.log(err.response?.data)
+        // console.log(err.response?.data)
       }
     }
   };

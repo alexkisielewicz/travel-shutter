@@ -18,8 +18,8 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-// Name for the component added to avoid eslint error
-// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md
+/* Name for the component added to avoid eslint error
+https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md */
 ThreeDots.displayName = "ThreeDots"
 
 export const DropdownMenu = ({ handleEdit, handleDelete }) => {
@@ -51,6 +51,8 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => {
 };
 
 export const ProfileEditDropdown = ({ id }) => {
+  /* ProfileEditDropdown menu function renders menu 
+  for profile owner (profile ID) to edit profile, update username and password */
   const history = useHistory();
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">

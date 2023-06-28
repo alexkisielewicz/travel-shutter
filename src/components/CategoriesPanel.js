@@ -32,6 +32,8 @@ const CategoriesPanel = ({ handleCategoryFilter }) => {
                 {categories.map((category, index) => (
                   <span
                     key={index}
+                    /* Function with selected category parameter 
+                    is passed to display filtered view in PostsPage.js */
                     onClick={() => handleCategoryFilter(category)}
                   >
                     {category}

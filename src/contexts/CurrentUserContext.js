@@ -15,6 +15,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
+  /* Make a request to get current user on component mount*/
   const handleMount = async () => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
@@ -28,6 +29,8 @@ export const CurrentUserProvider = ({ children }) => {
     handleMount();
   }, []);
 
+  /* Function handles access tokens, user is redirected 
+  to sign in page if token cannot be refreshed*/
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {

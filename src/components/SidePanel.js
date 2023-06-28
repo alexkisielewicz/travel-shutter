@@ -1,14 +1,19 @@
 import React from "react";
+
 import appStyles from "../App.module.css";
 import styles from "../styles/SidePanel.module.css";
 import Container from "react-bootstrap/Container";
+
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
+/* Component renders menu for logged in users, contains 
+links to Add post page, Feed page and Liked page */
 const SidePanel = ({ mobile }) => {
 
   const currentUser = useCurrentUser();
 
+  // Add Post link
   const addPostIcon = (
     <NavLink
       className={styles.NavLink}
@@ -21,6 +26,7 @@ const SidePanel = ({ mobile }) => {
 
   const loggedInIcons = (
     <>
+      {/* Link to user's Feed */}
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -29,6 +35,7 @@ const SidePanel = ({ mobile }) => {
         <i className="fas fa-stream"></i>Feed
       </NavLink>
 
+      {/* Link to user's Liked page */}
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -44,13 +51,13 @@ const SidePanel = ({ mobile }) => {
       <>
       {mobile ? null : (<h4 className="text-center pb-3">Menu</h4>)}
         {mobile ? (
-          // IF ON MOBILE
+          // If on mobile
           <div className="d-flex justify-content-around">
             {currentUser && addPostIcon}
             {currentUser ? loggedInIcons : <></>}
           </div>
         ) : (
-          // IF ON DESKTOP
+          // If on desktop
           <div className="d-flex justify-content-around">
             {currentUser && addPostIcon}
             {currentUser ? loggedInIcons : <></>}

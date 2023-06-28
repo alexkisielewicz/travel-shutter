@@ -38,37 +38,43 @@ const PostContainer = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Handles Edit function, redirects to specific post's edit page
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
+  // Shows delete confirmation modal
   const handleDelete = () => {
     setShowDeleteModal(true);
   };
 
+  // Shows toast with a message passed in parameter
   const showToast = (message) => {
     toast.success(message);
   };
 
+  // Makes delete request to api when confirmation is done by user
   const confirmDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
+      // Shows success message
       showToast("Post deleted succesfully");
     } catch (err) {
       // console.log(err);
     }
   };
 
+  // Makes api request to likes endpoint, includes specific post's id
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
+          // update likes count by adding one
           return post.id === id
             ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
             : post;
@@ -80,17 +86,20 @@ const PostContainer = (props) => {
     }
   };
 
+  // Makes api request to likes endpoint, includes specific post's id
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
+          // update likes count by subtracting one
           return post.id === id
             ? { ...post, likes_count: post.likes_count - 1, like_id: null }
             : post;
         }),
       }));
+      // Allows to refresh likes count for posts for other components e.g TopPosts
       refreshLikes();
     } catch (err) {
       // console.log(err);
@@ -132,6 +141,7 @@ const PostContainer = (props) => {
         </div>
         <hr />
         <div className={styles.Likes}>
+          {/* User can't like own posts, shows tooltip with appropriate message */}
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -148,6 +158,7 @@ const PostContainer = (props) => {
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
+            // Unauthenticated user cannot like posts, shows tooltip with appropriate message
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
@@ -170,11 +181,13 @@ const PostContainer = (props) => {
             <p>Are you sure you want to delete this post?</p>
           </Modal.Body>
           <Modal.Footer>
+            {/* Confirm delete button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Delete}`} 
               onClick={confirmDelete}>
               Delete
             </Button>
+            {/* Cancel delete button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Orange}`} 
               onClick={() => setShowDeleteModal(false)}>

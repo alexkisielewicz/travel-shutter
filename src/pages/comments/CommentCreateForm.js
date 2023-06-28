@@ -15,32 +15,42 @@ function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
+
+  // Declare maximum length of a comments
   const maxCharacterCount = 300;
   const [characterCount, setCharacterCount] = useState("");
   const [isLimit, setIsLimit] = useState(false);
 
+  // Shows confirmation in toast with passed message
   const showToast = (message) => {
     toast.success(message);
   };
 
+  // Handles change in form inputs
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
+  /* Function handles user input in comment field, it checks 
+  user input against allowed comment length and calculates remaining characters */
   const handleInput = (event) => {
     const input = event.target.value;
     const remainingCharacters = maxCharacterCount - input.length;
 
+    // Shows remaining characters to input or appropriate message when no characters are left
     if (remainingCharacters >= 0 && remainingCharacters <= maxCharacterCount) {
       setContent(input.slice(0, maxCharacterCount));
       setCharacterCount(`${remainingCharacters}/${maxCharacterCount}`);
       setIsLimit(false);
     } else {
+      // Shows message if comment exceeds maximum allowed length
       setCharacterCount("Comment is too long!");
       setIsLimit(true);
     }
   };
 
+  /* Handles form submission, passes comment content 
+  and id in post request to /comments endpoint */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -52,7 +62,9 @@ function CommentCreateForm(props) {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
+      // Show success message
       showToast("Comment saved!");
+      // Update comments count
       setPost((prevPost) => ({
         results: [
           {

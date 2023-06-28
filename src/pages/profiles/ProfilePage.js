@@ -27,6 +27,7 @@ import { fetchMoreData } from "../../utils/utils";
 import { ProfileEditDropdown } from "../../components/DropdownMenu";
 import TopPosts from "../../components/TopPosts";
 
+/* Function represents Profile page, it renders in the UI all fields from users profile */
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
@@ -38,10 +39,12 @@ function ProfilePage() {
   const { pageProfile } = useProfileData();
 
   const [profile] = pageProfile.results;
+  // Checks if current user is profile owner
   const is_owner = currentUser?.username === profile?.owner;
 
   const instagram = "http://www.instagram.com/"
 
+  // Fetch user's data from api using profiles endpoint passing users id
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -146,8 +149,9 @@ function ProfilePage() {
             </p>
           </Col>
         </Row>
-
+        
         <hr />
+        {/* Show appropriate title for user's posts list or message if user haven't created any posts */}
         {profilePosts.results.length ? (
           <>
             <div className="text-center py-1">
@@ -164,7 +168,9 @@ function ProfilePage() {
       </Container>
     </>
   );
-
+  
+  /* Declare post's created by user, list will be displayed below the profile 
+  using infinite scroll. Spinner will be shown if response from api is not yet received */
   const mainProfilePosts = (
     <>
       {profilePosts.results.length ? (

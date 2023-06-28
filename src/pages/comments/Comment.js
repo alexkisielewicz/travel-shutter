@@ -31,14 +31,18 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  // shows toast with passed message
   const showToast = (message) => {
     toast.success(message);
   };
   
+
+  // handles click on comment delete icon, shows modal with confirmation
   const handleDelete = () => {
     setShowDeleteModal(true);
   };
 
+  // handles confirmed request to delete comment
   const handleConfirmDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
