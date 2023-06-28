@@ -356,7 +356,7 @@ Mobile navbar and menu:
 
 ### Footer
 
-The footer is located at the bottom of the page, it has fixed position and includes social media links and copyright information. It provides users with access to the app's social media profiles, allowing them to connect and engage with the content through various social platforms. Footer also displays copyright information.
+The footer is located at the bottom of the page, it has fixed position and includes social media links and copyright information. It provides users with access to the app's social media profiles, allowing them to connect and engage with the content through various social platforms.
 
 ![Footer](docs/img/features_footer.png)
 
@@ -528,7 +528,7 @@ Application UI is broken down into smaller, reusable components. This modular ap
 
 Using contexts, hooks, and properties passing between components enables them to collaborate and share information, ensuring that when changes occur, they update accordingly. The application uses a modular system of CSS stylesheets, with one main stylesheet for the entire application, while each component has its own separate stylesheet.
 
-In my application I also aimed to implement reusable components to avoid repetition in the code, unify UI and optimize app performance. List below describes used created components:
+In my application I also aimed to implement reusable components to avoid repetition in the code, unify UI and optimize app performance. List below describes used components:
 
 - Asset: A component used for displaying various assets, such as images or messages.
 
@@ -671,7 +671,7 @@ You should be able to run this react app with this steps, please make sure that 
 
 3. Click on newly created app and go to "Deploy" tab and then to "Deployment method" section. Authorize and connect your GitHub account, then find and select your repository that was previously forked.
 
-4. No environmental variables are required to run this project, however the app uses backend application that is described [here](#data-model-ad-database-structure). Deployment process is described in backend app repository. Additional enviromental variables would be required in backend's heroku config to work with react front end due to CORS security mechanism.
+4. No environmental variables are required to run this project, however the app uses backend application that is described [here](#data-model-ad-database-structure). Deployment process is described in backend app repository. Additional enenvironmtal variables would be required in backend's heroku config to work with react front end due to CORS security mechanism.
 
     Additional Env vars in backend app:
 
@@ -707,7 +707,7 @@ If I had more time or decide to develop app further I would add/improve followin
 ## Learning resources
 
 - [Code Institute course and learning platform](https://codeinstitute.net/)
-- [W3Schools](https://www.w3schools.com/python/default.asp)
+- [W3Schools](https://www.w3schools.com/)
 - [React](https://legacy.reactjs.org/docs/getting-started.html) - React documentation.
 - [Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction) - Bootstrap documentation.
 
