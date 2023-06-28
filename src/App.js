@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Page404 from "./components/Page404";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
@@ -17,7 +18,6 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
-import Footer from "./components/Footer";
 
 
 function App() {
@@ -60,22 +60,23 @@ function App() {
           {/* AUTH */}
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          
+
           {/* POSTS endpoint */}
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
-          
+
           {/* PROFILEs endpoint */}
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
-          
+
           {/* ERROR Page 404 */}
           <Route render={() => <Page404 />} />
         </Switch>
       </Container>
+      {/* FOOTER */}
       <Footer />
     </div>
   );
