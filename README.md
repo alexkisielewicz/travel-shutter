@@ -707,9 +707,10 @@ If I had more time or decide to develop app further I would add/improve followin
 ## Learning resources
 
 - [Code Institute course and learning platform](https://codeinstitute.net/)
-- [W3Schools](https://www.w3schools.com/)
+- [W3Schools](https://www.w3schools.com/) - JS learning resource, help with syntax.
+- [MDN Mozilla Developer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) - helped me understand different object methods.
 - [React](https://legacy.reactjs.org/docs/getting-started.html) - React documentation.
-- [Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction) - Bootstrap documentation.
+- [Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction) - Bootstrap documentation for used components e.g. modal, dropdown, tooltip, navbar.
 
 ## Acknowledgements
 
